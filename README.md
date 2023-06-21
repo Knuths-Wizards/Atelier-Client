@@ -49,3 +49,38 @@ From Git create a pull request to merge the branches
 * -- go to Git --
 * create new pull request master << newcomponent
 * resolve merge conflicts
+
+
+### Commit Style Guide
+
+https://www.freecodecamp.org/news/how-to-write-better-git-commit-messages/
+
+Format:
+*
+* <type>[optional scope]: <description>
+*
+* [optional body]
+*
+* [optional footer(s)]
+
+EXAMPLE:
+* fix: fix foo to enable bar
+*
+* This fixes the broken behavior of the component by doing xyz.
+*
+* BREAKING CHANGE
+* Before this fix foo wasn't enabled at all, behavior changes from * <old> to <new>
+
+* Closes D2IQ-12345
+
+### Good
+feat: improve performance with lazy load implementation for images
+chore: update npm dependency to latest version
+Fix bug preventing users from submitting the subscribe form
+Update incorrect client phone number within footer body per client request
+### Bad
+fixed bug on landing page
+Changed style
+oops
+I think I fixed it this time?
+empty commit messages
