@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './styles/App.css';
+import RelatedCompare from './Components/4 - RelatedComparison/RelatedComparison'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         >
           Learn REACT IASJDIOSAJI
         </a>
+        <RelatedCompare className='RelatedCompare'/>
       </header>
     </div>
   );
