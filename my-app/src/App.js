@@ -19,7 +19,6 @@ function App() {
           Learn REACT IASJDIOSAJI
         </a>
       </header>
-      <h3>Realated Items</h3>
       <RelatedCompare className='RelatedCompare'/>
     </div>
   );
