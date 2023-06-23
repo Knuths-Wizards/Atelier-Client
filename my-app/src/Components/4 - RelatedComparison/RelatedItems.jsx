@@ -29,7 +29,15 @@ export default function App() {
     };
 
   return (
-    <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
+    <ScrollMenu
+     LeftArrow={LeftArrow}
+      RightArrow={RightArrow}
+      options={{
+        ratio: 0.9,
+        rootMargin: "5px",
+        threshold: [0.01, 0.05, 0.5, 0.75, 0.95, 1]
+      }}
+      >
       {items.map(({ id }) => (
         <Card
           itemId={id} // NOTE: itemId is required for track items
