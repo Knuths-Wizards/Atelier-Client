@@ -14,7 +14,7 @@ const [product, setProduct] = useState([]);
 
 return (
   <div>
-    <h4>Hello Related</h4>
+    <h4><RelatedItems></RelatedItems></h4>
     <h4>Hello Outfits</h4>
 
   </div>
