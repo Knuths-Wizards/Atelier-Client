@@ -26,7 +26,7 @@ describe('Ratings and Reviews', ()=>{
       expect(screen.getAllByTestId('review').length).toBe(4)
     })
 
-    xit('Should hide the button if all reviews are displayed', async ()=>{
+    it('Should hide the button if all reviews are displayed', async ()=>{
       render(RR)
       let button = screen.getByText('More Reviews')
       await userEvent.click(button)
