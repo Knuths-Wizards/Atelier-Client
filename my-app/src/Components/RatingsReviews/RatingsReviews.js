@@ -1,8 +1,12 @@
+import ReviewsList from './ReviewsList'
+
 // TODO: Implement
 const RatingsReviews = (props) => {
+  const { reviews } = props
   return (
-    <div className='RatingsReviews'>
-
+    <div>
+      Customer Reviews
+      <ReviewsList reviews={reviews}/>
     </div>
   )
 }
