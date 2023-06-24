@@ -18,8 +18,8 @@ function App() {
         >
           Learn REACT IASJDIOSAJI
         </a>
-        <RelatedCompare className='RelatedCompare'/>
       </header>
+      <RelatedCompare className='RelatedCompare'/>
     </div>
   );
 }
