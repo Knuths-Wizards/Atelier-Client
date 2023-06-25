@@ -6,13 +6,27 @@ import { fetchAllProducts, fetchProductData} from './ovRoutes'
 // import AddCart from './AddCart';
 
 const Overview = () => {
+  const [product, setProduct] = useState('37311');
+  const handleProduct = (id) => {
+    setProduct(id)
+  }
 
-  console.log(fetchAllProducts())
+  useEffect(() => {
+    fetchProductData(product)
+      .then((data) => {
+        setProduct(data);
+      })
+      .catch((err) => {
+        console.log('AXIOS error fetching product data', err);
+      });
+  }, []);
+
+
   return (
   <div>
     {/* <Gallery></Gallery> */}
-    <ProductInfo></ProductInfo>
-    {/* <StyleSelect></StyleSelect> */}
+    <ProductInfo product = {product} changeProduct = {handleProduct}></ProductInfo>
+    {/* <StyleSelect product = {productID}></StyleSelect> */}
     {/* <AddCart></AddCart> */}
   </div>
   )
