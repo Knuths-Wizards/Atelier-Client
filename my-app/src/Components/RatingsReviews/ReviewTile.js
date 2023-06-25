@@ -1,8 +1,8 @@
 // TODO: Implement
 const ReviewTile = (props) => {
   return (
-    <div className='ReviewTile'>
-
+    <div data-testid='review'>
+      This is a review tile
     </div>
   )
 }

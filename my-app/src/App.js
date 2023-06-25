@@ -1,7 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './styles/App.css';
-import Overview from './Components/1 - Overview/Overview.jsx'
+
+import RelatedCompare from './Components/4 - RelatedComparison/RelatedComparison'
 
 function App() {
   return (
@@ -19,8 +20,9 @@ function App() {
         >
           Learn REACT IASJDIOSAJI
         </a>
-        <Overview></Overview>
+        
       </header>
+      <RelatedCompare className='RelatedCompare'/>
     </div>
   );
 }
