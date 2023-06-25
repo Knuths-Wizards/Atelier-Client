@@ -1,5 +1,7 @@
+import React from 'react';
 import logo from './logo.svg';
 import './styles/App.css';
+import Overview from './Components/1 - Overview/Overview.jsx'
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
         >
           Learn REACT IASJDIOSAJI
         </a>
+        <Overview></Overview>
       </header>
     </div>
   );

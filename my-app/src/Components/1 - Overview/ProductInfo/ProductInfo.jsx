@@ -1,18 +1,18 @@
 import React, {useState, useEffect} from 'react';
-import {StarRating, ProductCat, ProductTitle, Price, ProductOverview, Share} from './SubComponents/'
+import StarRating from './SubComponents/StarRating.jsx'
 
 const ProductInfo = () => {
 
 
   return (
   <div>
-    <h1> ADDING SUBCOMPONENTS LATER</h1>
+    <h1> TESTING COMPONENTS </h1>
     <StarRating></StarRating>
-    <ProductCat></ProductCat>
+    {/* <ProductCat></ProductCat>
     <ProductTitle></ProductTitle>
     <Price></Price>
     <ProductOverview></ProductOverview>
-    <Share></Share>
+    <Share></Share> */}
 
   </div>
   )
