@@ -1,8 +1,9 @@
 import ReviewsList from './ReviewsList'
+import { useState } from 'react'
 
 // TODO: Implement
 const RatingsReviews = (props) => {
-  const { reviews } = props
+  const [reviews, setReviews] =
   return (
     <div>
       Customer Reviews
