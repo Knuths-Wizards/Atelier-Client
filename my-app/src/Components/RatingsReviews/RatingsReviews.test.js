@@ -1,11 +1,13 @@
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import RatingsReviews from './RatingsReviews'
-import dummyReviews from './test-data/dummyReviews.json'
+import dummyIO from './test-data/dummyIO.json'
 
 
 describe('Ratings and Reviews', ()=>{
-  const RR = <RatingsReviews reviews={dummyReviews.results}/>
+  const RR = <RatingsReviews productId={0}/>
+
+
   describe('ReviewsList', ()=>{
     it('Should display two reviews', ()=>{
       render(RR)
