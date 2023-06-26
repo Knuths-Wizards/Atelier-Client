@@ -8,17 +8,28 @@ The Overview module will be the top-most module on the Product Detail page. The 
 [] -Style selector
 [] -Add to cart
 This component will guide the customer through selecting a specific style and size to add to their cart. As such, portions of the Overview module, such as the image gallery and cart selection, will be specific to a SKU chosen as opposed to the overarching product.
+
 Product Information
+
 General information about the product will be displayed at the top of the Overview. The following information will show:
+
 Star Rating (# of Reviews) - Each product has an average rating based on its reviews. The average rating of the product will be represented by an array of solid or outlined stars, where the number of solid stars represents the review score. A total of 5 stars should always appear. The number of stars filled in should correspond to the average score.
+
 The visual for rating should be representative of up to a quarter of a review point. For example, if the average is 3.8, this should display as 3¾ solid stars and 1¼ outlined stars.
+
 Next to the star rating, a link stating “Read all [#] reviews” will show. The total number of reviews should be inserted in place of [#]. Clicking this link should scroll the page to the Ratings & Reviews module described in section 1.2.
+
 If there are no reviews, this entire section should be hidden.
-Product Category
-Product Title
-Price - The price is not actually derived from the product, but the style currently selected. It should update dynamically with the user’s updates to style selected. A default style will be designated for each product. This style should appear if no further selection has been made.
+
+[] -Product Category
+
+[] -Product Title
+
+[] -Price - The price is not actually derived from the product, but the style currently selected. It should update dynamically with the user’s updates to style selected. A default style will be designated for each product. This style should appear if no further selection has been made.
+
 The price may be on sale. If the SKU is currently discounted, then the sale price should appear in red, followed by the original price which is struckthrough.
-Product Overview - This free form text field may exist on some items. If it is available it should be displayed.
+
+[] -Product Overview - This free form text field may exist on some items. If it is available it should be displayed.
 Share on Social media - Below the product information, buttons should provide the ability to share this product on popular social media platforms. This includes:
 Facebook
 Twitter
