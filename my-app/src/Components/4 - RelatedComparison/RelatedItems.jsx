@@ -24,17 +24,15 @@ export default function App(ogProduct) {
     }
  }
 
-  var getRelatedProductDetails = function(str) {
-    // console.log(str)
+  const getRelatedProductDetails = function(str) {
     return axiosAtelier.get(baseURL + "products/" + str.toString());
   }
 
-  var getImages = function(obj) {
-    console.log(obj.id)
+  const getImages = function(obj) {
     return axiosAtelier.get(baseURL + "products/" + obj.id.toString() + "/styles")
   }
 
-  var getReviews = function(obj) {
+  const getReviews = function(obj) {
     return axiosAtelier.get(baseURL + "reviews/meta/?product_id=" + obj.id.toString())
   }
 
@@ -47,54 +45,41 @@ export default function App(ogProduct) {
     axiosAtelier.get(baseURL + "products/" + ogProduct.product.id + "/related").then((response) => {
        return Promise.all(response.data.map(getRelatedProductDetails))
     }).then((response) => {
-      // console.log(response)
       let newItems = response.map(dataMap)
-      // console.log(newItems)
       setItems(newItems)
       return newItems;
     }).then((items) => {
-      // console.log(items)
       return Promise.all(items.map(getImages))
     }).then((styles) => {
-      // console.log(styles)
       let dataStyles = styles.map(dataMap)
       let itemsWithImgs = [];
       for(let idx = 0; idx < dataStyles.length; idx++) {
         itemsWithImgs.push(items[idx]);
-        console.log(dataStyles[idx].results[0].photos[0]);
-        if(dataStyles[idx].results[0].photos[0].thumbnail_url === null) {
+        if(dataStyles[idx].results[0].photos[0].thumbnail_url == null) {
           continue;
         } else {  // this else should be pointless but cannot be removed
-        // console.log(dataStyles[idx].results[0].photos[0].thumbnail_url)
         itemsWithImgs[idx].img = dataStyles[idx].results[0].photos[0].thumbnail_url;
         }
       }
       setItems(itemsWithImgs);
-      console.log(itemsWithImgs)
       return itemsWithImgs;
     }).then((items) => {
-      // console.log(items)
       return Promise.all(items.map(getReviews))
     }).then((reviews) => {
-      console.log(reviews)
       let dataReviews = reviews.map(dataMap)
-      console.log(dataReviews)
       let reviewsScores = dataReviews.map((el) => {
         let totalTimed = +el.ratings['1'] + (+el.ratings['2'] * 2) + (+el.ratings['3'] * 3) + (+el.ratings['4'] * 4) + (+el.ratings['5'] * 5);
         let total = +el.ratings['1'] + +el.ratings['2'] + +el.ratings['3'] + +el.ratings['4'] + +el.ratings['5'];
         let final = totalTimed/total;
         let roundedFinal = roundToHalf(final)
-        console.log(roundedFinal)
         return roundedFinal
       })
       let itemsWithReviewScores = [];
-      console.log(reviewsScores)
       for(let idx = 0; idx < reviewsScores.length; idx++) {
         itemsWithReviewScores.push(items[idx]);
         itemsWithReviewScores[idx].review = reviewsScores[idx]
       }
       setItems(itemsWithReviewScores);
-      console.log(itemsWithReviewScores)
       return itemsWithReviewScores;
     })
     }

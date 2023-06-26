@@ -9,9 +9,6 @@ const [custumor, setCustumer] = useState([]);
 const [product, setProduct] = useState([]);
 
 // function getCust()
-// function getProduct()
-
-console.log('RAWR')
 
 const getProduct = () => {
   axiosAtelier.get(process.env.REACT_APP_API_BASE_URL + "products/" + '37311').then((response) => {
