@@ -3,22 +3,19 @@ import dummyReviews from './dummyReviews.json'
 const dummyIO = {
   fakeReviews: (productId) => {
 
-    return new Promise(dummyReviews)
+    return Promise.resolve(dummyReviews.results)
   },
 
   fakeVote: (reviewId) => {
 
-    return new Promise()
   },
 
   fakeReport: (reviewId) => {
 
-    return new Promise()
   },
 
   fakeSubmit: (formData) => {
 
-    return new Promise()
   }
 }
 

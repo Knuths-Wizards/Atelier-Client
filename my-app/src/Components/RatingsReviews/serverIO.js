@@ -3,22 +3,22 @@ import axios from '../../axiosAtelier'
 const serverIO = {
   getReviews: (productId) => {
 
-    return new Promise([])
+    return Promise.resolve([])
   },
 
   castVote: (reviewId) => {
 
-    return new Promise()
+    return Promise.resolve(null)
   },
 
   reportReview: (reviewId) => {
 
-    return new Promise()
+    return Promise.resolve(null)
   },
 
   submitReview: (formData) => {
 
-    return new Promise()
+    return Promise.resolve(null)
   }
 }
 
