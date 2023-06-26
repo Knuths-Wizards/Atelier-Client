@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import StarRating from './SubComponents/StarRating.jsx'
 import {fetchProductReviewMetaData} from '../ovRoutes.js'
-const ProductInfo = ({product, changeProduct}) => {
+const ProductInfo = ({product, changeProduct, productID}) => {
   const [ratings,setRatings] = useState({});
-
+  console.log('product INFOOO', product.category)
   useEffect(() => {
-    fetchProductReviewMetaData(product)
+    fetchProductReviewMetaData(productID)
       .then((data) => {
         console.log('reviewmetadata----',data)
         setRatings(data);
@@ -13,17 +13,17 @@ const ProductInfo = ({product, changeProduct}) => {
       .catch((err) => {
         console.log('AXIOS error fetching reviews meta data', err);
       });
-  }, [product]);
+  }, [productID]);
 
   return (
-  <div>
+  <div className = "product-info-container">
     <h1> TESTING COMPONENTS </h1>
     <StarRating ratings = {ratings}></StarRating>
-    {/* <ProductCat></ProductCat>
-    <ProductTitle></ProductTitle>
-    <Price></Price>
-    <ProductOverview></ProductOverview>
-    <Share></Share> */}
+    <div>{product.category}</div>
+    <div>{product.name}</div>
+    <div>{product.default_price}</div>
+    <div>{product.description}</div>
+    {/* <Share></Share> */}
 
   </div>
   )

@@ -1,18 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import ProductInfo from './ProductInfo/ProductInfo.jsx';
 import { fetchAllProducts, fetchProductData} from './ovRoutes'
+import '../../styles/Overview.css'
 // import Gallery from './Gallery';
 // import StyleSelect from './StyleSelect';
 // import AddCart from './AddCart';
 
 const Overview = () => {
-  const [product, setProduct] = useState('37311');
+  const [productID, setProductID] = useState('37311');
+  const [product, setProduct] = useState({})
   const handleProduct = (id) => {
-    setProduct(id)
+    setProductID(id)
   }
 
   useEffect(() => {
-    fetchProductData(product)
+    fetchProductData(productID)
       .then((data) => {
         setProduct(data);
       })
@@ -23,9 +25,9 @@ const Overview = () => {
 
 
   return (
-  <div>
+  <div className = "Overview-container">
     {/* <Gallery></Gallery> */}
-    <ProductInfo product = {product} changeProduct = {handleProduct}></ProductInfo>
+    <ProductInfo product = {product} productID = {productID} changeProduct = {handleProduct}></ProductInfo>
     {/* <StyleSelect product = {productID}></StyleSelect> */}
     {/* <AddCart></AddCart> */}
   </div>
