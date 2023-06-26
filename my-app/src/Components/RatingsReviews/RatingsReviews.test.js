@@ -37,40 +37,44 @@ describe('Ratings and Reviews', ()=>{
   })
 
   describe('Review Tile', ()=>{
+
     it('Should show Star Rating', ()=>{
       render(RR)
       let reviews = screen.getAllByTestId('review')
       reviews.forEach((review)=>{
-        expect(within(review).getByTestId('stars')).not.toBeNull()
+        expect(within(review).getByTestId('stars')).toBeInTheDocument()
       })
     })
+
     it('Should display review date', ()=>{
       expect(screen.getByText('2023')).not.toBeNull()
     })
     it('Should display review summary (aka title)', ()=>{
-      expect(screen.getByText('Yes')).not.toBeNull()
-      expect(screen.getByText('Best purchase')).not.toBeNull()
+      expect(screen.getByText('Yes')).toBeInTheDocument()
+      expect(screen.getByText('Best purchase')).toBeInTheDocument()
     })
     it('Should display review body', ()=>{
-      expect(screen.getByText('Yes')).not.toBeNull()
-      expect(screen.getByText('I loved it')).not.toBeNull()
+      expect(screen.getByText('Yes')).toBeInTheDocument()
+      expect(screen.getByText('I loved it')).toBeInTheDocument()
     })
     it('Should display reviewer name', ()=>{
-      expect(screen.getByText('JSON')).not.toBeNull()
-      expect(screen.getByText('hello')).not.toBeNull()
+      expect(screen.getByText('JSON')).toBeInTheDocument()
+      expect(screen.getByText('hello')).toBeInTheDocument()
     })
     it('Should ask if review was helpful', ()=>{
-      expect(screen.getByText('Was this review helpful?')).not.toBeNull()
-      expect(screen.getByText('Yes (0)')).not.toBeNull()
+      expect(screen.getByText('Was this review helpful?')).toBeInTheDocument()
+      expect(screen.getByText('Yes (0)')).toBeInTheDocument()
     })
+
     it('Should update count when "Yes" is clicked', async ()=>{
       var links = screen.getAllByText(/Yes (\d+)/)
       links.forEach((link)=>{
-        expect(within(link).getByText('Yes (0)')).not.toBeNull()
+        expect(within(link).getByText('Yes (0)')).toBeInTheDocument()
       })
       await userEvent.click(links[1])
+      links = screen.getAllByText(/Yes (\d+)/)
       links.forEach((link, i)=>{
-        expect(within(link).getByText(`Yes (${i})`)).not.toBeNull()
+        expect(within(link).getByText(`Yes (${i})`)).toBeInTheDocument()
       })
     })
   })
