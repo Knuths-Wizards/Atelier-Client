@@ -12,6 +12,8 @@ export default function App(ogProduct) {
 
   const baseURL = process.env.REACT_APP_API_BASE_URL
 
+  var stateToBeSet = [];
+
   function roundToHalf(value) {
     var converted = parseFloat(value); // Make sure we have a number
     var decimal = (converted - parseInt(converted, 10));
@@ -46,25 +48,23 @@ export default function App(ogProduct) {
        return Promise.all(response.data.map(getRelatedProductDetails))
     }).then((response) => {
       let newItems = response.map(dataMap)
-      setItems(newItems)
+      stateToBeSet = newItems;
       return newItems;
-    }).then((items) => {
-      return Promise.all(items.map(getImages))
+    }).then((newItems) => {
+      return Promise.all(newItems.map(getImages))
     }).then((styles) => {
       let dataStyles = styles.map(dataMap)
       let itemsWithImgs = [];
       for(let idx = 0; idx < dataStyles.length; idx++) {
-        itemsWithImgs.push(items[idx]);
+        itemsWithImgs.push(stateToBeSet[idx]);
         if(dataStyles[idx].results[0].photos[0].thumbnail_url == null) {
           continue;
-        } else {  // this else should be pointless but cannot be removed
-        itemsWithImgs[idx].img = dataStyles[idx].results[0].photos[0].thumbnail_url;
         }
+        itemsWithImgs[idx].img = dataStyles[idx].results[0].photos[0].thumbnail_url;
       }
-      setItems(itemsWithImgs);
       return itemsWithImgs;
-    }).then((items) => {
-      return Promise.all(items.map(getReviews))
+    }).then((newItems) => {
+      return Promise.all(newItems.map(getReviews))
     }).then((reviews) => {
       let dataReviews = reviews.map(dataMap)
       let reviewsScores = dataReviews.map((el) => {
@@ -76,7 +76,7 @@ export default function App(ogProduct) {
       })
       let itemsWithReviewScores = [];
       for(let idx = 0; idx < reviewsScores.length; idx++) {
-        itemsWithReviewScores.push(items[idx]);
+        itemsWithReviewScores.push(stateToBeSet[idx]);
         itemsWithReviewScores[idx].review = reviewsScores[idx]
       }
       setItems(itemsWithReviewScores);
