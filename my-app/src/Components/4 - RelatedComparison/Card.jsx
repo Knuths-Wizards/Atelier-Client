@@ -14,11 +14,11 @@ export default function Card({ onClick, selected, title, price, category, review
       tabIndex={0}
     >
       <div className="card">
-        <div>{review}</div>
         <img src={img} alt=''></img>
         <div>{category}</div>
         <div>{title}</div>
         <div>${price}</div>
+        <Stars review={review}></Stars>
         <div>visible: {JSON.stringify(!!visibility.isItemVisible(itemId))}</div>
         <div>selected: {JSON.stringify(!!selected)}</div>
       </div>
@@ -29,4 +29,23 @@ export default function Card({ onClick, selected, title, price, category, review
       />
     </div>
   );
+}
+let ratingCount = 0
+function Stars({review}) {
+  ratingCount++;
+  return(
+  <div className="rating rating-md rating-half">
+  <input type="radio" name={`rirating-${ratingCount}`} className="rating-hidden" readOnly checked={review === 0 ? true : false}/>
+  <input type="radio" name={`rirating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-1" readOnly checked={review === 0.5 ? true : false}/>
+  <input type="radio" name={`rirating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-2" readOnly checked={review === 1 ? true : false}/>
+  <input type="radio" name={`rirating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-1" readOnly checked={review === 1.5 ? true : false}/>
+  <input type="radio" name={`rirating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-2" readOnly checked={review === 2 ? true : false} />
+  <input type="radio" name={`rirating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-1" readOnly checked={review === 2.5 ? true : false}/>
+  <input type="radio" name={`rirating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-2" readOnly checked={review === 3 ? true : false}/>
+  <input type="radio" name={`rirating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-1" readOnly checked={review === 3.5 ? true : false}/>
+  <input type="radio" name={`rirating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-2" readOnly checked={review === 4 ? true : false}/>
+  <input type="radio" name={`rirating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-1" readOnly checked={review === 4.5 ? true : false}/>
+  <input type="radio" name={`rirating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-2" readOnly checked={review === 5 ? true : false}/>
+</div>
+  )
 }
