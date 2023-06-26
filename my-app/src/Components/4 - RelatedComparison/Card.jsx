@@ -33,7 +33,6 @@ export default function Card({ onClick, selected, title, price, category, review
 let ratingCount = 0
 function Stars({review}) {
   ratingCount++;
-  console.log(review)
   return(
   <div className="rating rating-md rating-half">
   <input type="radio" name={`rating-${ratingCount}`} className="rating-hidden" readOnly checked={review === 0 ? true : false}/>
