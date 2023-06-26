@@ -6,7 +6,6 @@ import FakeData from './FakeData.js'
 //npm install react-modal
 
 
-
 const Main = () => {
 
 const [productInfo, setProductInfo] = useState(FakeData)

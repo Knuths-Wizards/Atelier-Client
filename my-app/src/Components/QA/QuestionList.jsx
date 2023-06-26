@@ -1,15 +1,15 @@
 import Modal from 'react-modal';
 import React, { useState } from 'react';
 import Question from './Question.jsx';
-import AnswerList from './AnswerList.jsx';
 
-//display questions in order of helpfulness
 
 const QuestionList = ({ questions }) => {
 
-const [length, setLength] = useState(questions.length)
+  const [length, setLength] = useState(questions.length)
 
-
+  //   Add 'add answer' button
+  //   Splice array in case there are more questions
+  //   Display questions in order of helpfulness
 
   return (
     <>
@@ -17,13 +17,10 @@ const [length, setLength] = useState(questions.length)
         <p>No questions. Add one below!</p>
       ) : (
         questions.map((question) => (
-          <>
-          <p><b>Q: {question.question_body}</b></p>
-          <AnswerList answers={question.answers} />
-          </>
+          <Question question={question} />
         ))
       )}
-      </>
+    </>
   )
 };
 
