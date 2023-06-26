@@ -1,18 +1,110 @@
 import React from 'react';
 import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
 import 'react-horizontal-scrolling-menu/dist/styles.css';
-import axios from 'axios';
+import axiosAtelier from '../../axiosAtelier.js';
 import Card from './Card.jsx';
 
-const getItems = () =>
-  Array(20)
-    .fill(0)
-    .map((_, ind) => ({ id: `element-${ind}` }));
 
-export default function App() {
-  const [items, setItems] = React.useState(getItems);
+export default function App(ogProduct) {
+  const [items, setItems] = React.useState([]);
   const [selected, setSelected] = React.useState([]);
   const [position, setPosition] = React.useState(0);
+
+  function roundToHalf(value) {
+    var converted = parseFloat(value); // Make sure we have a number
+    var decimal = (converted - parseInt(converted, 10));
+    decimal = Math.round(decimal * 10);
+    if (decimal == 5) { return (parseInt(converted, 10)+0.5); }
+    if ( (decimal < 3) || (decimal > 7) ) {
+       return Math.round(converted);
+    } else {
+       return (parseInt(converted, 10)+0.5);
+    }
+ }
+
+  var getRelatedProductDetails = function(str) {
+    // console.log(str)
+    return axiosAtelier.get(process.env.REACT_APP_API_BASE_URL + "products/" + str.toString());
+  }
+
+  var getImages = function(obj) {
+    console.log(obj.id)
+    return axiosAtelier.get(process.env.REACT_APP_API_BASE_URL + "products/" + obj.id.toString() + "/styles")
+  }
+
+  var getReviews = function(obj) {
+    return axiosAtelier.get(process.env.REACT_APP_API_BASE_URL + "reviews/meta/?product_id=" + obj.id.toString())
+  }
+
+  const getRelatedProducts = () => {
+    if(ogProduct.product.id) {
+    axiosAtelier.get(process.env.REACT_APP_API_BASE_URL + "products/" + ogProduct.product.id + "/related").then((response) => {
+       return Promise.all(response.data.map(getRelatedProductDetails))
+    }).then((response) => {
+      // console.log(response)
+      let newItems = response.map((el) => {
+        return el.data
+      })
+      // console.log(newItems)
+      setItems(newItems)
+      return newItems;
+    }).then((items) => {
+      // console.log(items)
+      return Promise.all(items.map(getImages))
+    }).then((styles) => {
+      // console.log(styles)
+      let dataStyles = styles.map((el) => {
+        return el.data
+      })
+      let itemsWithImgs = [];
+      for(let idx = 0; idx < dataStyles.length; idx++) {
+        itemsWithImgs.push(items[idx]);
+        console.log(dataStyles[idx].results[0].photos[0]);
+        if(dataStyles[idx].results[0].photos[0].thumbnail_url === null) {
+          continue;
+        } else {  // this else should be pointless but cannot be removed
+        // console.log(dataStyles[idx].results[0].photos[0].thumbnail_url)
+        itemsWithImgs[idx].img = dataStyles[idx].results[0].photos[0].thumbnail_url;
+        }
+      }
+      setItems(itemsWithImgs);
+      console.log(itemsWithImgs)
+      return itemsWithImgs;
+    }).then((items) => {
+      // console.log(items)
+      return Promise.all(items.map(getReviews))
+    }).then((reviews) => {
+      console.log(reviews)
+      let dataReviews = reviews.map((el) => {
+        return el.data
+      })
+      console.log(dataReviews)
+      let reviewsScores = dataReviews.map((el) => {
+        let totalTimed = +el.ratings['1'] + (+el.ratings['2'] * 2) + (+el.ratings['3'] * 3) + (+el.ratings['4'] * 4) + (+el.ratings['5'] * 5);
+        let total = +el.ratings['1'] + +el.ratings['2'] + +el.ratings['3'] + +el.ratings['4'] + +el.ratings['5'];
+        let final = totalTimed/total;
+        let roundedFinal = roundToHalf(final)
+        console.log(roundedFinal)
+        return roundedFinal
+      })
+      let itemsWithReviewScores = [];
+      console.log(reviewsScores)
+      for(let idx = 0; idx < reviewsScores.length; idx++) {
+        itemsWithReviewScores.push(items[idx]);
+        itemsWithReviewScores[idx].review = reviewsScores[idx]
+      }
+      setItems(itemsWithReviewScores);
+      console.log(itemsWithReviewScores)
+      return itemsWithReviewScores;
+    })
+    }
+  }
+
+  const didMount = React.useRef(false);  //this fixes an issue with waiting for the getProduct call in RelatedComparision to complete.... it sometimes calls twice depending on the speed of the response
+
+  React.useEffect(() => {
+     getRelatedProducts();
+  }, [ogProduct]);
 
   const isItemSelected = (id) => !!selected.find((el) => el === id);
 
@@ -38,10 +130,14 @@ export default function App() {
         threshold: [0.01, 0.05, 0.5, 0.75, 0.95, 1]
       }}
       >
-      {items.map(({ id }) => (
+      {items.map(({ id, name, default_price, category, review, img }) => (
         <Card
           itemId={id} // NOTE: itemId is required for track items
-          title={id}
+          img={img}
+          review={review}
+          category={category}
+          title={name}
+          price={default_price}
           key={id}
           onClick={handleClick(id)}
           selected={isItemSelected(id)}
