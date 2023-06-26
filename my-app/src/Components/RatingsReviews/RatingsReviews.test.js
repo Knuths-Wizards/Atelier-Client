@@ -3,9 +3,9 @@ import userEvent from '@testing-library/user-event'
 import RatingsReviews from './RatingsReviews'
 import dummyReviews from './test-data/dummyReviews.json'
 
+
 describe('Ratings and Reviews', ()=>{
   const RR = <RatingsReviews reviews={dummyReviews.results}/>
-
   describe('ReviewsList', ()=>{
     it('Should display two reviews', ()=>{
       render(RR)
