@@ -35,17 +35,17 @@ function Stars({review}) {
   ratingCount++;
   return(
   <div className="rating rating-md rating-half">
-  <input type="radio" name={`rating-${ratingCount}`} className="rating-hidden" readOnly checked={review === 0 ? true : false}/>
-  <input type="radio" name={`rating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-1" readOnly checked={review === 0.5 ? true : false}/>
-  <input type="radio" name={`rating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-2" readOnly checked={review === 1 ? true : false}/>
-  <input type="radio" name={`rating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-1" readOnly checked={review === 1.5 ? true : false}/>
-  <input type="radio" name={`rating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-2" readOnly checked={review === 2 ? true : false} />
-  <input type="radio" name={`rating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-1" readOnly checked={review === 2.5 ? true : false}/>
-  <input type="radio" name={`rating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-2" readOnly checked={review === 3 ? true : false}/>
-  <input type="radio" name={`rating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-1" readOnly checked={review === 3.5 ? true : false}/>
-  <input type="radio" name={`rating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-2" readOnly checked={review === 4 ? true : false}/>
-  <input type="radio" name={`rating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-1" readOnly checked={review === 4.5 ? true : false}/>
-  <input type="radio" name={`rating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-2" readOnly checked={review === 5 ? true : false}/>
+  <input type="radio" name={`rirating-${ratingCount}`} className="rating-hidden" readOnly checked={review === 0 ? true : false}/>
+  <input type="radio" name={`rirating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-1" readOnly checked={review === 0.5 ? true : false}/>
+  <input type="radio" name={`rirating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-2" readOnly checked={review === 1 ? true : false}/>
+  <input type="radio" name={`rirating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-1" readOnly checked={review === 1.5 ? true : false}/>
+  <input type="radio" name={`rirating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-2" readOnly checked={review === 2 ? true : false} />
+  <input type="radio" name={`rirating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-1" readOnly checked={review === 2.5 ? true : false}/>
+  <input type="radio" name={`rirating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-2" readOnly checked={review === 3 ? true : false}/>
+  <input type="radio" name={`rirating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-1" readOnly checked={review === 3.5 ? true : false}/>
+  <input type="radio" name={`rirating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-2" readOnly checked={review === 4 ? true : false}/>
+  <input type="radio" name={`rirating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-1" readOnly checked={review === 4.5 ? true : false}/>
+  <input type="radio" name={`rirating-${ratingCount}`} className="bg-green-500 mask mask-star-2 mask-half-2" readOnly checked={review === 5 ? true : false}/>
 </div>
   )
 }
