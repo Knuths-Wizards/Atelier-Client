@@ -10,6 +10,8 @@ export default function App(ogProduct) {
   const [selected, setSelected] = React.useState([]);
   const [position, setPosition] = React.useState(0);
 
+  const baseURL = process.env.REACT_APP_API_BASE_URL
+
   function roundToHalf(value) {
     var converted = parseFloat(value); // Make sure we have a number
     var decimal = (converted - parseInt(converted, 10));
@@ -24,27 +26,29 @@ export default function App(ogProduct) {
 
   var getRelatedProductDetails = function(str) {
     // console.log(str)
-    return axiosAtelier.get(process.env.REACT_APP_API_BASE_URL + "products/" + str.toString());
+    return axiosAtelier.get(baseURL + "products/" + str.toString());
   }
 
   var getImages = function(obj) {
     console.log(obj.id)
-    return axiosAtelier.get(process.env.REACT_APP_API_BASE_URL + "products/" + obj.id.toString() + "/styles")
+    return axiosAtelier.get(baseURL + "products/" + obj.id.toString() + "/styles")
   }
 
   var getReviews = function(obj) {
-    return axiosAtelier.get(process.env.REACT_APP_API_BASE_URL + "reviews/meta/?product_id=" + obj.id.toString())
+    return axiosAtelier.get(baseURL + "reviews/meta/?product_id=" + obj.id.toString())
+  }
+
+  const dataMap = function(response) {
+    return response.data
   }
 
   const getRelatedProducts = () => {
     if(ogProduct.product.id) {
-    axiosAtelier.get(process.env.REACT_APP_API_BASE_URL + "products/" + ogProduct.product.id + "/related").then((response) => {
+    axiosAtelier.get(baseURL + "products/" + ogProduct.product.id + "/related").then((response) => {
        return Promise.all(response.data.map(getRelatedProductDetails))
     }).then((response) => {
       // console.log(response)
-      let newItems = response.map((el) => {
-        return el.data
-      })
+      let newItems = response.map(dataMap)
       // console.log(newItems)
       setItems(newItems)
       return newItems;
@@ -53,9 +57,7 @@ export default function App(ogProduct) {
       return Promise.all(items.map(getImages))
     }).then((styles) => {
       // console.log(styles)
-      let dataStyles = styles.map((el) => {
-        return el.data
-      })
+      let dataStyles = styles.map(dataMap)
       let itemsWithImgs = [];
       for(let idx = 0; idx < dataStyles.length; idx++) {
         itemsWithImgs.push(items[idx]);
@@ -75,9 +77,7 @@ export default function App(ogProduct) {
       return Promise.all(items.map(getReviews))
     }).then((reviews) => {
       console.log(reviews)
-      let dataReviews = reviews.map((el) => {
-        return el.data
-      })
+      let dataReviews = reviews.map(dataMap)
       console.log(dataReviews)
       let reviewsScores = dataReviews.map((el) => {
         let totalTimed = +el.ratings['1'] + (+el.ratings['2'] * 2) + (+el.ratings['3'] * 3) + (+el.ratings['4'] * 4) + (+el.ratings['5'] * 5);
