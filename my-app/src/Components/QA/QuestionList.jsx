@@ -1,52 +1,30 @@
-// import Modal from 'react-modal';
-// import React, { useState } from 'react';
-// import Question from './Question.jsx';
+import Modal from 'react-modal';
+import React, { useState } from 'react';
+import Question from './Question.jsx';
+import AnswerList from './AnswerList.jsx';
 
-// const QuestionList = ({ questions }) => {
+//display questions in order of helpfulness
 
-//   const [modalState, setModalState] = useState(false);
+const QuestionList = ({ questions }) => {
 
-//   const handleExpand = () => {
-//     //something here
-//   }
+const [length, setLength] = useState(questions.length)
 
-//   return (
-//     <>
-//       {questions.length <= 4 ? (
-//         //display questions in order of helpfulness
-//         questions.map((question) => (
-//           <Question question={question} />
-//         ))
-//       ) : (
-//         questions.slice(0, 4).map((question) => (
-//           <>
-//           <Question question={question} />
-//           <button onClick={handleExpand}>Expand</button>
-//           </>
-//         ))
-//       )}
 
-// <div>
-//   {/*make sure button shows when length is 0 */}
-//   <button onClick={() => setModalState(true)}>ADD A QUESTION</button>
 
-//   {modalState && (
-//     <Modal isOpen={modalState}>
-//       <div>
-//         <h2>Ask Your Question</h2>
-//         <h4>About the PRODUCT NAME HERE</h4>
-//         <input type="text">Your Question: </input>
-//         <input type="text" placeholder="Example: jackson11!" >Your Nickname</input>
-//         <p>For privacy reasons, do not use your full name or email address</p>
-//         <input type="text" placeholder="Why did you like the product or not?">Your email</input>
+  return (
+    <>
+      {length === 0 ? (
+        <p>No questions. Add one below!</p>
+      ) : (
+        questions.map((question) => (
+          <>
+          <p><b>Q: {question.question_body}</b></p>
+          <AnswerList answers={question.answers} />
+          </>
+        ))
+      )}
+      </>
+  )
+};
 
-//         <button onClick={() => setModalState(false)}>Close</button>
-//       </div>
-//     </Modal>
-//   )}
-// </div>
-//       </>
-//     );
-// };
-
-// export default QuestionList;
+export default QuestionList;

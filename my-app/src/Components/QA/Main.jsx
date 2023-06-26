@@ -5,7 +5,7 @@ import App from '../../App.js';
 import FakeData from './FakeData.js'
 //npm install react-modal
 
-//   <QuestionList questions={results} /> */}
+
 
 const Main = () => {
 
@@ -17,6 +17,7 @@ console.log('test', productInfo)
     <>
       <h3>QUESTIONS & ANSWERS</h3>
       <Search questions={productInfo} />
+      <QuestionList questions={productInfo} />
     </>
   );
 }
