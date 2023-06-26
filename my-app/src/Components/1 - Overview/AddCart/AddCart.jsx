@@ -1,17 +1,14 @@
 import React, {useState, useEffect} from 'react';
 
 
-const Overview = () => {
+const AddCart = () => {
 
 
   return (
   <div>
-    <Gallery></Gallery>
-    <ProductInfo></ProductInfo>
-    <StyleSelect></StyleSelect>
-    <AddCart></AddCart>
+    <h1> ADDING SUBCOMPONENTS LATER</h1>
   </div>
   )
 };
 
-export default Overview;
+export default AddCart;
