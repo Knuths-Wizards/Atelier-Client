@@ -80,7 +80,7 @@ function ModalContent({ogFeatures, features, title, ogTitle}) {
   let mergedFeatures = [...new Set([...features1, ...features2])];
 
   return (
-    <table>
+    <table className='table table-zebra'>
       <thead>
         <tr>
           <th>Feature</th>
