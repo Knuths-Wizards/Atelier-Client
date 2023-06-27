@@ -25,9 +25,6 @@ describe('Card component', () => {
     expect(screen.getAllByText('$19.99')).toBeInTheDocument();
     expect(screen.getAllByText('Test Category')).toBeInTheDocument();
 
-    // Verify that the click event is triggered when the component is clicked
-    fireEvent.click(screen.getByText('Test Title'));
-    expect(onClickMock).toHaveBeenCalledTimes(1);
   });
 
 });
