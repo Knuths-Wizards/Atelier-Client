@@ -1,8 +1,9 @@
 
-
+//https://ishadeed.com/article/star-rating-svg/
+//https://developer.mozilla.org/en-US/docs/Web/SVG/Element/linearGradient https://flowbite.com/docs/components/rating/
+//https://blog.logrocket.com/build-a-half-star-rating-component-in-react-from-scratch/
 const StarRating = ({ratings, reviewsCount}) => {
   const ratingObj = ratings.ratings;
-  console.log('REVIEWS COUNT----0,',reviewsCount)
   const calcAvgRating = (ratingObj) => {
     let sum = 0;
     let count = 0;
@@ -56,8 +57,8 @@ const StarRating = ({ratings, reviewsCount}) => {
         ))}
       </div>
       <div className="text-sm ml-2 self-center">
-        <a href="#reviews-section" className="text-blue-500 hover:text-red-700">
-          read all {reviewsCount} reviews
+        <a href="#reviews-section" style={{fontSize: '0.5em'}} className="text-gray-500 hover:text-gray-700 self-center underline">
+        Read all {reviewsCount} reviews
         </a>
       </div>
     </div>

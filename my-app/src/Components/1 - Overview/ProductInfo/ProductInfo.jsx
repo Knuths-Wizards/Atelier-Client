@@ -1,20 +1,22 @@
 import React, {useState, useEffect} from 'react';
 import StarRating from './SubComponents/StarRating.jsx'
-import {fetchProductReviewMetaData, fetchProductReviews} from '../ovRoutes.js'
+import Share from './SubComponents/Share.jsx'
+import {fetchProductData, fetchProductReviewMetaData, fetchProductReviews} from '../ovRoutes.js'
 const ProductInfo = ({product, changeProduct, productID}) => {
   const [ratings,setRatings] = useState({});
   const [reviewsCount,setReviewsCount] = useState({});
-  console.log('product INFOOO', product.category)
+  const [price, setPrice] = useState('')
 
   useEffect(() => {
-    fetchProductReviewMetaData(productID)
-      .then((data) => {
-        console.log('reviewmetadata----',data)
-        setRatings(data);
-        return fetchProductReviews(productID)
-      })
-      .then((data) => {
-        setReviewsCount(data.results.length)
+    Promise.all([
+      fetchProductReviewMetaData(productID),
+      fetchProductReviews(productID),
+      fetchProductData(productID)
+    ])
+      .then(([reviewMetaData, reviews, productData]) => {
+        setRatings(reviewMetaData);
+        setReviewsCount(reviews.results.length);
+        setPrice(productData.default_price);
       })
       .catch((err) => {
         console.log('AXIOS error fetching reviews meta data', err);
@@ -27,9 +29,9 @@ const ProductInfo = ({product, changeProduct, productID}) => {
     {reviewsCount > 0 && <StarRating ratings = {ratings} reviewsCount={reviewsCount}></StarRating>}
     <div className="text-xs uppercase">{product.category}</div>
     <div className="text-2xl font-semibold">{product.name}</div>
-    <div className="text-sm">${product.default_price}</div>
-    <div>{product.description}</div>
-    {/* <Share></Share> */}
+    <div className="text-xs mt-2 mb-2" style={{fontSize: '0.6em'}}>${price}</div>
+    <div className="text-xs pr-5">{product.description}</div>
+    <Share></Share>
 
   </div>
   )

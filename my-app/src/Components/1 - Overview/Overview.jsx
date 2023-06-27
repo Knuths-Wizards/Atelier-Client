@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import ProductInfo from './ProductInfo/ProductInfo.jsx';
-import { fetchAllProducts, fetchProductData} from './ovRoutes'
+import { fetchProductData} from './ovRoutes'
 import '../../styles/Overview.css'
 // import Gallery from './Gallery';
 // import StyleSelect from './StyleSelect';
