@@ -7,7 +7,6 @@ const serverIO = {
   },
 
   castVote: (reviewId) => {
-
     return Promise.resolve(null)
   },
 
