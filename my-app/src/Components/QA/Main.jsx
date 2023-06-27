@@ -10,13 +10,12 @@ const Main = () => {
 
 const [productInfo, setProductInfo] = useState(FakeData)
 
-console.log('test', productInfo)
-
   return (
     <>
       <h3>QUESTIONS & ANSWERS</h3>
       <Search questions={productInfo} />
       <QuestionList questions={productInfo} />
+      <button>Add a Question +</button>
     </>
   );
 }

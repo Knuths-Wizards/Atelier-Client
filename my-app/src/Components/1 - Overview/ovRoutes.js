@@ -5,7 +5,7 @@ export const fetchAllProducts = async () => {
   try {
     console.log('API URL--- ',apiURL)
 
-    const response = await axiosAtelier.get(`${apiURL}/products`);
+    const response = await axiosAtelier.get(`${apiURL}products`);
     return response.data
   } catch (err) {
     console.log ('FETCH ALL PRODUCT ERR-----', err)
@@ -15,7 +15,7 @@ export const fetchAllProducts = async () => {
 
 export const fetchProductData = async (productID) => {
   try {
-    const response = await axiosAtelier.get(`${apiURL}/products/${productID}`);
+    const response = await axiosAtelier.get(`${apiURL}products/${productID}`);
     return response.data;
   } catch (error) {
     console.error('Error fetching product data:', error);
@@ -25,7 +25,7 @@ export const fetchProductData = async (productID) => {
 
 export const fetchProductStyles = async (productId) => {
   try {
-    const response = await axiosAtelier.get(`${apiURL}/products/${productId}/styles`);
+    const response = await axiosAtelier.get(`${apiURL}products/${productId}/styles`);
     return response.data;
   } catch (error) {
     console.error('Error fetching product data:', error);
@@ -35,7 +35,7 @@ export const fetchProductStyles = async (productId) => {
 //REVIEW INFO
 export const fetchProductReviewMetaData = async (productId) => {
   try {
-    const response = await axiosAtelier.get(`${apiURL}/reviews/meta?product_id=${productId}`);
+    const response = await axiosAtelier.get(`${apiURL}reviews/meta?product_id=${productId}`);
     return response.data;
   } catch (error) {
     console.error('Error fetching product data:', error);
@@ -44,7 +44,7 @@ export const fetchProductReviewMetaData = async (productId) => {
 }
 export const fetchProductReviews = async (productId) => {
   try {
-    const response = await axiosAtelier.get(`${apiURL}/reviews/?product_id=${productId}`);
+    const response = await axiosAtelier.get(`${apiURL}reviews/?product_id=${productId}`);
     return response.data;
   } catch (error) {
     console.error('Error fetching product data:', error);
@@ -56,7 +56,7 @@ export const fetchProductReviews = async (productId) => {
 
 export const addProductToCart = async (sku_id) => {
   try {
-    const response = await axiosAtelier.post(`${apiURL}/cart?sku_id=${sku_id}`);
+    const response = await axiosAtelier.post(`${apiURL}cart?sku_id=${sku_id}`);
     return response.data;
   } catch (error) {
     console.error('Error adding to cart:', error);

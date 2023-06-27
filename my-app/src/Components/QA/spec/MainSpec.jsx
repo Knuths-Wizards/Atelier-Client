@@ -1,23 +1,15 @@
-//it should render a Search Component
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import Main from '../Main';
 
-//it should render a QuestionList component if product questions exist
+describe('Main', () => {
+  it('should render a Search component', () => {
+    render(<Main />);
+    expect(screen.getByTestId('search-component')).toBeInTheDocument();
+  });
 
-import Main from '../Main.jsx';
-
-describe('Main', function() {
-
- beforeEach(function() {
-    app = renderIntoDocument(<Wrapper><Main/></Wrapper>)
-  );
-})
-
-it('should render a Search component', function() {
-  var Search = findRenderedDOMComponentWithClass(app, 'search');
-  expect(Search).to.exist;
-})
-
-it('should render a QuestionList component if product questions exist', function() {
-  expect(QuestionList).to.exist;
-})
-
-}
+  it('should render a QuestionList component if product questions exist', () => {
+    render(<Main />);
+    expect(screen.getByTestId('question-list-component')).toBeInTheDocument();
+  });
+});

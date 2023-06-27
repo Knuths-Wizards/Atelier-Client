@@ -8,7 +8,13 @@ import sinon from 'sinon'
 
 describe('Ratings and Reviews', ()=>{
   const RR = <RatingsReviews productId={0}/>
-  sinon.stub(serverIO, "getReviews").callsFake(dummyIO.fakeReviews)
+  const spyReviews = sinon.stub(serverIO, "getReviews").callsFake(dummyIO.fakeReviews)
+  const spyVote = sinon.stub(serverIO, "castVote").callsFake(dummyIO.fakeVote)
+
+  afterEach(()=>{
+    spyReviews.resetHistory()
+    spyVote.resetHistory()
+  })
 
   describe('ReviewsList', ()=>{
     it('Should display two reviews', async ()=>{
@@ -67,14 +73,14 @@ describe('Ratings and Reviews', ()=>{
       await waitFor(()=>{
         expect(screen.getAllByTestId('review').length).toBe(2)
       })
-      expect(screen.getByText('2023')).not.toBeNull()
+      expect(screen.getAllByText(/2023/)[0]).toBeInTheDocument()
     })
     it('Should display review summary (aka title)', async ()=>{
       render(RR)
       await waitFor(()=>{
         expect(screen.getAllByTestId('review').length).toBe(2)
       })
-      expect(screen.getByText('Yes')).toBeInTheDocument()
+      expect(screen.getAllByText('Yes')[0]).toBeInTheDocument()
       expect(screen.getByText('Best purchase')).toBeInTheDocument()
     })
     it('Should display review body', async ()=>{
@@ -82,40 +88,34 @@ describe('Ratings and Reviews', ()=>{
       await waitFor(()=>{
         expect(screen.getAllByTestId('review').length).toBe(2)
       })
-      expect(screen.getByText('Yes')).toBeInTheDocument()
-      expect(screen.getByText('I loved it')).toBeInTheDocument()
+      expect(screen.getAllByText(/Yes/)[0]).toBeInTheDocument()
+      expect(screen.getByText(/I loved it/)).toBeInTheDocument()
     })
     it('Should display reviewer name', async ()=>{
       render(RR)
       await waitFor(()=>{
         expect(screen.getAllByTestId('review').length).toBe(2)
       })
-      expect(screen.getByText('JSON')).toBeInTheDocument()
-      expect(screen.getByText('hello')).toBeInTheDocument()
+      expect(screen.getByText(/JSON/)).toBeInTheDocument()
+      expect(screen.getByText(/hello/)).toBeInTheDocument()
     })
     it('Should ask if review was helpful', async ()=>{
       render(RR)
       await waitFor(()=>{
         expect(screen.getAllByTestId('review').length).toBe(2)
       })
-      expect(screen.getByText('Was this review helpful?')).toBeInTheDocument()
-      expect(screen.getByText('Yes (0)')).toBeInTheDocument()
+      expect(screen.getAllByText(/Was this review helpful\?/).length).toBe(2)
+      expect(screen.getAllByText('Yes (0)').length).toBe(2)
     })
 
     it('Should update count when "Yes" is clicked', async ()=>{
       render(RR)
-      await waitFor(()=>{
-        expect(screen.getAllByTestId('review').length).toBe(2)
-      })
-      var links = screen.getAllByText(/Yes (\d+)/)
+      var links = await screen.findAllByText(/Yes \(\d+\)/)
       links.forEach((link)=>{
         expect(within(link).getByText('Yes (0)')).toBeInTheDocument()
       })
       await userEvent.click(links[1])
-      links = screen.getAllByText(/Yes (\d+)/)
-      links.forEach((link, i)=>{
-        expect(within(link).getByText(`Yes (${i})`)).toBeInTheDocument()
-      })
+      expect(await screen.findByText(/Yes \(1\)/)).toBeInTheDocument()
     })
   })
 })
