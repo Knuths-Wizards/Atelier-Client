@@ -42,6 +42,15 @@ export const fetchProductReviewMetaData = async (productId) => {
     throw error;
   }
 }
+export const fetchProductReviews = async (productId) => {
+  try {
+    const response = await axiosAtelier.get(`${apiURL}/reviews/?product_id=${productId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching product data:', error);
+    throw error;
+  }
+}
 
 //CART INTERACTION
 

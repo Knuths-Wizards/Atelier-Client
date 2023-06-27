@@ -1,13 +1,24 @@
-import React, {useState, useEffect} from 'react';
-
+import {FacebookShareButton, TwitterShareButton,PinterestShareButton,
+        FacebookIcon, TwitterIcon, PinterestIcon } from 'react-share'
 
 const Share = () => {
-
+  const shareUrl = 'placeholder'
+  const title = 'placeholder'
 
   return (
-  <div>
-    <h1> ADDING SUBCOMPONENTS LATER</h1>
-  </div>
+    <div className="flex space-x-2 mt-4">
+      <FacebookShareButton url={shareUrl} quote={title}>
+        <FacebookIcon size={20} round={true} />
+      </FacebookShareButton>
+
+      <TwitterShareButton url={shareUrl} title={title}>
+        <TwitterIcon size={20} round={true} />
+      </TwitterShareButton>
+
+      <PinterestShareButton url={shareUrl} media={'image-url'} description={title}>
+        <PinterestIcon size={20} round={true} />
+      </PinterestShareButton>
+    </div>
   )
 };
 

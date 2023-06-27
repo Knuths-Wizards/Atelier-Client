@@ -1,0 +1,8 @@
+.Overview-container {
+  display: flex;
+  justify-content: flex-end
+}
+
+.product-info-container {
+  width:25%
+}
