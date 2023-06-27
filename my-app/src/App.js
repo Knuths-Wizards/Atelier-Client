@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './styles/App.css';
+import Main from './Components/QA/Main.jsx';
 
 import RelatedCompare from './Components/4 - RelatedComparison/RelatedComparison'
 
@@ -22,7 +23,6 @@ function App() {
         </a>
         
       </header>
-      <RelatedCompare className='RelatedCompare'/>
     </div>
   );
 }
