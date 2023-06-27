@@ -1,4 +1,3 @@
-
 import React, { useRef } from 'react';
 import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
 import 'react-horizontal-scrolling-menu/dist/styles.css';
@@ -52,7 +51,9 @@ export default function Card({ onClick, selected, title, price, category, review
     </div>
   );
 }
+
 let ratingCount = 0
+
 function Stars({review}) {
   ratingCount++;
   return(
@@ -71,17 +72,6 @@ function Stars({review}) {
 </div>
   )
 }
-
-// function ModalContent({ogFeatures, features}) {
-//   console.log(ogFeatures)
-//   console.log(features)
-//   return (
-//     <div>
-//     <h3 className="font-bold text-lg">Comparision</h3>
-//     <p className="py-4">Hello</p>
-//     </div>
-//   )
-// }
 
 function ModalContent({ogFeatures, features, title, ogTitle}) {
   let features1 = features.map(item => item.feature);
