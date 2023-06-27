@@ -2,9 +2,11 @@ import React from 'react';
 import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
 import 'react-horizontal-scrolling-menu/dist/styles.css';
 
+let modalCount = 0;
+
 export default function Card({ onClick, selected, title, price, category, review, img, itemId }) {
   const visibility = React.useContext(VisibilityContext);
-
+  modalCount++
   return (
     <div
       className="card card-small w-96 bg-base-100 shadow-xl"
@@ -17,8 +19,22 @@ export default function Card({ onClick, selected, title, price, category, review
         overflow: "hidden"
       }}
     >
-        <div>
+        <div className="container">
         <img width='300px' height='449px' style={{marginTop: "0px", width:'200px', height:'300px'}} src={img} alt=''></img>
+        <button className="btn btn-circle btn-sm" style={{position: 'absolute', top: '0.5%', left: '82.5%'}} onClick={()=>window['my_modal_' + modalCount].showModal()}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        </button>
+<dialog id={`my_modal_${modalCount}`} className="modal">
+  <form method="dialog" className="modal-box">
+    <div>
+    <h3 className="font-bold text-lg">Comparision</h3>
+    <p className="py-4">Hello</p>
+    </div>
+  </form>
+  <form method="dialog" className="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
         </div>
         <div className="card-body">
           <h4 className="card-actions justify-center" >{category}</h4>
