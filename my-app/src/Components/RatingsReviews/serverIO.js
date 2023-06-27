@@ -1,4 +1,7 @@
 import axios from '../../axiosAtelier'
+import path from 'path'
+
+const api = process.env.REACT_APP_API_BASE_URL
 
 const serverIO = {
   getReviews: (productId) => {
@@ -7,6 +10,7 @@ const serverIO = {
   },
 
   castVote: (reviewId) => {
+
     return Promise.resolve(null)
   },
 
