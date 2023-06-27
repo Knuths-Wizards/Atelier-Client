@@ -2,7 +2,7 @@ import React from 'react'
 import ReviewTile from './ReviewTile'
 
 const ReviewsList = (props) => {
-  const { reviews } = props
+  const { reviews, refresh } = props
 
   const [displayCount, setDisplayCount] = React.useState(2)
 
@@ -16,7 +16,11 @@ const ReviewsList = (props) => {
     <div id='ReviewsList'>
       <ol id='Reviews'>
         {reviews.slice(0, displayCount).map((review, i)=>{
-          return <ReviewTile review={review} key={review.review_id}/>
+          return <ReviewTile
+            review={review}
+            key={review.review_id}
+            refresh={refresh}
+          />
         })}
       </ol>
       <button onClick={handleClick} hidden={hideButton}>More Reviews</button>
