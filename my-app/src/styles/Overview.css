@@ -1,8 +1,14 @@
 .Overview-container {
   display: flex;
-  justify-content: flex-end
+  align-items: flex-end;
+  flex-direction: column;
 }
 
 .product-info-container {
   width:25%
+}
+
+.styles-container {
+  width:25%
+
 }

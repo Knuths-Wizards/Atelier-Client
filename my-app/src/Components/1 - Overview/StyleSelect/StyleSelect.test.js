@@ -7,9 +7,9 @@ import { camoData, reviewMeta } from '../testData.js';
 import StarRating from './SubComponents/StarRating.jsx'
 import Share from './SubComponents/Share.jsx'
 
-describe('Product Info', () => {
+describe('StyleSelect', () => {
 
-  describe('Product Name', () => {
+  describe('Default SelectedStyle', () => {
     it('Should display Camo Onesie', ()=> {
       render(<ProductInfo product={camoData}></ProductInfo>)
       expect(screen.getByText('Camo Onesie')).toBeInTheDocument()

@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import ProductInfo from './ProductInfo/ProductInfo.jsx';
-import { fetchProductData} from './ovRoutes'
+import StyleSelect from './StyleSelect/StyleSelect.jsx';
+import AddCart from './AddCart/AddCart.jsx';
+
+import { fetchProductData, fetchProductStyles} from './ovRoutes'
 import '../../styles/Overview.css'
 // import Gallery from './Gallery';
 // import StyleSelect from './StyleSelect';
@@ -8,28 +11,67 @@ import '../../styles/Overview.css'
 
 const Overview = () => {
   const [productID, setProductID] = useState('37311');
-  const [product, setProduct] = useState({})
+  const [product, setProduct] = useState({});
+  const [styles, setStyles] = useState([]);
+  const [styleID, setStyleID] = useState('');
+  const [price, setPrice] = useState('');
+
   const handleProduct = (id) => {
     setProductID(id)
   }
+  const handleStyle = (style) => {
+    setStyleID(style);
+    setPrice(style.sale_price ? style.sale_price : style.original_price)
+  }
+
 
   useEffect(() => {
-    fetchProductData(productID)
-      .then((data) => {
-        setProduct(data);
+    Promise.all([
+      fetchProductData(productID),
+      fetchProductStyles(productID)
+    ])
+      .then(([productData, styleData]) => {
+        setProduct(productData);
+        setStyles(styleData.results);
+        if (styleData.results.length > 0) {
+          //default style should be first one
+          handleStyle(styleData.results[0]);
+        }
+
       })
       .catch((err) => {
         console.log('AXIOS error fetching product data', err);
       });
   }, []);
 
+  useEffect(() => {
+    Promise.all([
+      fetchProductData(productID),
+      fetchProductStyles(productID)
+    ])
+      .then(([productData, styleData]) => {
+        setProduct(productData);
+        setStyles(styleData.results);
+        if (styleData.results.length > 0) {
+          //default style should be first one
+          handleStyle(styleData.results[0]);
+        }
+
+
+      })
+      .catch((err) => {
+        console.log('AXIOS error fetching product data', err);
+      });
+  }, [productID]);
+
+  console.log('STYLE ---', price)
 
   return (
   <div className = "Overview-container">
     {/* <Gallery></Gallery> */}
-    <ProductInfo product = {product} productID = {productID} changeProduct = {handleProduct}></ProductInfo>
-    {/* <StyleSelect product = {productID}></StyleSelect> */}
-    {/* <AddCart></AddCart> */}
+    <ProductInfo style = {styleID} product = {product} productID = {productID} changeProduct = {handleProduct} price={price}></ProductInfo>
+    <StyleSelect styles = {styles} changeStyle={handleStyle}></StyleSelect>
+    <AddCart style = {styleID}></AddCart>
   </div>
   )
 };
