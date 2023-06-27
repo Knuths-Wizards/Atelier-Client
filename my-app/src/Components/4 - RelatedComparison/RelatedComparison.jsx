@@ -22,9 +22,9 @@ const getProduct = () => {
 
 return (
   <div>
-    <h3>RelatedItems</h3>
-    <h4><RelatedItems product={product}></RelatedItems></h4>
-    <h4>Hello Outfits</h4>
+    <h2>Related Items</h2>
+    <RelatedItems product={product}></RelatedItems>
+    <h2>Hello Outfits</h2>
 
   </div>
 )

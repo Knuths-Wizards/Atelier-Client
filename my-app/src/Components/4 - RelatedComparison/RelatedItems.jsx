@@ -3,7 +3,7 @@ import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
 import 'react-horizontal-scrolling-menu/dist/styles.css';
 import axiosAtelier from '../../axiosAtelier.js';
 import Card from './Card.jsx';
-
+import './hideScrollbar.css';
 
 export default function App(ogProduct) {
   const [items, setItems] = React.useState([]);
@@ -163,7 +163,7 @@ function LeftArrow() {
   return (
     // eslint-disable-next-line react/jsx-no-undef
     <Arrow disabled={isFirstItemVisible} onClick={() => scrollPrev()}>
-      Left
+      <a class="btn btn-circle">❮</a>
     </Arrow>
   );
 }
@@ -174,7 +174,7 @@ function RightArrow() {
   return (
     // eslint-disable-next-line react/jsx-no-undef
     <Arrow disabled={isLastItemVisible} onClick={() => scrollNext()}>
-      Right
+      <a class="btn btn-circle">❯</a>
     </Arrow>
   );
 }

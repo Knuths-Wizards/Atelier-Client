@@ -7,26 +7,29 @@ export default function Card({ onClick, selected, title, price, category, review
 
   return (
     <div
+      className="card card-small w-96 bg-base-100 shadow-xl"
       onClick={() => onClick(visibility)}
       style={{
-        width: '160px',
+        border: "2px solid",
+        margin: "0 10px",
+        width: "200px",
+        height: "514px",
+        overflow: "hidden"
       }}
-      tabIndex={0}
     >
-      <div className="card">
-        <img src={img} alt=''></img>
-        <div>{category}</div>
-        <div>{title}</div>
-        <div>${price}</div>
-        <Stars review={review}></Stars>
-        <div>visible: {JSON.stringify(!!visibility.isItemVisible(itemId))}</div>
-        <div>selected: {JSON.stringify(!!selected)}</div>
-      </div>
-      <div
-        style={{
-          height: '200px',
-        }}
-      />
+        <div>
+        <img width='300px' height='449px' style={{marginTop: "0px", width:'200px', height:'300px'}} src={img} alt=''></img>
+        </div>
+        <div className="card-body">
+          <h4 className="card-actions justify-center" >{category}</h4>
+          <div width="135px" height='56px' style={{marginTop: "0px", width:'135px', height:'56px'}}>
+          <h3 className='card-title justify-center'>{title}</h3>
+          </div>
+          <h4 className="card-actions justify-center">${price}</h4>
+          <div className="card-actions justify-center">
+          <Stars review={review}></Stars>
+          </div>
+        </div>
     </div>
   );
 }
