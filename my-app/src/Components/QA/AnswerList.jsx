@@ -2,7 +2,6 @@ import Question from './Question.jsx';
 import React, { useState } from 'react';
 import Answer from './Answer.jsx';
 
-//  splice length > 2 to show two answers per question
 //  when setMoreAnswers === true, change copy of button to "Collapse answers" and set view to be confined to half of the screen, and the list within should be scrollable.
 // make a state in case answers are added?
 // console.log('1answer', answers[firstObj].helpfulness)

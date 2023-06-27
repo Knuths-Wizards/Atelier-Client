@@ -7,8 +7,9 @@ const QuestionList = ({ questions }) => {
 
   const [length, setLength] = useState(questions.length)
 
-  //   Show 2 q's at a time; splice array in case there are more questions
+  //   Show 4 q's at a time; splice array in case there are more questions
   //   Display questions in order of helpfulness
+  //   More Answered Questions button
 
   return (
     <>
