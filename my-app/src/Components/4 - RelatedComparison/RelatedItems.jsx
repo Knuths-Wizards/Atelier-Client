@@ -115,7 +115,7 @@ export default function App(ogProduct) {
         threshold: [0.01, 0.05, 0.5, 0.75, 0.95, 1]
       }}
       >
-      {items.map(({ id, name, default_price, category, review, img }) => (
+      {items.map(({ id, name, default_price, category, review, img, features }) => (
         <Card
           itemId={id} // NOTE: itemId is required for track items
           img={img}
@@ -126,6 +126,8 @@ export default function App(ogProduct) {
           key={id}
           onClick={handleClick(id)}
           selected={isItemSelected(id)}
+          features={features}
+          ogProduct={ogProduct.product}
         />
       ))}
     </ScrollMenu>
@@ -163,7 +165,7 @@ function LeftArrow() {
   return (
     // eslint-disable-next-line react/jsx-no-undef
     <Arrow disabled={isFirstItemVisible} onClick={() => scrollPrev()}>
-      <a class="btn btn-circle">❮</a>
+      <a className="btn btn-circle">❮</a>
     </Arrow>
   );
 }
@@ -174,7 +176,7 @@ function RightArrow() {
   return (
     // eslint-disable-next-line react/jsx-no-undef
     <Arrow disabled={isLastItemVisible} onClick={() => scrollNext()}>
-      <a class="btn btn-circle">❯</a>
+      <a className="btn btn-circle">❯</a>
     </Arrow>
   );
 }
