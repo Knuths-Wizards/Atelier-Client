@@ -41,10 +41,22 @@ const AddCart = ({style, addCart, getCart}) => {
   //sizes available depend on style, quantity depends on size selected
   console.log('CURRENT SKU---', currentSku)
   return (
-  <div>
-    <SizeSelector size = {sizeSelect} changeSize={handleSize} skus ={skuArray} changeSku={handleSku}/>
-    <QuantitySelector size = {sizeSelect} quantity ={quantitySelect} changeQuantity = {setQuantitySelect} skus ={skuArray} sku={currentSku} ></QuantitySelector>
-    <CartButton sku = {currentSku} quantity = {quantitySelect} addCart = {addCart} skus ={skuArray} size= {sizeSelect} getCart={getCart}></CartButton>
+  <div className ="cart-container">
+    <div className="flex w-full">
+      <div className ="flex-grow basis-70%">
+        <SizeSelector size = {sizeSelect} changeSize={handleSize} skus ={skuArray} changeSku={handleSku}/>
+      </div>
+      <div className ="ml-4 basis-25%">
+        <QuantitySelector size = {sizeSelect} quantity = {quantitySelect}
+        changeQuantity = {setQuantitySelect} skus ={skuArray}
+        sku={currentSku} ></QuantitySelector>
+      </div>
+    </div>
+    <div className ="pt-4">
+    <CartButton className="pt-30" sku = {currentSku} quantity = {quantitySelect}
+    addCart = {addCart} skus ={skuArray}
+    size= {sizeSelect} getCart={getCart}></CartButton>
+    </div>
   </div>
   )
 };

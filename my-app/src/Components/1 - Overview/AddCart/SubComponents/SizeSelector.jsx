@@ -15,9 +15,8 @@ const SizeSelector = ({size, changeSize, skus, changeSku}) => {
 //map through the skus to make the options for each size
 //default needs to say Select Size
   return (
-  <div>
-    <h1> Size </h1>
-    <select value = {skuIndex} onChange={handleSizeChange}>
+  <div className="border border-gray-300 p-2">
+    <select className="w-full p-2"value = {skuIndex} onChange={handleSizeChange}>
         <option value="" disabled>
           Select Size
         </option>

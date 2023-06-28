@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
 import StarRating from './SubComponents/StarRating.jsx'
 import Share from './SubComponents/Share.jsx'
@@ -28,7 +29,7 @@ const ProductInfo = ({product, changeProduct, productID, style, price}) => {
     {reviewsCount > 0 && <StarRating ratings = {ratings} reviewsCount={reviewsCount}></StarRating>}
     <div className="text-xs uppercase">{product.category}</div>
     <div className="text-2xl font-semibold">{product.name}</div>
-    <div className="text-xs mt-2 mb-2" style={{fontSize: '0.6em'}}>
+    <div className="text-xs mt-2 mb-2" style={{fontSize: '0.7em'}}>
         {salePrice ? (
           <>
             <del className="text-gray-500">${style.original_price}</del> <span>On SALE! ${salePrice}</span>

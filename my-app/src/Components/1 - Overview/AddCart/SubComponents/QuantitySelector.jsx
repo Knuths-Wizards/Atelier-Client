@@ -14,8 +14,7 @@ const QuantitySelector = ({size, quantity, changeQuantity, skus, sku}) => {
     quantityOptions.push(i)
   }
   return (
-  <div>
-    <h1> Quantity</h1>
+  <div className="border border-gray-300 p-4">
     <select value={size ? quantity : "-"} onChange={handleQuantityChange} disabled={!size}>
         {!size && <option value="-">-</option>}
         {size && quantityOptions.map((option, index) => (

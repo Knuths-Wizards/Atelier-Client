@@ -29,7 +29,7 @@ const selectedStyleName = selectedStyle ? selectedStyle.name : '';
 
 return (
   <div className = "styles-container">
-    <div className="mb-1">Selected style -- {selectedStyleName}</div>
+    <div className="mb-1">STYLE > {selectedStyleName}</div>
     <div className="grid grid-cols-4">
       {styles.map((style, index) => (
         <div

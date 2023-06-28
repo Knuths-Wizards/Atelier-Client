@@ -20,11 +20,24 @@ const CartButton = ({sku, quantity, addCart, skus, size, getCart}) => {
     }
   }
   console.log('SKU IN CART BUTTON----',skus, 'current ID', sku)
+  const hasStock = (sku.quantity > 0)
   return (
-  <div>
-    <button onClick ={handleAddCart}>
-      Add to Cart
+  <div className="border border-gray-300 p-2">
+    {hasStock &&
+      <button className="flex justify-between w-full p-2" onClick={handleAddCart}>
+      <span>Add to Cart</span>
+      <span>+</span>
     </button>
+    }
+    {!sku &&
+    <button>
+      SELECT A SIZE
+    </button>}
+    {!hasStock && sku &&
+    <button>
+      Out of Stock
+    </button>}
+
   </div>
   )
 };
