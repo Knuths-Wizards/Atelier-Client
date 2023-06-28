@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
 import ProductInfo from './ProductInfo/ProductInfo.jsx';
 import StyleSelect from './StyleSelect/StyleSelect.jsx';
