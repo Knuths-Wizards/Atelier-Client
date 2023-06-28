@@ -14,49 +14,51 @@ export default function App(ogProduct) {
 
   var stateToBeSet = [];
 
-  const getRelatedProducts = () => {
-    if(ogProduct.product.id) {
-    getRelated(ogProduct.product.id).then((response) => {
-       return Promise.all(response.data.map(getProductDetails))
-    }).then((response) => {
-      let newItems = response.map(dataMap)
-      stateToBeSet = newItems;
-      return newItems;
-    }).then((newItems) => {
-      return Promise.all(newItems.map(getImages))
-    }).then((styles) => {
-      let dataStyles = styles.map(dataMap)
-      let itemsWithImgs = [];
-      for(let idx = 0; idx < dataStyles.length; idx++) {
-        itemsWithImgs.push(stateToBeSet[idx]);
-        if(dataStyles[idx].results[0].photos[0].thumbnail_url == null) {
-          continue;
-        }
-        itemsWithImgs[idx].img = dataStyles[idx].results[0].photos[0].thumbnail_url;
-      }
-      return itemsWithImgs;
-    }).then((newItems) => {
-      return Promise.all(newItems.map(getReviews))
-    }).then((reviews) => {
-      let dataReviews = reviews.map(dataMap)
-      let reviewsScores = dataReviews.map((el) => {
-        let totalTimed = +el.ratings['1'] + (+el.ratings['2'] * 2) + (+el.ratings['3'] * 3) + (+el.ratings['4'] * 4) + (+el.ratings['5'] * 5);
-        let total = +el.ratings['1'] + +el.ratings['2'] + +el.ratings['3'] + +el.ratings['4'] + +el.ratings['5'];
-        let final = totalTimed/total;
-        return final
-      })
-      let itemsWithReviewScores = [];
-      for(let idx = 0; idx < reviewsScores.length; idx++) {
-        itemsWithReviewScores.push(stateToBeSet[idx]);
-        itemsWithReviewScores[idx].review = reviewsScores[idx]
-      }
-      setItems(itemsWithReviewScores);
-      return itemsWithReviewScores;
-    })
-    }
-  }
+
 
   React.useEffect(() => {
+    function getRelatedProducts() {
+      if (ogProduct.product.id) {
+        getRelated(ogProduct.product.id).then((response) => {
+          return Promise.all(response.data.map(getProductDetails));
+        }).then((response) => {
+          let newItems = response.map(dataMap);
+          stateToBeSet = newItems;
+          return newItems;
+        }).then((newItems) => {
+          return Promise.all(newItems.map(getImages));
+        }).then((styles) => {
+          let dataStyles = styles.map(dataMap);
+          let itemsWithImgs = [];
+          for (let idx = 0; idx < dataStyles.length; idx++) {
+            itemsWithImgs.push(stateToBeSet[idx]);
+            if (dataStyles[idx].results[0].photos[0].thumbnail_url == null) {
+              continue;
+            }
+            itemsWithImgs[idx].img = dataStyles[idx].results[0].photos[0].thumbnail_url;
+          }
+          return itemsWithImgs;
+        }).then((newItems) => {
+          return Promise.all(newItems.map(getReviews));
+        }).then((reviews) => {
+          let dataReviews = reviews.map(dataMap);
+          let reviewsScores = dataReviews.map((el) => {
+            let totalTimed = +el.ratings['1'] + (+el.ratings['2'] * 2) + (+el.ratings['3'] * 3) + (+el.ratings['4'] * 4) + (+el.ratings['5'] * 5);
+            let total = +el.ratings['1'] + +el.ratings['2'] + +el.ratings['3'] + +el.ratings['4'] + +el.ratings['5'];
+            let final = totalTimed / total;
+            return final;
+          });
+          let itemsWithReviewScores = [];
+          for (let idx = 0; idx < reviewsScores.length; idx++) {
+            itemsWithReviewScores.push(stateToBeSet[idx]);
+            itemsWithReviewScores[idx].review = reviewsScores[idx];
+          }
+          setItems(itemsWithReviewScores);
+          return itemsWithReviewScores;
+        });
+      }
+    }
+
      getRelatedProducts();
   }, [ogProduct]);
 

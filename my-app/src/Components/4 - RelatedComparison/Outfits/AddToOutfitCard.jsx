@@ -7,12 +7,9 @@ export default function Card({ ogProduct, setOutfit, setOgInOutfit, ogInOutfit})
   const visibility = React.useContext(VisibilityContext);
 
   const handleClick = () => {
-    console.log(ogInOutfit)
-    console.log(ogProduct.id)
     if(ogInOutfit === false) {
   setOgInOutfit(true)
   setOutfit((current) => {
-    console.log([ogProduct.id].concat(current))
     return [ogProduct.id].concat(current)
   }
     );

@@ -21,8 +21,6 @@ export default function App( {ogProduct, outfit, setOutfit, ogInOutfit, setOgInO
     }
   }
 
-  console.log('rerender')
-
   React.useEffect(() => {
     function getProducts() {
 
