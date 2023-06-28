@@ -6,15 +6,16 @@ import Card from './OutfitCard.jsx';
 import '../Common/hideScrollbar.css';
 import { LeftArrow, RightArrow } from '../Common/Arrow.jsx';
 
-export default function App( {ogProduct, outfit, setOutfit, outfitAdded, setOutfitAdded} ) {
+export default function App( {ogProduct, outfit, setOutfit} ) {
   const [items, setItems] = React.useState([]);
   const [selected, setSelected] = React.useState([]);
   const [position, setPosition] = React.useState(0);
+  const [ogInOutfit, setOgInOutfit] = React.useState(false)
   const baseURL = process.env.REACT_APP_API_BASE_URL
 
   var stateToBeSet = [];
 
-  const getRelatedProductDetails = function(str) {
+  const getProductDetails = function(str) {
     return axiosAtelier.get(baseURL + "products/" + str.toString());
   }
 
@@ -30,9 +31,15 @@ export default function App( {ogProduct, outfit, setOutfit, outfitAdded, setOutf
     return response.data
   }
 
-  const getRelatedProducts = () => {
-    if(outfit[0] !== undefined) {
-       Promise.all(outfit.map(getRelatedProductDetails)).then((response) => {
+  if(outfit !== undefined && ogProduct !== undefined) {
+    if(outfit.includes(ogProduct.id)) {
+      setOgInOutfit(true);
+    }
+  }
+
+  const getProducts = () => {
+
+       Promise.all(outfit.map(getProductDetails)).then((response) => {
       let newItems = response.map(dataMap)
       stateToBeSet = newItems;
       return newItems;
@@ -67,11 +74,11 @@ export default function App( {ogProduct, outfit, setOutfit, outfitAdded, setOutf
       setItems(itemsWithReviewScores);
       return itemsWithReviewScores;
     })
-  }
+
   }
 
   React.useEffect(() => {
-     getRelatedProducts();
+     getProducts();
   }, [outfit]);
 
   const isItemSelected = (id) => !!selected.find((el) => el === id);
@@ -87,7 +94,6 @@ export default function App( {ogProduct, outfit, setOutfit, outfitAdded, setOutf
           : currentSelected.concat(id)
       );
     };
-
   return (
     <ScrollMenu
      LeftArrow={LeftArrow}
@@ -112,6 +118,8 @@ export default function App( {ogProduct, outfit, setOutfit, outfitAdded, setOutf
           features={features}
           ogProduct={ogProduct}
           setOutfit={setOutfit}
+          ogInOutfit={ogInOutfit}
+          setOgInOutfit={setOgInOutfit}
         />
       ))}
     </ScrollMenu>

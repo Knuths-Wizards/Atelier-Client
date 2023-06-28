@@ -3,12 +3,17 @@ import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
 import 'react-horizontal-scrolling-menu/dist/styles.css';
 import { Stars } from '../Common/Stars.jsx';
 
-export default function Card({ onClick, selected, title, price, category, review, img, itemId, ogProduct, features, setOutfit, key}) {
+export default function Card({ onClick, selected, title, price, category, review, img, itemId, ogProduct, features, setOutfit, setOgInOutfit}) {
   const visibility = React.useContext(VisibilityContext);
 
   const onClickSetOutfit = () => {
-    setOutfit((current) =>
-      current.filter((fruit) => fruit !== key)
+    if(itemId === ogProduct.id) {
+      setOgInOutfit(prevCheck => !prevCheck)
+    }
+    setOutfit((current) => {
+      let newOutfit = current.filter((fruit) => fruit !== itemId)
+      return [...newOutfit]
+    }
     );
   }
 
@@ -27,7 +32,7 @@ export default function Card({ onClick, selected, title, price, category, review
       <div className="container">
         <img width='300px' height='449px' style={{ marginTop: "0px", width: '200px', height: '300px' }} src={img} alt='' />
         <button className="btn btn-circle btn-sm" style={{ position: 'absolute', top: '0.5%', left: '82.5%' }} onClick={onClickSetOutfit}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1" strokeLinecap="square" strokeLinejoin="round"><path d="M3 3h18v18H3zM21 9H3M21 15H3M12 3v18"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1" strokeLinecap="square" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
       </div>
       <div className="card-body">
