@@ -60,20 +60,6 @@ export default function App(ogProduct) {
      getRelatedProducts();
   }, [ogProduct]);
 
-  const isItemSelected = (id) => !!selected.find((el) => el === id);
-
-  const handleClick =
-    (id) =>
-    ({ getItemById, scrollToItem }) => {
-      const itemSelected = isItemSelected(id);
-
-      setSelected((currentSelected) =>
-        itemSelected
-          ? currentSelected.filter((el) => el !== id)
-          : currentSelected.concat(id)
-      );
-    };
-
   return (
     <ScrollMenu
      LeftArrow={LeftArrow}
@@ -93,8 +79,6 @@ export default function App(ogProduct) {
           title={name}
           price={default_price}
           key={id}
-          onClick={handleClick(id)}
-          selected={isItemSelected(id)}
           features={features}
           ogProduct={ogProduct.product}
         />

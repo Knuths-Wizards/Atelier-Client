@@ -3,7 +3,7 @@ import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
 import 'react-horizontal-scrolling-menu/dist/styles.css';
 import { Stars } from '../Common/Stars.jsx';
 
-export default function Card({ onClick, selected, title, price, category, review, img, itemId, ogProduct, features, setOutfit, setOgInOutfit}) {
+export default function Card({ selected, title, price, category, review, img, itemId, ogProduct, features, setOutfit, setOgInOutfit}) {
   const visibility = React.useContext(VisibilityContext);
 
   const onClickSetOutfit = () => {
@@ -20,7 +20,6 @@ export default function Card({ onClick, selected, title, price, category, review
   return (
     <div
       className="card card-small w-96 bg-base-100 shadow-xl"
-      onClick={() => onClick(visibility)}
       style={{
         border: "2px solid",
         margin: "0 10px",

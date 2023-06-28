@@ -97,7 +97,6 @@ export default function App( {ogProduct, outfit, setOutfit} ) {
           title={name}
           price={default_price}
           key={id}
-          onClick={handleClick(id)}
           selected={isItemSelected(id)}
           features={features}
           ogProduct={ogProduct}
