@@ -3,12 +3,12 @@ import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
 import 'react-horizontal-scrolling-menu/dist/styles.css';
 import { Stars } from '../Common/Stars.jsx';
 
-export default function Card({ selected, title, price, category, review, img, itemId, ogProduct, features, setOutfit, setOgInOutfit}) {
+export default function Card({ title, price, category, review, img, itemId, ogProduct, setOutfit, setOgInOutfit}) {
   const visibility = React.useContext(VisibilityContext);
 
   const onClickSetOutfit = () => {
-    if(itemId === ogProduct.id) {
-      setOgInOutfit(prevCheck => !prevCheck)
+    if(itemId == ogProduct.id) {
+      setOgInOutfit(false)
     }
     setOutfit((current) => {
       let newOutfit = current.filter((fruit) => fruit !== itemId)

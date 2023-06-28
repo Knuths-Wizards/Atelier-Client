@@ -7,6 +7,7 @@ const ORList = () => {
 
 const [outfit, setOutfit] = useState([]);
 const [product, setProduct] = useState([]);
+const [ogInOutfit, setOgInOutfit] = React.useState(false);
 
 const getOutfit = () => {
   setOutfit([37312, 37314, 37313])
@@ -29,7 +30,7 @@ return (
     <h2>Related Items</h2>
     <RelatedItems product={product}></RelatedItems>
     <h2>Hello Outfits</h2>
-    <Outfits ogProduct={product} outfit={outfit} setOutfit={setOutfit}></Outfits>
+    <Outfits ogProduct={product} outfit={outfit} setOutfit={setOutfit} ogInOutfit={ogInOutfit} setOgInOutfit={setOgInOutfit}></Outfits>
 
   </div>
 )
