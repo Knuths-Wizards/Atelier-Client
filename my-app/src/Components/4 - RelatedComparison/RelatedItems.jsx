@@ -14,18 +14,6 @@ export default function App(ogProduct) {
 
   var stateToBeSet = [];
 
-  function roundToHalf(value) {
-    var converted = parseFloat(value); // Make sure we have a number
-    var decimal = (converted - parseInt(converted, 10));
-    decimal = Math.round(decimal * 10);
-    if (decimal == 5) { return (parseInt(converted, 10)+0.5); }
-    if ( (decimal < 3) || (decimal > 7) ) {
-       return Math.round(converted);
-    } else {
-       return (parseInt(converted, 10)+0.5);
-    }
- }
-
   const getRelatedProductDetails = function(str) {
     return axiosAtelier.get(baseURL + "products/" + str.toString());
   }
@@ -71,8 +59,7 @@ export default function App(ogProduct) {
         let totalTimed = +el.ratings['1'] + (+el.ratings['2'] * 2) + (+el.ratings['3'] * 3) + (+el.ratings['4'] * 4) + (+el.ratings['5'] * 5);
         let total = +el.ratings['1'] + +el.ratings['2'] + +el.ratings['3'] + +el.ratings['4'] + +el.ratings['5'];
         let final = totalTimed/total;
-        let roundedFinal = roundToHalf(final)
-        return roundedFinal
+        return final
       })
       let itemsWithReviewScores = [];
       for(let idx = 0; idx < reviewsScores.length; idx++) {
