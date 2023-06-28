@@ -5,36 +5,19 @@ import axiosAtelier from '../../../axiosAtelier.js';
 import Card from './RelatedCard.jsx';
 import '../Common/hideScrollbar.css';
 import { LeftArrow, RightArrow } from '../Common/Arrow.jsx';
+import { getProductDetails, dataMap, getImages, getReviews, getRelated } from '../Common/routes.js';
 
 export default function App(ogProduct) {
   const [items, setItems] = React.useState([]);
   const [selected, setSelected] = React.useState([]);
   const [position, setPosition] = React.useState(0);
 
-  const baseURL = process.env.REACT_APP_API_BASE_URL
-
   var stateToBeSet = [];
-
-  const getRelatedProductDetails = function(str) {
-    return axiosAtelier.get(baseURL + "products/" + str.toString());
-  }
-
-  const getImages = function(obj) {
-    return axiosAtelier.get(baseURL + "products/" + obj.id.toString() + "/styles")
-  }
-
-  const getReviews = function(obj) {
-    return axiosAtelier.get(baseURL + "reviews/meta/?product_id=" + obj.id.toString())
-  }
-
-  const dataMap = function(response) {
-    return response.data
-  }
 
   const getRelatedProducts = () => {
     if(ogProduct.product.id) {
-    axiosAtelier.get(baseURL + "products/" + ogProduct.product.id + "/related").then((response) => {
-       return Promise.all(response.data.map(getRelatedProductDetails))
+    getRelated(ogProduct.product.id).then((response) => {
+       return Promise.all(response.data.map(getProductDetails))
     }).then((response) => {
       let newItems = response.map(dataMap)
       stateToBeSet = newItems;

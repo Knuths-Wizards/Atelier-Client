@@ -1,10 +1,10 @@
 import React from 'react';
 import { ScrollMenu } from 'react-horizontal-scrolling-menu';
 import 'react-horizontal-scrolling-menu/dist/styles.css';
-import axiosAtelier from '../../../axiosAtelier.js';
 import Card from './OutfitCard.jsx';
 import '../Common/hideScrollbar.css';
 import { LeftArrow, RightArrow } from '../Common/Arrow.jsx';
+import { getProductDetails, dataMap, getImages, getReviews } from '../Common/routes.js';
 
 export default function App( {ogProduct, outfit, setOutfit} ) {
   const [items, setItems] = React.useState([]);
@@ -14,22 +14,6 @@ export default function App( {ogProduct, outfit, setOutfit} ) {
   const baseURL = process.env.REACT_APP_API_BASE_URL
 
   var stateToBeSet = [];
-
-  const getProductDetails = function(str) {
-    return axiosAtelier.get(baseURL + "products/" + str.toString());
-  }
-
-  const getImages = function(obj) {
-    return axiosAtelier.get(baseURL + "products/" + obj.id.toString() + "/styles")
-  }
-
-  const getReviews = function(obj) {
-    return axiosAtelier.get(baseURL + "reviews/meta/?product_id=" + obj.id.toString())
-  }
-
-  const dataMap = function(response) {
-    return response.data
-  }
 
   if(outfit !== undefined && ogProduct !== undefined) {
     if(outfit.includes(ogProduct.id)) {
