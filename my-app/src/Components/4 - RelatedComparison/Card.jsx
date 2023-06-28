@@ -27,7 +27,7 @@ export default function Card({ onClick, selected, title, price, category, review
       <div className="container">
         <img width='300px' height='449px' style={{ marginTop: "0px", width: '200px', height: '300px' }} src={img} alt='' />
         <button className="btn btn-circle btn-sm" style={{ position: 'absolute', top: '0.5%', left: '82.5%' }} onClick={showModal}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1" strokeLinecap="square" strokeLinejoin="round"><path d="M3 3h18v18H3zM21 9H3M21 15H3M12 3v18"/></svg>
         </button>
         <dialog ref={modalRef} className="modal">
           <form method="dialog" className="modal-box">
