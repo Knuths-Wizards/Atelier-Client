@@ -23,21 +23,54 @@ function Arrow({
   );
 }
 export function LeftArrow() {
-  const { isFirstItemVisible, scrollPrev } = React.useContext(VisibilityContext);
+  const {
+    getPrevElement,
+    isFirstItemVisible,
+    scrollToItem,
+    visibleElements,
+    initComplete
+  } = React.useContext(VisibilityContext);
 
+  const [disabled, setDisabled] = React.useState(
+    !initComplete || (initComplete && isFirstItemVisible)
+  );
+  React.useEffect(() => {
+    // NOTE: detect if whole component visible
+    if (visibleElements.length) {
+      setDisabled(isFirstItemVisible);
+    }
+  }, [isFirstItemVisible, visibleElements]);
+
+  // NOTE: for scroll 1 item
+  const clickHandler = () => scrollToItem(getPrevElement(), "smooth", "start");
   return (
-    // eslint-disable-next-line react/jsx-no-undef
-    <Arrow disabled={isFirstItemVisible} onClick={() => scrollPrev()}>
+    <Arrow disabled={disabled} onClick={clickHandler}>
       <a className="btn btn-circle">❮</a>
     </Arrow>
   );
 }
-export function RightArrow() {
-  const { isLastItemVisible, scrollNext } = React.useContext(VisibilityContext);
 
+export function RightArrow() {
+  const {
+    getNextElement,
+    isLastItemVisible,
+    scrollToItem,
+    visibleElements
+  } = React.useContext(VisibilityContext);
+
+  const [disabled, setDisabled] = React.useState(
+    !visibleElements.length && isLastItemVisible
+  );
+  React.useEffect(() => {
+    if (visibleElements.length) {
+      setDisabled(isLastItemVisible);
+    }
+  }, [isLastItemVisible, visibleElements]);
+
+  // NOTE: for scroll 1 item
+  const clickHandler = () => scrollToItem(getNextElement(), "smooth", "end");
   return (
-    // eslint-disable-next-line react/jsx-no-undef
-    <Arrow disabled={isLastItemVisible} onClick={() => scrollNext()}>
+    <Arrow disabled={disabled} onClick={clickHandler}>
       <a className="btn btn-circle">❯</a>
     </Arrow>
   );
