@@ -4,7 +4,7 @@ import ProductInfo from './ProductInfo/ProductInfo.jsx';
 import StyleSelect from './StyleSelect/StyleSelect.jsx';
 import AddCart from './AddCart/AddCart.jsx';
 
-import { fetchProductData, fetchProductStyles} from './ovRoutes'
+import { fetchProductData, fetchProductStyles, addProductToCart, getCart} from './ovRoutes'
 import '../../styles/Overview.css'
 // import Gallery from './Gallery';
 // import StyleSelect from './StyleSelect';
@@ -72,7 +72,7 @@ const Overview = () => {
     {/* <Gallery></Gallery> */}
     <ProductInfo style = {styleID} product = {product} productID = {productID} changeProduct = {handleProduct} price={price}></ProductInfo>
     <StyleSelect styles = {styles} changeStyle={handleStyle}></StyleSelect>
-    <AddCart style = {styleID}></AddCart>
+    <AddCart style = {styleID} addCart={addProductToCart} getCart={getCart}></AddCart>
   </div>
   )
 };

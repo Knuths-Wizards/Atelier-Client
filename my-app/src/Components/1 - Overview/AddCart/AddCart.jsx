@@ -4,10 +4,12 @@ import SizeSelector from './SubComponents/SizeSelector.jsx'
 import QuantitySelector from './SubComponents/QuantitySelector.jsx'
 import CartButton from './SubComponents/CartButton.jsx'
 
-const AddCart = ({style}) => {
+const AddCart = ({style, addCart, getCart}) => {
   const [sizeSelect, setSizeSelect] = useState('')
   const [skuArray, setSkuArray] = useState([])
-  const [quantitySelect, setQuantitySelect] = useState('')
+  const [quantitySelect, setQuantitySelect] = useState(1)
+  const [currentSku, setSku] = useState('')
+  console.log('SKU ARRAY----',skuArray)
   //style.skus is an object with all the skus nested
   //there is an ERROR in the camo onesie skus, there are two XL objects instead of one XL and a XXL obj
   //assume they are in order anyways from xs to XXL
@@ -15,8 +17,8 @@ const AddCart = ({style}) => {
   useEffect(() => {
     let skuArr = [];
     for (let sku in style.skus) {
-      //makes a deep copy of skus
-      skuArr.push({...style.skus[sku]});
+      //make a deep copy of skus and add the sku to the object
+      skuArr.push({sku, ...style.skus[sku]});
     }
     //trying to correct the 6th entry to be XXL - can't do this way because this mutates the original array
     //react hates it when you mutate the original so I need to make a copy of my data and use that instead
@@ -33,13 +35,16 @@ const AddCart = ({style}) => {
     setQuantitySelect(quantity)
   }
 
+  const handleSku = (id) => {
+    setSku(id)
+  }
   //sizes available depend on style, quantity depends on size selected
-
+  console.log('CURRENT SKU---', currentSku)
   return (
   <div>
-    <SizeSelector size = {sizeSelect} changeSize={handleSize} skus ={skuArray}/>
-    <QuantitySelector size = {sizeSelect} changeQuantity = {setQuantitySelect} skus ={skuArray} ></QuantitySelector>
-    <CartButton size = {sizeSelect} quantity = {quantitySelect}></CartButton>
+    <SizeSelector size = {sizeSelect} changeSize={handleSize} skus ={skuArray} changeSku={handleSku}/>
+    <QuantitySelector size = {sizeSelect} quantity ={quantitySelect} changeQuantity = {setQuantitySelect} skus ={skuArray} sku={currentSku} ></QuantitySelector>
+    <CartButton sku = {currentSku} quantity = {quantitySelect} addCart = {addCart} skus ={skuArray} size= {sizeSelect} getCart={getCart}></CartButton>
   </div>
   )
 };
