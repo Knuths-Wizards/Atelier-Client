@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react"
-import RelatedItems from './RelatedItems'
-import Outfits from './Outfits'
+import RelatedItems from './Related/RelatedItems.jsx'
+import Outfits from './Outfits/Outfits.jsx'
 import axiosAtelier from '../../axiosAtelier.js';
 
 const ORList = () => {

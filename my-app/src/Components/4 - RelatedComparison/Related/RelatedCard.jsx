@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
 import 'react-horizontal-scrolling-menu/dist/styles.css';
-import { Stars } from './Stars';
+import { Stars } from '../Common/Stars.jsx';
 
 export default function Card({ onClick, selected, title, price, category, review, img, itemId, ogProduct, features }) {
   const visibility = React.useContext(VisibilityContext);
