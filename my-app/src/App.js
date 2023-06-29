@@ -12,7 +12,7 @@ function App() {
       <Overview></Overview>
       <RelatedCompare></RelatedCompare>
       <Main></Main>
-      <RatingsReviews productId={0}></RatingsReviews>
+      <RatingsReviews productId={37311}></RatingsReviews>
     </div>
   );
 }
