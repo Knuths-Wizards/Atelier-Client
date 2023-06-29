@@ -6,6 +6,7 @@ import Card from './RelatedCard.jsx';
 import '../Common/hideScrollbar.css';
 import { LeftArrow, RightArrow } from '../Common/Arrow.jsx';
 import { getProductDetails, dataMap, getImages, getReviews, getRelated } from '../Common/routes.js';
+import createImageObjects from '../Common/CreateImageObjects.js'
 
 export default function App(ogProduct) {
   const [items, setItems] = React.useState([]);
@@ -31,11 +32,9 @@ export default function App(ogProduct) {
           let dataStyles = styles.map(dataMap);
           let itemsWithImgs = [];
           for (let idx = 0; idx < dataStyles.length; idx++) {
+            console.log(createImageObjects(dataStyles[idx]))
             itemsWithImgs.push(stateToBeSet[idx]);
-            if (dataStyles[idx].results[0].photos[0].thumbnail_url == null) {
-              continue;
-            }
-            itemsWithImgs[idx].img = dataStyles[idx].results[0].photos[0].thumbnail_url;
+            itemsWithImgs[idx].img = createImageObjects(dataStyles[idx]);
           }
           return itemsWithImgs;
         }).then((newItems) => {
@@ -61,11 +60,12 @@ export default function App(ogProduct) {
 
      getRelatedProducts();
   }, [ogProduct]);
-
+  console.log(items)
+  if(items.length) {
   return (
     <ScrollMenu
-     LeftArrow={LeftArrow}
-      RightArrow={RightArrow}
+     LeftArrow={<LeftArrow></LeftArrow>}
+      RightArrow={<RightArrow></RightArrow>}
       options={{
         ratio: 0.9,
         rootMargin: "5px",
@@ -87,4 +87,5 @@ export default function App(ogProduct) {
       ))}
     </ScrollMenu>
   );
+}
 }
