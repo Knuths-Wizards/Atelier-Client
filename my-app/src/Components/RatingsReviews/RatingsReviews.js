@@ -1,4 +1,5 @@
 import ReviewsList from './ReviewsList'
+import ReviewForm from './ReviewForm'
 import { useState, useEffect } from 'react'
 import serverIO from './serverIO'
 
@@ -30,6 +31,7 @@ const RatingsReviews = (props) => {
     <div>
       Customer Reviews
       <ReviewsList reviews={reviews} refresh={refresh}/>
+      <ReviewForm productId={productId} />
     </div>
   )
 }
