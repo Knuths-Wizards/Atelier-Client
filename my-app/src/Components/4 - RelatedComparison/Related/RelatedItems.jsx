@@ -58,7 +58,6 @@ export default function App(ogProduct) {
 
      getRelatedProducts();
   }, [ogProduct]);
-  console.log(items)
   if(items.length) {
   return (
     <ScrollMenu
