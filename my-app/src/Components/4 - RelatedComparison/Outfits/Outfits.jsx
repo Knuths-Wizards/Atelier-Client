@@ -6,6 +6,7 @@ import AddToOutfitCard from './AddToOutfitCard.jsx'
 import '../Common/hideScrollbar.css';
 import { LeftArrow, RightArrow } from '../Common/Arrow.jsx';
 import { getProductDetails, dataMap, getImages, getReviews } from '../Common/routes.js';
+import createImageObjects from '../Common/CreateImageObjects.js'
 
 export default function App( {ogProduct, outfit, setOutfit, ogInOutfit, setOgInOutfit} ) {
   const [items, setItems] = React.useState([]);
@@ -35,10 +36,7 @@ export default function App( {ogProduct, outfit, setOutfit, ogInOutfit, setOgInO
         let itemsWithImgs = [];
         for (let idx = 0; idx < dataStyles.length; idx++) {
           itemsWithImgs.push(stateToBeSet[idx]);
-          if (dataStyles[idx].results[0].photos[0].thumbnail_url == null) {
-            continue;
-          }
-          itemsWithImgs[idx].img = dataStyles[idx].results[0].photos[0].thumbnail_url;
+          itemsWithImgs[idx].img = createImageObjects(dataStyles[idx]);
         }
         return itemsWithImgs;
       }).then((newItems) => {

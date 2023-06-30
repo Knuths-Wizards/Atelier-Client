@@ -29,7 +29,7 @@ return (
   <div>
     <h2>Related Items</h2>
     <RelatedItems product={product}></RelatedItems>
-    <h2>Hello Outfits</h2>
+    <h2>Outfits</h2>
     <Outfits ogProduct={product} outfit={outfit} setOutfit={setOutfit} ogInOutfit={ogInOutfit} setOgInOutfit={setOgInOutfit}></Outfits>
 
   </div>
