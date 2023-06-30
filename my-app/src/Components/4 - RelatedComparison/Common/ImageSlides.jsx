@@ -12,13 +12,6 @@ export default function ImageSlides({ smallImg, largeImg, itemId, setLoaded}) {
     }
   };
 
-  // React.useEffect(() => {
-  //   if(visibility.initComplete) {
-  //     setLoaded(true);
-  //     console.log(visibility.initComplete)
-  //   }
-  // }, [visibility.initComplete]);
-
     return (
       <div className="container"
       style={{

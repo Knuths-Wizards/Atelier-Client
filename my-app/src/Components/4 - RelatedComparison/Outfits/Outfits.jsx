@@ -16,15 +16,16 @@ export default function Outfits( {ogProduct, outfit, setOutfit, ogInOutfit, setO
 
   var stateToBeSet = [];
 
-  if(outfit !== undefined && ogProduct !== undefined) {
-    if(outfit.includes(ogProduct.id)) {
-      setOgInOutfit(true);
+  React.useEffect(() => {
+    if(outfit !== undefined && ogProduct !== undefined) {
+      if(outfit.includes(ogProduct.id)) {
+        setOgInOutfit(true);
+      }
     }
-  }
+  }, [outfit, ogProduct])
 
   React.useEffect(() => {
     function getProducts() {
-
       Promise.all(outfit.map(getProductDetails)).then((newItems) => {
         stateToBeSet = newItems;
         return newItems;
@@ -54,7 +55,6 @@ export default function Outfits( {ogProduct, outfit, setOutfit, ogInOutfit, setO
         setItems(itemsWithReviewScores);
         return itemsWithReviewScores;
       });
-
     }
     getProducts();
   }, [outfit]);
