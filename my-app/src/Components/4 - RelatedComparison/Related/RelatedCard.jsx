@@ -7,7 +7,7 @@ import ImageSlides from '../Common/ImageSlides.jsx'
 import '../Common/imageSlides.css';
 import usePreventBodyScroll from '../Common/PreventBodyScroll.jsx';
 
-export default function Card({ title, price, category, review, img, itemId, ogProduct, features }) {
+export default function RelatedCard({ title, price, category, review, img, itemId, ogProduct, features }) {
   const visibility = React.useContext(VisibilityContext);
   const modalRef = useRef(null);
   const [currentStyle, setCurrentStyle] = React.useState(0);
@@ -33,7 +33,6 @@ export default function Card({ title, price, category, review, img, itemId, ogPr
         <h4 className="card-actions justify-center">${img[currentStyle].original_price}</h4>
       )
     }
-
     }
 
   return (
@@ -78,7 +77,7 @@ export default function Card({ title, price, category, review, img, itemId, ogPr
         </button>
         <dialog ref={modalRef} className="modal">
           <form method="dialog" className="modal-box">
-            <ModalContent ogFeatures={ogProduct.features} features={features} title={title} ogTitle={ogProduct.name} />
+            <ModalContent ogFeatures={ogProduct.features} features={features} title={title} ogTitle={ogProduct.name}/>
           </form>
           <form method="dialog" className="modal-backdrop">
             <button>close</button>
@@ -118,12 +117,12 @@ function ModalContent({ogFeatures, features, title, ogTitle}) {
         </tr>
       </thead>
       <tbody>
-        {mergedFeatures.map(feature => {
+        {mergedFeatures.map((feature, index) => {
           let featuresValue = features.find(item => item.feature === feature)?.value || 'X';
           let ogFeaturesValue = ogFeatures.find(item => item.feature === feature)?.value || 'X';
 
           return (
-            <tr>
+            <tr key={index}>
               <td>{feature}</td>
               <td>{featuresValue}</td>
               <td>{ogFeaturesValue}</td>

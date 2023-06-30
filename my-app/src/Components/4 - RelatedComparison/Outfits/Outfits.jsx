@@ -8,7 +8,7 @@ import { LeftArrow, RightArrow } from '../Common/Arrow.jsx';
 import { getProductDetails, dataMap, getImages, getReviews } from '../Common/routes.js';
 import createImageObjects from '../Common/CreateImageObjects.js'
 
-export default function App( {ogProduct, outfit, setOutfit, ogInOutfit, setOgInOutfit} ) {
+export default function Outfits( {ogProduct, outfit, setOutfit, ogInOutfit, setOgInOutfit} ) {
   const [items, setItems] = React.useState([]);
   const [selected, setSelected] = React.useState([]);
   const [position, setPosition] = React.useState(0);
