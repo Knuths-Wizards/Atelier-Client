@@ -12,16 +12,41 @@ export default function RelatedCard({ title, price, category, review, img, itemI
   const modalRef = useRef(null);
   const [currentStyle, setCurrentStyle] = React.useState(0);
   const { disableScroll, enableScroll } = usePreventBodyScroll();
+  const [loaded, setLoaded] = React.useState(false);
+  const apiRef = React.useRef({});
 
-  // React.useEffect(() => {
 
-  // }, [currentStyle]);
+  React.useEffect(() => {
+    function scrollToDefault() {
+      function findDefault() {
+        for (let idx = 0; idx < img.length; idx++) {
+          if (img[idx].default) {
+            return idx;
+          }
+        }
+        return 0;
+      }
+      let defaultid = findDefault();
+      apiRef.current.scrollToItem(
+        apiRef.current.getItemById(defaultid),
+        // OR if you not sure about id for first item
+        // apiRef.current.getItemById(apiRef.current.items.toItems()[0]),
+        "auto",
+        "start"
+      );
+    }
+    scrollToDefault();
+  }, [loaded]);
 
   const showModal = () => {
     if (modalRef.current) {
       modalRef.current.showModal();
     }
   };
+
+  const loadedToTrue = () => {
+    setLoaded(true);
+  }
 
   const SalePrice = () => {
     if (img[currentStyle].sale_price) {
@@ -54,6 +79,8 @@ export default function RelatedCard({ title, price, category, review, img, itemI
       itemClassName='imgScrollItem'
       separatorClassName='imgScrollSeparator'
       wrapperClassName='imgScrollWrapper'
+      apiRef={apiRef}
+      onInit={loadedToTrue}
       onWheel={onWheel}
       options={{
         ratio: 0.9,
