@@ -22,6 +22,24 @@ const serverIO = {
     })
   },
 
+  getMetadata: (productId) => {
+    return axios({
+      url: path.join(API, 'reviews', 'meta'),
+      method: 'GET',
+      params: {
+        product_id: productId
+      }
+    })
+    .then((response)=>{
+      return response.data
+    })
+    .catch((err)=>{
+      console.log('CTRL: Error getting metadata')
+      console.error(err.message)
+      return []
+    })
+  },
+
   castVote: (reviewId) => {
     console.log('PUT', path.join(API, 'reviews', reviewId.toString(), 'helpful'))
     return axios({

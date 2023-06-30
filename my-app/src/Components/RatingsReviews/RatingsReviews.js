@@ -6,11 +6,20 @@ import serverIO from './serverIO'
 const RatingsReviews = (props) => {
   const { productId } = props
   const [reviews, setReviews] = useState([])
+  const [meta, setMeta] = useState([])
 
   useEffect(()=>{
     serverIO.getReviews(productId)
     .then((responseData)=>{
       setReviews(responseData)
+    })
+    .catch((err)=>{
+      console.error(err.message)
+    })
+
+    serverIO.getMetadata(productId)
+    .then((responseData)=>{
+      setMeta(responseData)
     })
     .catch((err)=>{
       console.error(err.message)
@@ -25,13 +34,21 @@ const RatingsReviews = (props) => {
     .catch((err)=>{
       console.error(err.message)
     })
+
+    serverIO.getMetadata(productId)
+    .then((responseData)=>{
+      setMeta(responseData)
+    })
+    .catch((err)=>{
+      console.error(err.message)
+    })
   }
 
   return (
     <div>
       Customer Reviews
       <ReviewsList reviews={reviews} refresh={refresh}/>
-      <ReviewForm productId={productId} />
+      <ReviewForm meta={meta} productId={productId} />
     </div>
   )
 }
