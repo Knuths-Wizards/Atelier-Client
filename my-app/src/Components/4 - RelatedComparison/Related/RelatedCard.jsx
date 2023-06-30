@@ -10,17 +10,31 @@ import usePreventBodyScroll from '../Common/PreventBodyScroll.jsx';
 export default function Card({ title, price, category, review, img, itemId, ogProduct, features }) {
   const visibility = React.useContext(VisibilityContext);
   const modalRef = useRef(null);
-  const [currentStyle, setCurrentStyle] = React.useState({})
+  const [currentStyle, setCurrentStyle] = React.useState(0);
   const { disableScroll, enableScroll } = usePreventBodyScroll();
+
   // React.useEffect(() => {
-  //   console.log(visibility)
-  // }, {visibility})
+
+  // }, [currentStyle]);
 
   const showModal = () => {
     if (modalRef.current) {
       modalRef.current.showModal();
     }
   };
+
+  const SalePrice = () => {
+    if (img[currentStyle].sale_price) {
+      return (
+        <h4 className="card-actions justify-center"><s style={{ color: 'red' }}>${img[currentStyle].original_price}</s> ${img[currentStyle].sale_price}</h4>
+      )
+    } else {
+      return (
+        <h4 className="card-actions justify-center">${img[currentStyle].original_price}</h4>
+      )
+    }
+
+    }
 
   return (
     <div
@@ -71,12 +85,13 @@ export default function Card({ title, price, category, review, img, itemId, ogPr
           </form>
         </dialog>
       </div>
-      <div className="card-body">
+      <div className="card-body"  style={{position:'absolute', top: '55%'}}>
         <h4 className="card-actions justify-center">{category}</h4>
         <div width="135px" height='56px' style={{ marginTop: "0px", width: '135px', height: '56px' }}>
           <h3 className='card-title justify-center'>{title}</h3>
         </div>
-        <h4 className="card-actions justify-center">${price}</h4>
+        <h4 className="card-actions justify-center">{img[currentStyle].name}</h4>
+        <SalePrice></SalePrice>
         <div className="card-actions justify-center">
           <Stars review={review} />
         </div>

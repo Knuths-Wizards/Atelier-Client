@@ -35,11 +35,10 @@ export function LeftArrow({setCurrentStyle}) {
     !initComplete || (initComplete && isFirstItemVisible)
   );
   React.useEffect(() => {
-    console.log(visibleElements);
-    console.log(getPrevElement())
-    setCurrentStyle(visibleElements)
     if (visibleElements.length) {
       setDisabled(isFirstItemVisible);
+      console.log(+visibleElements[0]);
+      setCurrentStyle(+visibleElements[0])
     }
   }, [isFirstItemVisible, visibleElements]);
 

@@ -1,6 +1,5 @@
 export default function createImageObjects(data) {
   const imageObjects = [];
-  console.log(data)
   data.results.forEach((style) => {
     style.photos.forEach((photo) => {
       const imageObject = {
