@@ -16,7 +16,6 @@ export default function App(ogProduct) {
   var stateToBeSet = [];
 
 
-
   React.useEffect(() => {
     function getRelatedProducts() {
       if (ogProduct.product.id) {
@@ -32,7 +31,6 @@ export default function App(ogProduct) {
           let dataStyles = styles.map(dataMap);
           let itemsWithImgs = [];
           for (let idx = 0; idx < dataStyles.length; idx++) {
-            console.log(createImageObjects(dataStyles[idx]))
             itemsWithImgs.push(stateToBeSet[idx]);
             itemsWithImgs[idx].img = createImageObjects(dataStyles[idx]);
           }

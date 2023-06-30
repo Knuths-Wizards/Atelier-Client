@@ -85,7 +85,7 @@ export default function Card({ title, price, category, review, img, itemId, ogPr
           </form>
         </dialog>
       </div>
-      <div className="card-body"  style={{position:'absolute', top: '55%'}}>
+      <div className="card-body"  style={{position:'absolute', top: '53.2%'}}>
         <h4 className="card-actions justify-center">{category}</h4>
         <div width="135px" height='56px' style={{ marginTop: "0px", width: '135px', height: '56px' }}>
           <h3 className='card-title justify-center'>{title}</h3>
