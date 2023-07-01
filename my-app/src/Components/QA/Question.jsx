@@ -1,28 +1,39 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AnswerList from './AnswerList.jsx';
+import { getAnswers } from './routes.js';
 
-const Question = ({question}) => {
+        {/* <p><small>Helpful? <button onClick={handleClick}>Yes ({helpfulness})</button> | <button>Add Answer</button></small></p> */}
 
-  //Add Answer functionality
+const Question = ({ questionID, question }) => {
 
-  const [helpfulness, setHelpfulness] = useState(question["question_helpfulness"])
-  const [alreadyVoted, setAlreadyVoted] = useState(false);
+  const [answers, setAnswers] = useState([])
 
-  const handleClick = () => {
-    if (!alreadyVoted) {
-    setHelpfulness(helpfulness + 1)
-    setAlreadyVoted(true)
-    } else {
-      alert ('You can only vote once, sorry!')
-    }
-  }
+  useEffect(() => {
+    getAnswers(questionID)
+    .then(data => {
+      setAnswers(data)
+      console.log('answersinQuestion', (answers))
+    })
+    .catch(error => console.error('Error fetching answers in Question component', error))
+  }, [questionID])
+
+
+  // const [helpfulness, setHelpfulness] = useState(question["question_helpfulness"])
+  // const [alreadyVoted, setAlreadyVoted] = useState(false);
+
+  // const handleClick = () => {
+  //   if (!alreadyVoted) {
+  //   setHelpfulness(helpfulness + 1)
+  //   setAlreadyVoted(true)
+  //   } else {
+  //     alert ('You can only vote once, sorry!')
+  //   }
+  // }
 
   return (
     <div>
-        <h4><b>Q: {question.question_body}</b></h4>
-        <p><small>Helpful? <button onClick={handleClick}>Yes ({helpfulness})</button> | <button>Add Answer</button></small></p>
-        <AnswerList answers={question['answers']} />
+        <h4><b>Q: {question}</b></h4>
+        <AnswerList answers={answers} />
     </div>
   )
 }
