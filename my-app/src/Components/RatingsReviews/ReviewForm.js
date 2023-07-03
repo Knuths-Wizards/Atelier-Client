@@ -1,5 +1,6 @@
 import RatingSelector from './RatingSelector'
 import {useState} from 'react'
+import Star from './Star'
 
 const ReviewForm = (props) => {
   const { meta } = props
