@@ -54,12 +54,33 @@ export const fetchProductReviews = async (productId) => {
 
 //CART INTERACTION
 
-export const addProductToCart = async (sku_id) => {
+export const addProductToCart = async (sku_id, quantity) => {
+  //currently the api does not have a method to input the quantity of the sku directly
+  //just loop over how many times i need to add to the quantity
+  //should I worry about stock levels?
+  //sku_id is a BODY parameter
   try {
-    const response = await axiosAtelier.post(`${apiURL}cart?sku_id=${sku_id}`);
-    return response.data;
+    const responses = [];
+    //number of posts
+    for (let i = 0; i < quantity; i++ ) {
+      const response = await axiosAtelier.post(`${apiURL}cart`, {sku_id: sku_id});
+      responses.push(response.data);
+      console.log('response to AddProduct', response)
+    }
+    console.log('added product THIS MANY TIMES',responses)
+    return responses;
   } catch (error) {
     console.error('Error adding to cart:', error);
+    throw error;
+  }
+}
+export const getCart = async () => {
+
+  try {
+    const response = await axiosAtelier.get(`${apiURL}cart`)
+    return response
+  } catch (error) {
+    console.error(`Error getting cart: `, error);
     throw error;
   }
 }

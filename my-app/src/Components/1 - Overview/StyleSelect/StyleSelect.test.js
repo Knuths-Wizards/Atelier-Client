@@ -1,18 +1,18 @@
+/* eslint-disable no-unused-vars */
 // ProductInfo.test.js
 import React from 'react';
 import { waitFor } from '@testing-library/react';
 import { render, screen } from '@testing-library/react';
-import ProductInfo from './ProductInfo';
-import { camoData, reviewMeta } from '../testData.js';
-import StarRating from './SubComponents/StarRating.jsx'
-import Share from './SubComponents/Share.jsx'
+import ProductInfo from '../ProductInfo/ProductInfo';
+import StyleSelect from './StyleSelect'
+import { camoData, reviewMeta, styleData } from '../testData.js';
 
 describe('StyleSelect', () => {
 
   describe('Default SelectedStyle', () => {
-    it('Should display Camo Onesie', ()=> {
-      render(<ProductInfo product={camoData}></ProductInfo>)
-      expect(screen.getByText('Camo Onesie')).toBeInTheDocument()
+    it('Should display default style', ()=> {
+      render(<StyleSelect styles={styleData.results} ></StyleSelect>)
+      expect(screen.getByText('Selected style -- Forest Green & Black')).toBeInTheDocument()
     })
   })
   //using actual axios calls, need async test

@@ -28,17 +28,17 @@ if (!styles || styles.length === 0) {
 const selectedStyleName = selectedStyle ? selectedStyle.name : '';
 
 return (
-  <div className = "styles-container">
-    <div className="mb-1">Selected style -- {selectedStyleName}</div>
+  <div className = "">
+    <div className="mb-1" style={{fontSize: 'calc(12px + .5vw)'}}>STYLE > {selectedStyleName}</div>
     <div className="grid grid-cols-4">
       {styles.map((style, index) => (
         <div
           key={index}
           onClick={() => handleStyleClick(style)}
-          className="p-1"
+          className="p-2"
         >
           <div
-              className={`w-10 h-10 border-2 rounded-full flex items-center justify-center ${selectedStyle && selectedStyle.style_id === style.style_id ? 'border-black' : 'border-transparent'}`}
+              className={`styles border-2 rounded-full flex items-center justify-center ${selectedStyle && selectedStyle.style_id === style.style_id ? 'border-black' : 'border-transparent'}`}
               >
             <img
               className="w-full h-full object-cover rounded-full"

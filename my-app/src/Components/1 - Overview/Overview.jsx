@@ -1,9 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
 import ProductInfo from './ProductInfo/ProductInfo.jsx';
 import StyleSelect from './StyleSelect/StyleSelect.jsx';
 import AddCart from './AddCart/AddCart.jsx';
+import Gallery from './Gallery/Gallery.jsx';
 
-import { fetchProductData, fetchProductStyles} from './ovRoutes'
+import { fetchProductData, fetchProductStyles, addProductToCart, getCart} from './ovRoutes'
 import '../../styles/Overview.css'
 // import Gallery from './Gallery';
 // import StyleSelect from './StyleSelect';
@@ -15,13 +17,14 @@ const Overview = () => {
   const [styles, setStyles] = useState([]);
   const [styleID, setStyleID] = useState('');
   const [price, setPrice] = useState('');
-
+  const [imageURLs, setImageURLs] = useState('')
   const handleProduct = (id) => {
     setProductID(id)
   }
   const handleStyle = (style) => {
     setStyleID(style);
     setPrice(style.sale_price ? style.sale_price : style.original_price)
+    setImageURLs(style.photos)
   }
 
 
@@ -64,14 +67,17 @@ const Overview = () => {
       });
   }, [productID]);
 
-  console.log('STYLE ---', price)
 
   return (
   <div className = "Overview-container">
-    {/* <Gallery></Gallery> */}
+    <div className = "gallery-container">
+    <Gallery photos = {imageURLs}></Gallery>
+    </div>
+    <div className="product-info-container">
     <ProductInfo style = {styleID} product = {product} productID = {productID} changeProduct = {handleProduct} price={price}></ProductInfo>
     <StyleSelect styles = {styles} changeStyle={handleStyle}></StyleSelect>
-    <AddCart style = {styleID}></AddCart>
+    <AddCart style = {styleID} addCart={addProductToCart} getCart={getCart}></AddCart>
+    </div>
   </div>
   )
 };
