@@ -9,7 +9,6 @@ const AddCart = ({style, addCart, getCart}) => {
   const [skuArray, setSkuArray] = useState([])
   const [quantitySelect, setQuantitySelect] = useState(1)
   const [currentSku, setSku] = useState('')
-  console.log('SKU ARRAY----',skuArray)
   //style.skus is an object with all the skus nested
   //there is an ERROR in the camo onesie skus, there are two XL objects instead of one XL and a XXL obj
   //assume they are in order anyways from xs to XXL
@@ -39,9 +38,8 @@ const AddCart = ({style, addCart, getCart}) => {
     setSku(id)
   }
   //sizes available depend on style, quantity depends on size selected
-  console.log('CURRENT SKU---', currentSku)
   return (
-  <div className ="cart-container">
+  <div className ="">
     <div className="flex w-full">
       <div className ="flex-grow basis-70%">
         <SizeSelector size = {sizeSelect} changeSize={handleSize} skus ={skuArray} changeSku={handleSku}/>

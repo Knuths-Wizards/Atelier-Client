@@ -1,7 +1,6 @@
 
 
 const CartButton = ({sku, quantity, addCart, skus, size, getCart}) => {
-  console.log(sku.sku)
   const handleAddCart = (event) => {
     if (sku) {
       addCart(sku.sku, quantity)
@@ -19,7 +18,6 @@ const CartButton = ({sku, quantity, addCart, skus, size, getCart}) => {
       alert('SELECT A PROPER SIZE')
     }
   }
-  console.log('SKU IN CART BUTTON----',skus, 'current ID', sku)
   const hasStock = (sku.quantity > 0)
   return (
   <div className="border border-gray-300 p-2">

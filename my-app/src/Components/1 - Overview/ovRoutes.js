@@ -60,7 +60,6 @@ export const addProductToCart = async (sku_id, quantity) => {
   //should I worry about stock levels?
   //sku_id is a BODY parameter
   try {
-    console.log('QUANTITY',quantity)
     const responses = [];
     //number of posts
     for (let i = 0; i < quantity; i++ ) {

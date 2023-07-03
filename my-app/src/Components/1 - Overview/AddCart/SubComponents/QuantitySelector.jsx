@@ -13,8 +13,9 @@ const QuantitySelector = ({size, quantity, changeQuantity, skus, sku}) => {
   for (let i = 1; i<=maxQuantity; i++) {
     quantityOptions.push(i)
   }
+  //the quantity button is ever so slightly taller than size selector, must bring in line!
   return (
-  <div className="border border-gray-300 p-4">
+  <div className="border border-gray-300 p-2">
     <select value={size ? quantity : "-"} onChange={handleQuantityChange} disabled={!size}>
         {!size && <option value="-">-</option>}
         {size && quantityOptions.map((option, index) => (

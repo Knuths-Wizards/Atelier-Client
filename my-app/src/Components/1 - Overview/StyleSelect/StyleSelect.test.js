@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // ProductInfo.test.js
 import React from 'react';
 import { waitFor } from '@testing-library/react';
