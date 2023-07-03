@@ -1,29 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Question from './Question.jsx';
 
-const QuestionList = ({ questionData }) => {
-
-
-
-  // const handleMoreQuestions = () => {
-  //   return questionData.slice(2, questionData.length).map((question) => (
-  //     <Question key={question.id} question={question} />
-  //   ))
-  // }
+const QuestionList = ({ questionData, productName }) => {
 
   return (
     <>
       {questionData.length === 0 ? (
-        <p>No questions. Add one below!</p>
+        <>
+          <p>No questions. Add one below!</p>
+          <button>Add a New Question</button>
+        </>
       ) : (
-        questionData.map((question) => {
-          return <Question questionID={question.question_id} question={question.question_body} />;
-        })
+        <>
+          {questionData
+            .map((question) => (
+              <Question questionID={question.question_id} question={question} productName={productName} />
+            ))}
+        </>
       )}
     </>
   );
 };
-
-
 
 export default QuestionList;
