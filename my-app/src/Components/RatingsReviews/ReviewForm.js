@@ -16,55 +16,22 @@ const ReviewForm = (props) => {
   const [recommend, setRecommend] = useState(false)
   const [reviewer_name, setReviewerName] = useState('')
   const [email, setEmail] = useState('')
-  const [success, setSuccess] = useState(false)
 
   const [hideValidation, setHideValidation] = useState(true)
-  const BODY_MIN = 5
-  const CHAR_MAX = 3
-  const BODY_MAX = 8
+  const BODY_MIN = 3
+  const CHAR_MAX = 60
+  const BODY_MAX = 1000
 
   const openModal = ()=>{
     window.reviewFormWindow.showModal()
   }
 
-  const handleSubmit = (e)=>{
-    const submission = {body, recommend, reviewer_name, email}
-    // Validate body
-    if (submission.body.length < BODY_MIN) {
-      e.preventDefault()
-      setHideValidation(false)
-      return
-    }
-    // Validate text fields
-    for (const key in submission) {
-      if (submission[key] === '') {
-        e.preventDefault()
-        setHideValidation(false)
-        return
-      }
-    }
-    // Validate characteristics
-    submission.characteristics = {}
-    for (const key in characteristics) {
-      if (charStates[key] === 0) {
-        e.preventDefault()
-        setHideValidation(false)
-        return
-      } else {
-        submission.characteristics[key] = charStates[key]
-      }
-    }
-    // Validate summary
-    if (summary === '') {
-      submission.summary = body.slice(0, BODY_MIN - 3) + '...'
-    } else {
-      submission.summary = summary
-    }
+  const closeModal = ()=>{
+    window.reviewFormWindow.close()
+  }
 
-    // TODO: Send Submission to server
-    // TODO: Don't set success until a 201 response is received
-    console.log(submission)
-    setSuccess(true)
+  const handleSubmit = (e)=>{
+    console.log('Handling Submit')
   }
 
   const charLegend = {
@@ -104,52 +71,61 @@ const ReviewForm = (props) => {
   for (let key in characteristics) {
     const buttons = []
     for (let i = 0; i < 5; i++) {
-      buttons.push(<input required type='radio' onChange={handleChange} name={key} value={i + 1}/>)
+      buttons.push(<input required type='radio' onChange={handleChange} name={key} key={key + i} value={i + 1}/>)
     }
     charSelectors.push(
-      <fieldset>
+      <fieldset key={key}>
         <legend>{key + getCharDescription(key, charStates[key])}</legend>
         {buttons}
       </fieldset>
     )
   }
 
+  let bodyProgress = `${body.length}/${BODY_MAX}`
+  if (body.length < BODY_MIN) {
+    bodyProgress += ` (minimum required characters left: ${BODY_MIN - body.length})`
+  } else {
+    bodyProgress += ` (minimum reached)`
+  }
+
   return (
     <div className='ReviewForm'>
-      <button className='btn' onClick={openModal}>Review this product!</button>
+      <button className='btn' onClick={openModal} >Review this product!</button>
       <dialog id='reviewFormWindow' className='modal'>
-        <form method='dialog' className='modal-box' hidden={success}>
+        <form method='dialog' className='modal-box' onSubmit={handleSubmit}>
+          <section>
+            <RatingSelector />
 
-          <RatingSelector />
+            <label forname='recommend' className='label'>Would you recommend purchasing this product?*</label>
+            <input name='recommend' type='checkbox' className='checkbox' onChange={handleChange} maxLength={CHAR_MAX} />
 
-          <label forName='recommend' className='label'>Would you recommend purchasing this product?*</label>
-          <input required name='recommend' type='checkbox' className='checkbox' onChange={handleChange} maxlength={CHAR_MAX} />
+            <label forname='summary' className='label'>TLDR:</label>
+            <input type='text' name='summary' onChange={handleChange} className='input-bordered' maxLength={CHAR_MAX}/>
 
-          <label forName='summary' className='label'>TLDR:</label>
-          <input type='text' name='summary' onChange={handleChange} className='input-bordered' maxlength={CHAR_MAX}/>
+            <label forname='body' className='label'>Tell us more...*</label>
+            <textarea
+              required
+              name='body'
+              onChange={handleChange}
+              className='textarea-bordered'
+              minLength={BODY_MIN}
+              maxLength={BODY_MAX}
+            />
+            <p>{bodyProgress}</p>
 
-          <label forName='body' className='label'>Tell us more...*</label>
-          <textarea
-            required
-            name='body'
-            onChange={handleChange}
-            className='textarea-bordered'
-            minlength={BODY_MIN}
-            maxlength={BODY_MAX}
-          />
+            <label forname='reviewer_name' className='label'>Nickname*</label>
+            <input required type='text' onChange={handleChange} name='reviewer_name' className='input-bordered' maxLength={CHAR_MAX}/>
 
-          <label forName='reviewer_name' className='label'>Nickname*</label>
-          <input required type='text' onChange={handleChange} name='reviewer_name' className='input-bordered' maxlength={CHAR_MAX}/>
+            <label forname='email' className='label'>Email*</label>
+            <input required type='text' onChange={handleChange} name='email' className='input-bordered' maxLength={CHAR_MAX}/>
 
-          <label forName='email' className='label'>Email*</label>
-          <input required type='text' onChange={handleChange} name='email' className='input-bordered' maxlength={CHAR_MAX}/>
+            {charSelectors}
+          </section>
 
-          {charSelectors}
-
-          <div className='modal-action'>
-            <button className='btn' onClick={handleSubmit}>Submit</button>
-            <button className='btn' >Cancel</button>
-          </div>
+          <menu className='modal-action'>
+            <button className='btn' >Submit</button>
+            <button className='btn' type='button' onClick={closeModal}>Cancel</button>
+          </menu>
         </form>
       </dialog>
     </div>
