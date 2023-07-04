@@ -2,7 +2,6 @@ import ReviewsList from './ReviewsList'
 import ReviewForm from './ReviewForm'
 import { useState, useEffect } from 'react'
 import serverIO from './serverIO'
-import Star from './Star'
 
 const RatingsReviews = (props) => {
   const { productId } = props

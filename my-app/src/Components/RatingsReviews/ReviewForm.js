@@ -1,5 +1,5 @@
 import RatingSelector from './RatingSelector'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import Star from './Star'
 
 const ReviewForm = (props) => {
@@ -17,8 +17,9 @@ const ReviewForm = (props) => {
   const [recommend, setRecommend] = useState(false)
   const [reviewer_name, setReviewerName] = useState('')
   const [email, setEmail] = useState('')
+  const [rating, setRating] = useState(0)
+  const [showValidity, setShowValidity] = useState(false)
 
-  const [hideValidation, setHideValidation] = useState(true)
   const BODY_MIN = 3
   const CHAR_MAX = 60
   const BODY_MAX = 1000
@@ -30,8 +31,18 @@ const ReviewForm = (props) => {
   const closeModal = ()=>{
     window.reviewFormWindow.close()
   }
+  const validateRating = ()=>{
+    const valid = rating > 0
+    setShowValidity(!valid)
+    document.getElementById('rate-select').focus()
+    return valid
+  }
 
   const handleSubmit = (e)=>{
+    if (!validateRating()) {
+      e.preventDefault()
+      return
+    }
     console.log('Handling Submit')
   }
 
@@ -47,6 +58,17 @@ const ReviewForm = (props) => {
   const getCharDescription = (char, value) => {
     if (value === 0) return '*'
     else return ' - ' + charLegend[char][value - 1]
+  }
+
+  const stars = []
+  for (let i = 1; i < 6; i++) {
+    const select = setRating.bind(null, i)
+    const fill = rating < i ? 0 : 100
+    stars.push(
+      <span onClick={select}>
+        <Star id={`star-select-${i}`} size='5' fill={fill} />
+      </span>
+    )
   }
 
   const handleChange = (e)=>{
@@ -67,6 +89,8 @@ const ReviewForm = (props) => {
       default: break
     }
   }
+
+
 
   const charSelectors = []
   for (let key in characteristics) {
@@ -95,7 +119,10 @@ const ReviewForm = (props) => {
       <dialog id='reviewFormWindow' className='modal'>
         <form method='dialog' className='modal-box' onSubmit={handleSubmit}>
           <section>
-            <RatingSelector />
+            <p id='rate-select'>Select a Star Rating*</p>
+            <div className='flex items-center' >{stars}</div>
+            <p hidden={!showValidity}>Please select a rating between 1 and 5 stars</p>
+
 
             <label forname='recommend' className='label'>Would you recommend purchasing this product?*</label>
             <input name='recommend' type='checkbox' className='checkbox' onChange={handleChange} maxLength={CHAR_MAX} />
@@ -104,14 +131,16 @@ const ReviewForm = (props) => {
             <input type='text' name='summary' onChange={handleChange} className='input-bordered' maxLength={CHAR_MAX}/>
 
             <label forname='body' className='label'>Tell us more...*</label>
-            <textarea
-              required
-              name='body'
-              onChange={handleChange}
-              className='textarea-bordered'
-              minLength={BODY_MIN}
-              maxLength={BODY_MAX}
-            />
+            <div className='flex items-center'>
+              <textarea
+                required
+                name='body'
+                onChange={handleChange}
+                className='textarea-bordered grow h-16'
+                minLength={BODY_MIN}
+                maxLength={BODY_MAX}
+              />
+            </div>
             <p>{bodyProgress}</p>
 
             <label forname='reviewer_name' className='label'>Nickname*</label>
