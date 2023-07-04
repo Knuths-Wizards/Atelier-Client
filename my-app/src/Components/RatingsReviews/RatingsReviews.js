@@ -47,9 +47,6 @@ const RatingsReviews = (props) => {
 
   return (
     <div>
-      <Star fill={60} id='test-star-1' size='5'/>
-      <Star fill={0} id='test-star-2' size='7'/>
-      <Star fill={100} id='test-star-3' size='10'/>
       Customer Reviews
       <ReviewsList reviews={reviews} refresh={refresh}/>
       <ReviewForm meta={meta} productId={productId} />
