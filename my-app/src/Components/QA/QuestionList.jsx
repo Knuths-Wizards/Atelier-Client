@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Question from './Question.jsx';
+import { getAllQuestions } from './routes.js';
 
-const QuestionList = ({ questionData, productName }) => {
+const QuestionList = ({ productId, filteredList }) => {
+
+  const [questionData, setQuestionData] = useState([]);
+
+  useEffect(() => {
+    getAllQuestions(productId)
+        .then(data => {
+          setQuestionData(data);
+        })
+        .catch(error => {
+          console.error('Error fetching questions:', error);
+        })
+  }, [productId]);
+
 
   return (
     <>
@@ -14,7 +28,7 @@ const QuestionList = ({ questionData, productName }) => {
         <>
           {questionData
             .map((question) => (
-              <Question questionID={question.question_id} question={question} productName={productName} />
+              <Question questionID={question.question_id} question={question}  />
             ))}
         </>
       )}

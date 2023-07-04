@@ -4,7 +4,7 @@ const apiURL = process.env.REACT_APP_API_BASE_URL;
 // View questions
 export function getAllQuestions(productId) {
   return axiosAtelier.get(`${apiURL}qa/questions?product_id=${productId}`)
-    .then(response => response.data)
+    .then(response => response.data.results)
     .catch(error => {
       console.error('Error fetching questions:', error);
     });
@@ -92,27 +92,6 @@ export function addAnswer(question_id, answer, name, email) {
       throw error;
     });
 }
-
-
-
-// // search
-// const searchQuestions = (product_id, query) => {
-//   return axiosAtelier.get(`/qa/questions/search?product_id=${product_id}&query=${query}`);
-// };
-
-
-// export axiosAtelier.get('/qa/questions/search', (req, res) => {
-//   const { product_id, query } = req.query;
-
-//   searchQuestions(product_id, query)
-//     .then(response => {
-//       res.status(200).json(response.data);
-//     })
-//     .catch(error => {
-//       console.error('Error searching questions:', error);
-//       res.sendStatus(500);
-//     });
-// });
 
 
 // Helper functions
