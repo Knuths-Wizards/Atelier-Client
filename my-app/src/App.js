@@ -11,7 +11,6 @@ function App() {
     <div className="App">
       <Overview></Overview>
       <RelatedCompare></RelatedCompare>
-      <Main></Main>
       <RatingsReviews productId={37311}></RatingsReviews>
     </div>
   );
