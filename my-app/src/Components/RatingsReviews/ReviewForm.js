@@ -1,6 +1,6 @@
-import RatingSelector from './RatingSelector'
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 import Star from './Star'
+import serverIO from './serverIO'
 
 const ReviewForm = (props) => {
   const { meta } = props
@@ -20,7 +20,7 @@ const ReviewForm = (props) => {
   const [rating, setRating] = useState(0)
   const [showValidity, setShowValidity] = useState(false)
 
-  const BODY_MIN = 3
+  const BODY_MIN = 50
   const CHAR_MAX = 60
   const BODY_MAX = 1000
 
@@ -43,7 +43,29 @@ const ReviewForm = (props) => {
       e.preventDefault()
       return
     }
-    console.log('Handling Submit')
+
+    const params = {
+      product_id: Number(meta.product_id),
+      rating: rating,
+      summary: summary,
+      body: body,
+      recommend: recommend,
+      name: reviewer_name,
+      email: email,
+      photos: [],
+      characteristics: {}
+    }
+
+    for (const key in charStates) {
+      if (charStates[key] > 0) {
+        const id = meta.characteristics[key].id
+        params.characteristics[id] = charStates[key]
+      }
+    }
+    console.log(params)
+
+    serverIO.submitReview(params)
+
   }
 
   const charLegend = {

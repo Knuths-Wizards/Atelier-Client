@@ -27,7 +27,8 @@ const serverIO = {
       url: path.join(API, 'reviews', 'meta'),
       method: 'GET',
       params: {
-        product_id: productId
+        product_id: productId,
+        sort: 'newest'
       }
     })
     .then((response)=>{
@@ -58,7 +59,21 @@ const serverIO = {
 
   submitReview: (formData) => {
 
-    return Promise.resolve(null)
+    return axios({
+      url: path.join(API, 'reviews'),
+      method: 'POST',
+      data: formData
+    })
+    .then((res)=>{
+      if (res.status === 201) {
+        console.log('Review Posted')
+      } else {
+        console.log('Server responded with', res.status)
+      }
+    })
+    .catch((err)=>{
+      console.log(err.message)
+    })
   }
 }
 
