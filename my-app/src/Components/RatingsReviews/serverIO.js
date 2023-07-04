@@ -9,7 +9,8 @@ const serverIO = {
       url: path.join(API, 'reviews'),
       method: 'GET',
       params: {
-        product_id: productId
+        product_id: productId,
+        sort: 'newest'
       }
     })
     .then((response)=>{
@@ -27,8 +28,7 @@ const serverIO = {
       url: path.join(API, 'reviews', 'meta'),
       method: 'GET',
       params: {
-        product_id: productId,
-        sort: 'newest'
+        product_id: productId
       }
     })
     .then((response)=>{
