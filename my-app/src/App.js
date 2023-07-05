@@ -12,7 +12,6 @@ function App() {
   return (
     <div className="App">
       <div>
-<<<<<<< HEAD
         <Overview productID = {productID} setProductID={setProductID}></Overview>
       </div>
       <div className="centered">
@@ -23,18 +22,6 @@ function App() {
       </div>
       <div className="centered">
         <RatingsReviews productID = {productID}></RatingsReviews>
-=======
-      <Overview productID = {productID} setProductID={setProductID}></Overview>
-      </div>
-      <div>
-      <RelatedCompare ></RelatedCompare>
-      </div>
-      <div>
-        <QA productID = {productID}></QA>
-      </div>
-      <div>
-      <RatingsReviews productID = {productID}></RatingsReviews>
->>>>>>> e49c173... feat: searchbar
       </div>
     </div>
   );
