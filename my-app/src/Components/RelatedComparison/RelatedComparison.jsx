@@ -3,7 +3,7 @@ import RelatedItems from './Related/RelatedItems.jsx'
 import Outfits from './Outfits/Outfits.jsx'
 import { getProductDetails } from "./Common/routes.js";
 
-const ORList = () => {
+const ORList = ({ productid }) => {
 
 const [outfit, setOutfit] = useState([]);
 const [product, setProduct] = useState([]);
@@ -15,7 +15,7 @@ const [ogInOutfit, setOgInOutfit] = React.useState(false);
     }
 
     const getProduct = () => {
-      getProductDetails(product).then((response) => {
+      getProductDetails(productid).then((response) => {
         setProduct(response.data)
       })
       }
