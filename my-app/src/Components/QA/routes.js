@@ -66,15 +66,10 @@ export function getProductName(productId) {
 }
 
 // Add an answer
-export function addAnswer(question_id, answer, name, email) {
-  const data = {
-    answer: answer,
-    name: name,
-    email: email,
-    question_id: question_id
-  }
+export function addAnswer(question_id, data) {
   return axiosAtelier.post(`${apiURL}qa/questions/${question_id}/answers`, data)
-    .then(response => response.data)
+    //response.data = 'Created'
+    .then((response) => response.data)
     .catch(error => {
     console.error('Error submitting answer:', error);
     throw error;

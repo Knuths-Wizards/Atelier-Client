@@ -1,9 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { addQuestion, getProductName } from './routes.js';
+import { addQuestion } from './routes.js';
 
-const QuestionModal = ({ productId }) => {
+const QuestionModal = ({ productId, productName }) => {
+
   const questionModalRef = useRef(null);
-  const [productName, setProductName] = useState('');
   const [isWarningVisible, setIsWarningVisible] = useState(false);
   const [isQuestionValid, setIsQuestionValid] = useState(false);
   const [nickname, setNickname] = useState('');
@@ -11,14 +11,6 @@ const QuestionModal = ({ productId }) => {
   const [question, setQuestion] = useState('');
   const [isNicknameValid, setIsNicknameValid] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(false);
-
-  useEffect(() => {
-    getProductName(productId)
-      .then((response) => {
-        setProductName(response.name);
-      })
-      .catch((error) => console.error('Error fetching answers in Question component', error));
-  }, [productId]);
 
   const openQuestionModal = () => {
     const questionModal = questionModalRef.current;
