@@ -7,7 +7,7 @@ import serverIO from './serverIO'
 const RatingsReviews = (props) => {
   const { productId } = props
   const [reviews, setReviews] = useState([])
-  const [meta, setMeta] = useState([])
+  const [meta, setMeta] = useState({ratings:{}, characteristics:{}})
 
   useEffect(()=>{
     serverIO.getReviews(productId)
@@ -50,7 +50,7 @@ const RatingsReviews = (props) => {
       <h2 className='text-xl font-semibold'>Customer Reviews</h2>
       <div className='flex flex-row'>
         <div className=' w-4/12'>
-          <RatingBreakdown/>
+          <RatingBreakdown meta={meta} />
           <ReviewForm meta={meta} productId={productId} />
         </div>
         <ReviewsList reviews={reviews} refresh={refresh}/>
