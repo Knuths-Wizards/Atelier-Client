@@ -7,7 +7,8 @@ const QuestionList = ({ productId, questionData, setQuestionData, filterData }) 
 
   const [sortedQuestions, setSortedQuestions] = useState([]);
   const [productName, setProductName] = useState('');
-  //const [visibleQuestions, setVisibleQuestions] = useState(2);
+  const [visibleQuestions, setVisibleQuestions] = useState(2);
+  const [allQuestionsLoaded, setAllQuestionsLoaded] = useState(false);
 
   useEffect(() => {
     getAllQuestions(productId)
@@ -21,9 +22,6 @@ const QuestionList = ({ productId, questionData, setQuestionData, filterData }) 
 
   useEffect(() => {
     if (filterData && filterData.length > 0) {
-      // const sortedArr = [...questionData];
-      // sortedArr.sort((a, b) => b.question_helpfulness - a.question_helpfulness);
-      // setSortedQuestions(sortedArr);
       const testingArr = [...filterData];
       testingArr.sort((a,b) => Object.keys(b.answers).length - Object.keys(a.answers).length)
       setSortedQuestions(testingArr);
@@ -38,21 +36,25 @@ const QuestionList = ({ productId, questionData, setQuestionData, filterData }) 
       .catch((error) => console.error('Error fetching answers in Question component', error));
   }, [productId]);
 
-  // const handleLoadMore = () => {
-  //   setVisibleQuestions(prev => prev + 2);
-  // };
+  useEffect(() => {
+    if (visibleQuestions >= sortedQuestions.length) {
+      setAllQuestionsLoaded(true);
+    }
+  }, [visibleQuestions, sortedQuestions]);
 
-  console.log('qid in QL', sortedQuestions)
+  const handleLoadMore = () => {
+    setVisibleQuestions(visibleQuestions+2);
+    setAllQuestionsLoaded(true);
+  };
 
   return (
     <>
-      {sortedQuestions.slice(0,5).map((question) => (
-        // (index < visibleQuestions) && (
-          <Question key={question.question_id} questionId={question.question_id} question={question} productName={productName}/>
-        )
-    //  )
-      )}
-      {/* {sortedQuestions.length > visibleQuestions && (
+    <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
+      {sortedQuestions.slice(0, visibleQuestions).map((question) => (
+        <Question key={question.question_id} questionId={question.question_id} question={question} productName={productName}/>
+      ))}
+
+      {sortedQuestions.length > visibleQuestions && (
         <button
           className="btn"
           style={{
@@ -64,10 +66,12 @@ const QuestionList = ({ productId, questionData, setQuestionData, filterData }) 
           }}
           onClick={handleLoadMore}
         >
-          Show More
+          More Answered Questions
         </button>
-      )} */}
-      <br /><QuestionModal productId={productId} setQuestionData={setQuestionData} productName={productName}/>
+      )}
+      </div>
+      <br />
+      <QuestionModal productId={productId} setQuestionData={setQuestionData} productName={productName}/>
     </>
   );
 };
