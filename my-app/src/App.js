@@ -9,10 +9,18 @@ import RatingsReviews from './Components/RatingsReviews/RatingsReviews'
 function App() {
   return (
     <div className="App">
-      <Overview></Overview>
-      <RelatedCompare></RelatedCompare>
-      <QA productId={37315}></QA>
-      <RatingsReviews productId={37311}></RatingsReviews>
+      <div>
+        <Overview productID = {productID} setProductID={setProductID}></Overview>
+      </div>
+      <div className="centered">
+        <RelatedCompare ></RelatedCompare>
+      </div>
+      <div className="centered">
+        <QA productID = {productID}></QA>
+      </div>
+      <div className="centered">
+        <RatingsReviews productID = {productID}></RatingsReviews>
+      </div>
     </div>
   );
 }
