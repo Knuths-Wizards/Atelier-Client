@@ -3,7 +3,7 @@ const apiURL = process.env.REACT_APP_API_BASE_URL;
 
 // View questions
 export function getAllQuestions(productId) {
-  return axiosAtelier.get(`${apiURL}qa/questions?product_id=${productId}`)
+  return axiosAtelier.get(`${apiURL}qa/questions?product_id=${productId}&count=1000`)
     .then(response => response.data.results)
     .catch(error => {
       console.error('Error fetching questions:', error);
@@ -75,7 +75,7 @@ export function addAnswer(question_id, answer, name, email) {
   }
   return axiosAtelier.post(`${apiURL}qa/questions/${question_id}/answers`, data)
     .then(response => response.data)
-  .catch(error => {
+    .catch(error => {
     console.error('Error submitting answer:', error);
     throw error;
   })
@@ -85,7 +85,8 @@ export function addAnswer(question_id, answer, name, email) {
  export function reportAnswer(answerId) {
   return axiosAtelier.put(`${apiURL}qa/answers/${answerId}/report`)
     .then(response => {
-      return response.data;
+      console.log('response===', response)
+   //   return response.data;
     })
     .catch(error => {
       console.error('Error reporting question:', error);
@@ -93,11 +94,16 @@ export function addAnswer(question_id, answer, name, email) {
     });
 }
 
-
-// Helper functions
-
-// const reportQuestion = (question_id) => {
-//   return axiosAtelier.put(`/qa/questions/${question_id}/report`);
-// };
+ // Report a question
+ export function reportQuestion(questionId) {
+  return axiosAtelier.put(`${apiURL}qa/questions/${questionId}/report`)
+    .then(response => {
+      console.log('response===', response)
+    })
+    .catch(error => {
+      console.error('Error reporting question:', error);
+      throw error;
+    });
+}
 
 
