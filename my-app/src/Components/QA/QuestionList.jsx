@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Question from './Question.jsx';
 import QuestionModal from './QuestionModal.jsx';
-import { getAllQuestions, addQuestion } from './routes.js';
+import { getAllQuestions, getProductName } from './routes.js';
 
-const QuestionList = ({ productId, questionData, setQuestionData }) => {
+const QuestionList = ({ productId, questionData, setQuestionData, filterData }) => {
+
   const [sortedQuestions, setSortedQuestions] = useState([]);
+  const [productName, setProductName] = useState('');
   //const [visibleQuestions, setVisibleQuestions] = useState(2);
 
   useEffect(() => {
@@ -18,22 +20,35 @@ const QuestionList = ({ productId, questionData, setQuestionData }) => {
   }, [productId]);
 
   useEffect(() => {
-    if (questionData && questionData.length > 0) {
-      const sortedArr = [...questionData];
-      sortedArr.sort((a, b) => b.question_helpfulness - a.question_helpfulness);
-      setSortedQuestions(sortedArr);
+    if (filterData && filterData.length > 0) {
+      // const sortedArr = [...questionData];
+      // sortedArr.sort((a, b) => b.question_helpfulness - a.question_helpfulness);
+      // setSortedQuestions(sortedArr);
+      const testingArr = [...filterData];
+      testingArr.sort((a,b) => Object.keys(b.answers).length - Object.keys(a.answers).length)
+      setSortedQuestions(testingArr);
     }
-  }, [questionData]);
+  }, [filterData]);
+
+  useEffect(() => {
+    getProductName(productId)
+      .then((response) => {
+        setProductName(response.name);
+      })
+      .catch((error) => console.error('Error fetching answers in Question component', error));
+  }, [productId]);
 
   // const handleLoadMore = () => {
   //   setVisibleQuestions(prev => prev + 2);
   // };
 
+  console.log('qid in QL', sortedQuestions)
+
   return (
     <>
-      {sortedQuestions.slice(0,2).map((question, index) => (
+      {sortedQuestions.slice(0,5).map((question) => (
         // (index < visibleQuestions) && (
-          <Question key={question.question_id} questionId={question.question_id} question={question} />
+          <Question key={question.question_id} questionId={question.question_id} question={question} productName={productName}/>
         )
     //  )
       )}
@@ -52,7 +67,7 @@ const QuestionList = ({ productId, questionData, setQuestionData }) => {
           Show More
         </button>
       )} */}
-      <QuestionModal productId={productId} setQuestionData={setQuestionData} />
+      <br /><QuestionModal productId={productId} setQuestionData={setQuestionData} productName={productName}/>
     </>
   );
 };

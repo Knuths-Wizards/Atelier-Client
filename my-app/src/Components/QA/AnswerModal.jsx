@@ -1,7 +1,8 @@
   import React, { useState, useEffect, useRef } from 'react';
   import { addAnswer } from './routes.js';
 
-  const AnswerModal = ({ questionId }) => {
+  const AnswerModal = ({ productName, question, questionId }) => {
+
     const [answer, setAnswer] = useState('');
     const [nickname, setNickname] = useState('');
     const [email, setEmail] = useState('');
@@ -19,7 +20,6 @@
         answerModal.showModal();
       }
     };
-
 
     const validateEmail = (email) => {
       const emailRegex = /\S+@\S+\.\S+/;
@@ -50,8 +50,17 @@
     const handleSubmit = (e) => {
       e.preventDefault();
       if (isAnswerValid && isNicknameValid && isEmailValid) {
-        console.log('New answer submitted successfully');
-        addAnswer(questionId, answer, nickname, email)
+        console.log('New answer validated');
+
+        const data = {
+          answer: answer,
+          name: nickname,
+          email: email,
+          question_id: questionId,
+          body: answer
+        };
+
+        addAnswer(questionId, data)
           .then(() => {
             alert('Answer submitted!');
             answerModalRef.current.close();
@@ -93,7 +102,7 @@
           <form onSubmit={handleSubmit} method="dialog" className="modal-box" style={{ width: '100%', padding: '16px' }}>
             <div id="heading" style={{ padding: '16px 0', minHeight: '56px', marginRight: '24px', lineHeight: '24px', fontSize: '16px', fontWeight: '700', textSizeAdjust: '100%' }}>
               <h2 className="font-bold text-lg" style={{ marginBottom: '16px' }}>Submit Your Answer</h2>
-              <h3>[productName]: [ProductBody here]</h3>
+              <h3>{productName}: {question}</h3>
             </div>
             <div style={{ padding: '16px 0' }}>
               <div>
