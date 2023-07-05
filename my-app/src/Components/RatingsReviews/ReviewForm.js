@@ -87,7 +87,7 @@ const ReviewForm = (props) => {
     const select = setRating.bind(null, i)
     const fill = rating < i ? 0 : 100
     stars.push(
-      <span onClick={select}>
+      <span key={`star-select-${i}`} onClick={select}>
         <Star id={`star-select-${i}`} size='5' fill={fill} />
       </span>
     )
