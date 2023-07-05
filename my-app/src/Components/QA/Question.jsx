@@ -10,14 +10,14 @@ const Question = ({ questionId, question, productName }) => {
   const [answerData, setAnswerData] = useState([]);
   const [alreadyReported, setAlreadyReported] = useState(false);
 
-console.log('questonId', questionId)
+  console.log('questonId', questionId)
 
 
   useEffect(() => {
     getAnswers(questionId)
       .then((response) => {
-      console.log('answers=====', response); //arr of objs
-       setAnswerData(response);
+        console.log('answers=====', response); //arr of objs
+        setAnswerData(response);
       })
       .catch((error) => console.error('Error fetching answers in Question component', error));
   }, [questionId]);
@@ -38,51 +38,50 @@ console.log('questonId', questionId)
     alert('Question reported')
   };
 
-        {/* {answerData.length === 0 ? (
+  {/* {answerData.length === 0 ? (
     <p><small>No answers.</small></p>
   ) : (
     <p>Other answers here</p>)}
  */}
-//  <>
-//  {answerData.map((answer) => (
-//    <Answer key={answer.answer_id} answerId={answer.answer_id} answer={answer} helpfulness={answer.helpfulness} />
-//  ))}
-// </>
+  //  <>
+  //  {answerData.map((answer) => (
+  //    <Answer key={answer.answer_id} answerId={answer.answer_id} answer={answer} helpfulness={answer.helpfulness} />
+  //  ))}
+  // </>
 
   return (
     <div>
-      <div>
-        <h4>
-          <b>Q: {question.question_body}</b>
-        </h4>
-        <div style={{ paddingRight: '20px' }}>
-          <small>
-            Helpful?&nbsp;
-            <button onClick={handleClick} style={{ textDecorationLine: 'underline' }}>
-              Yes ({helpfulness})
-            </button>
+      <h4>
+        <b>Q: {question.question_body}</b>
+      </h4>
+      <div id="question-buttons" style={{ whiteSpace: 'nowrap' }}>
+        <small>
+          <div className="helpful">
+            Helpful?&nbsp;<button onClick={handleClick} style={{ textDecorationLine: 'underline' }}>Yes ({helpfulness})</button>
+          </div>
+          <div className="answerModal">
             <AnswerModal productName={productName} question={question.question_body} questionId={questionId} />
-            |&nbsp;&nbsp;
+          </div>
+          <div className="reported">
             {alreadyReported ? (
-              <button disabled >
-                Reported
-              </button>
+              <button disabled >Reported</button>
             ) : (
               <button style={{ textDecorationLine: 'underline' }} onClick={() => handleReport()}>
                 Report
               </button>
             )}
-          </small>
-        </div>
-
+          </div>
+        </small>
       </div>
-      <p><em>Answer goes here</em></p><br />
-
-     <>
-  {answerData.map((answer) => (
-    <Answer key={answer.answer_id} answerId={answer.answer_id} answer={answer} helpfulness={answer.helpfulness} />
-   ))}
-  </>
+      <>
+        {answerData.length === 0 && (
+          <p>No answers to this question!</p>
+        )}
+        <br />
+        {answerData.map((answer) => (
+          <Answer key={answer.answer_id} answerId={answer.answer_id} answer={answer} helpfulness={answer.helpfulness} />
+        ))}
+      </>
     </div>
   );
 };
