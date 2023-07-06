@@ -8,9 +8,6 @@ import Search from './Search/Search.jsx'
 
 import { fetchAllProducts, fetchProductData, fetchProductStyles, addProductToCart, getCart} from './ovRoutes'
 import '../../styles/Overview.css'
-// import Gallery from './Gallery';
-// import StyleSelect from './StyleSelect';
-// import AddCart from './AddCart';
 
 const Overview = ({productID, setProductID}) => {
   const [product, setProduct] = useState({});

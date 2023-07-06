@@ -82,7 +82,7 @@
   display: inline-block;
   padding: 3px;
   position: absolute;
-  margin-left: 10vw;
+  margin-left: 8vw;
 }
 
 .up-arrow {
@@ -177,7 +177,7 @@
   left: 35%;
   width: 30%;
   text-align: center;
-  z-index: 9999;
+  z-index: 3;
 }
 
 .search-input {

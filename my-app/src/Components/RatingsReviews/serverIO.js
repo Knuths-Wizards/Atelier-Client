@@ -1,12 +1,11 @@
 import axios from '../../axiosAtelier'
 import path from 'path-browserify'
 
-const API = process.env.REACT_APP_API_BASE_URL
 
 const serverIO = {
   getReviews: (productId) => {
     return axios({
-      url: path.join(API, 'reviews'),
+      url: path.join('reviews'),
       method: 'GET',
       params: {
         product_id: productId,
@@ -25,7 +24,7 @@ const serverIO = {
 
   getMetadata: (productId) => {
     return axios({
-      url: path.join(API, 'reviews', 'meta'),
+      url: path.join('reviews', 'meta'),
       method: 'GET',
       params: {
         product_id: productId
@@ -42,9 +41,9 @@ const serverIO = {
   },
 
   castVote: (reviewId) => {
-    console.log('PUT', path.join(API, 'reviews', reviewId.toString(), 'helpful'))
+    console.log('PUT', path.join('reviews', reviewId.toString(), 'helpful'))
     return axios({
-      url: path.join(API, 'reviews', reviewId.toString(), 'helpful'),
+      url: path.join('reviews', reviewId.toString(), 'helpful'),
       method: 'PUT'
     })
     .catch((err)=>{
@@ -60,7 +59,7 @@ const serverIO = {
   submitReview: (formData) => {
 
     return axios({
-      url: path.join(API, 'reviews'),
+      url: path.join('reviews'),
       method: 'POST',
       data: formData
     })

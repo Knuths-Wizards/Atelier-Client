@@ -14,13 +14,13 @@ function App() {
       <div>
         <Overview productID = {productID} setProductID={setProductID}></Overview>
       </div>
-      <div className="centered">
+      <div >
         <RelatedCompare productid={productID} setProductID={setProductID} ></RelatedCompare>
       </div>
-      <div className="centered">
+      <div >
         <QA productID = {productID}></QA>
       </div>
-      <div className="centered">
+      <div>
         <RatingsReviews productID = {productID}></RatingsReviews>
       </div>
     </div>
