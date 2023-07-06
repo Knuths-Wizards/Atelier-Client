@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import logo from './logo.svg';
 import './styles/App.css';
-import QA from './Components/QA/QA.jsx';
+// import QA from './Components/QA/QA.jsx';
 import Overview from './Components/Overview/Overview.jsx'
-import RelatedCompare from './Components/RelatedComparison/RelatedComparison'
-import RatingsReviews from './Components/RatingsReviews/RatingsReviews'
+// import RelatedCompare from './Components/RelatedComparison/RelatedComparison'
+// import RatingsReviews from './Components/RatingsReviews/RatingsReviews'
 
 function App() {
   const [productID, setProductID] = useState('37311');
@@ -14,7 +14,7 @@ function App() {
       <div>
         <Overview productID = {productID} setProductID={setProductID}></Overview>
       </div>
-      <div className="centered">
+      {/* <div className="centered">
         <RelatedCompare ></RelatedCompare>
       </div>
       <div className="centered">
@@ -22,7 +22,7 @@ function App() {
       </div>
       <div className="centered">
         <RatingsReviews productID = {productID}></RatingsReviews>
-      </div>
+      </div> */}
     </div>
   );
 }
