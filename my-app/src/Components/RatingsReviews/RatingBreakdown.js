@@ -45,7 +45,7 @@ const RatingBreakdown = (props) => {
   }
 
   return (
-    <div className='rounded-xl border-2 items-center m-4 min-w-fit'>
+    <div className='card glass rounded-xl border-2 items-center m-4 min-w-fit'>
       <div className='grid grid-cols-2 p-2 place-items-center'>
         <h3 className='p-2 text-xl italic text-center'>Breakdown</h3>
         <div className='flex place-items-center'>
