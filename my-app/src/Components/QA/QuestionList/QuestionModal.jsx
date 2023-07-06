@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { addQuestion } from '../routes.js';
 
 
-const QuestionModal = ({ productId, productName }) => {
+const QuestionModal = ({ productID, productName }) => {
 
 
   const [isWarningVisible, setIsWarningVisible] = useState(false);
@@ -30,7 +30,7 @@ const QuestionModal = ({ productId, productName }) => {
     e.preventDefault();
     if (isQuestionValid && isNicknameValid && isEmailValid && validateEmail(email)) {
       console.log('New question submitted successfully');
-      addQuestion(productId, question, nickname, email)
+      addQuestion(productID, question, nickname, email)
         .then(() => {
           alert('Question submitted!');
           setQuestion('');
