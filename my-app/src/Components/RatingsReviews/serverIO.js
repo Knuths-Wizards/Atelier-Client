@@ -19,7 +19,7 @@ const serverIO = {
     .catch((err)=>{
       console.log('CTRL: Error getting reviews')
       console.error(err.message)
-      return []
+      throw err
     })
   },
 
@@ -37,7 +37,7 @@ const serverIO = {
     .catch((err)=>{
       console.log('CTRL: Error getting metadata')
       console.error(err.message)
-      return []
+      throw err
     })
   },
 
@@ -49,6 +49,7 @@ const serverIO = {
     })
     .catch((err)=>{
       console.log('CTRL: Error casting vote')
+      throw err
     })
   },
 
@@ -73,6 +74,7 @@ const serverIO = {
     })
     .catch((err)=>{
       console.log(err.message)
+      throw err
     })
   }
 }
