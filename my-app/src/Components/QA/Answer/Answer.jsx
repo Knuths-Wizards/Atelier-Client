@@ -26,18 +26,15 @@ const Answer = ({ answer, answerId }) => {
     }
   };
 
+//see if a product was already reported?
   // useEffect(() => {
-  //   reportAnswer(answerId)
-  //     .then((response) =>
-  //     console.log('response', response))
-  //     //setAlreadyReported(response))
   //      .catch(error => console.error('Error with reported property'))
   // }, [answerId]);
 
-
   const handleSubmit = () => {
     reportAnswer(answerId)
-    .then(() => setAlreadyVoted(true))
+    setAlreadyReported(true)
+    alert('Answer reported')
   };
 
   return (
