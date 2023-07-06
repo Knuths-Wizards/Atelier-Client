@@ -79,7 +79,7 @@ const Question = ({ questionId, question, productName }) => {
         <><div className="flex flex-row items-center justify-between items-center w-full mr-4 p-3"><p><b>A: </b>No answers to this question!</p></div><br /></>
       ) : (
         <>
-          {answerData.length > visibleAnswers && !allAnswersLoaded ? (
+          {answerData.length > visibleAnswers ? (
             answerData.slice(0, visibleAnswers).map((answer) => (
               <div className="flex flex-row items-center justify-between items-center w-full mr-4 p-3"><Answer key={answer.answer_id} answerId={answer.answer_id} answer={answer} helpfulness={answer.helpfulness} setHelpfulness={setHelpfulness}/></div>
             ))

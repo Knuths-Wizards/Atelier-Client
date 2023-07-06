@@ -83,10 +83,10 @@ const QuestionList = ({ productID, questionData, setQuestionData, filterData }) 
           style={{
           textAlign: 'center',
           lineHeight: '29px',
-          fontSize: '13px',
           margin: '10px',
           cursor: 'pointer',
-        }}>Collapse Answers</button>
+          fontSize: '13px'
+        }}>Collapse Questions</button>
       )}
 
       <br />

@@ -17,7 +17,7 @@ function App() {
       <div >
         <RelatedCompare productid={productID} setProductID={setProductID} ></RelatedCompare>
       </div>
-      <div >
+      <div className="centered">
         <QA productID = {productID}></QA>
       </div>
       <div>
