@@ -62,7 +62,7 @@ export default function RelatedCard({ title, price, category, review, img, itemI
 
   return (
     <div
-      className="card card-primary card-small w-96 shadow-xl"
+      className="card bg-primary-content card-small w-96 shadow-xl"
       style={{
         border: "2px solid",
         margin: "0 10px",
@@ -146,7 +146,7 @@ function ModalContent({ogFeatures, features, title, ogTitle}) {
   let mergedFeatures = [...new Set([...features1, ...features2])];
 
   return (
-    <table className='table table-zebra'>
+    <table className='table table-zebra bg-info'>
       <thead>
         <tr>
           <th>Feature</th>
