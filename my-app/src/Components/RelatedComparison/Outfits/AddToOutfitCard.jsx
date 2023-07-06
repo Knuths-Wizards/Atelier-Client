@@ -18,7 +18,7 @@ export default function Card({ ogProduct, setOutfit, setOgInOutfit, ogInOutfit})
 
   return (
     <div
-      className="card card-small w-96 bg-base-100 shadow-xl bg-secondary-content"
+      className="card card-small w-96 shadow-xl glass"
       style={{
         border: "2px solid",
         margin: "60px 10px",
@@ -28,7 +28,7 @@ export default function Card({ ogProduct, setOutfit, setOgInOutfit, ogInOutfit})
       }}
     >
       <div>
-        <button className="btn btn-circle btn-success" style={{ position:'relative', top: '100%', left: '38%' }} onClick={handleClick}>
+        <button className="btn btn-circle btn-neutral" style={{ position:'relative', top: '100%', left: '38%' }} onClick={handleClick}>
         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
         </button>
         <div className="card-body">

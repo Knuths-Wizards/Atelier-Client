@@ -67,7 +67,7 @@ export default function Card({ title, price, category, review, img, itemId, ogPr
 
   return (
     <div
-      className="card card-small bg-primary-content w-96 shadow-xl"
+      className="card card-small glass w-96 shadow-xl"
       style={{
         border: "2px solid",
         margin: "0 10px",
@@ -110,7 +110,7 @@ export default function Card({ title, price, category, review, img, itemId, ogPr
     </ScrollMenu>
     </div>
       <div className="container">
-        <button className="btn btn-square btn-sm btn-primary" style={{ position: 'absolute', top: '0.5%', left: '82.5%' }} onClick={onClickSetOutfit}>
+        <button className="btn btn-square btn-sm btn-secondary" style={{ position: 'absolute', top: '0.5%', left: '82.5%' }} onClick={onClickSetOutfit}>
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1" strokeLinecap="square" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
       </div>
