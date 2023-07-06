@@ -3,7 +3,7 @@ import Question from './Question.jsx';
 import QuestionModal from './QuestionModal.jsx';
 import { getAllQuestions, getProductName } from '../routes.js';
 
-const QuestionList = ({ productId, questionData, setQuestionData, filterData }) => {
+const QuestionList = ({ productID, questionData, setQuestionData, filterData }) => {
 
   const [sortedQuestions, setSortedQuestions] = useState([]);
   const [productName, setProductName] = useState('');
@@ -11,14 +11,14 @@ const QuestionList = ({ productId, questionData, setQuestionData, filterData }) 
   const [allQuestionsLoaded, setAllQuestionsLoaded] = useState(false);
 
   useEffect(() => {
-    getAllQuestions(productId)
+    getAllQuestions(productID)
       .then(data => {
         setQuestionData(data);
       })
       .catch(error => {
         console.error('Error fetching questions:', error);
       });
-  }, [productId]);
+  }, [productID]);
 
   useEffect(() => {
     if (filterData && filterData.length > 0) {
@@ -29,12 +29,12 @@ const QuestionList = ({ productId, questionData, setQuestionData, filterData }) 
   }, [filterData]);
 
   useEffect(() => {
-    getProductName(productId)
+    getProductName(productID)
       .then((response) => {
         setProductName(response.name);
       })
       .catch((error) => console.error('Error fetching answers in Question component', error));
-  }, [productId]);
+  }, [productID]);
 
   useEffect(() => {
     if (visibleQuestions >= sortedQuestions.length) {
@@ -75,7 +75,7 @@ const QuestionList = ({ productId, questionData, setQuestionData, filterData }) 
         </div>
       )}
       <br />
-      <QuestionModal productId={productId} setQuestionData={setQuestionData} productName={productName}/>
+      <QuestionModal productID={productID} setQuestionData={setQuestionData} productName={productName}/>
       </div>
       </div>
     </>
