@@ -51,27 +51,30 @@ const Question = ({ questionId, question, productName }) => {
 
   return (
     <div>
-      <h4>
-        <b>Q: {question.question_body}</b>
-      </h4>
-      <div id="question-buttons" style={{ whiteSpace: 'nowrap' }}>
-        <small>
-          <div className="helpful">
-            Helpful?&nbsp;<button onClick={handleClick} style={{ textDecorationLine: 'underline' }}>Yes ({helpfulness})</button>
-          </div>
-          <div className="answerModal">
-            <AnswerModal productName={productName} question={question.question_body} questionId={questionId} />
-          </div>
-          <div className="reported">
-            {alreadyReported ? (
-              <button disabled>Reported</button>
-            ) : (
-              <button style={{ textDecorationLine: 'underline' }} onClick={() => handleReport()}>
-                Report
-              </button>
-            )}
-          </div>
-        </small>
+      <div class="flex flex-row items-center justify-center">
+        <h4 class="mr-4 p-3">
+          <b>Q: {question.question_body}</b>
+        </h4>
+        <div class="flex items-center" id="question-buttons" style={{ whiteSpace: 'nowrap' }}>
+          <small class="flex items-baseline">
+            <div className="helpful">
+              Helpful?&nbsp; <button onClick={handleClick} style={{ textDecorationLine: 'underline' }}>Yes ({helpfulness}) </button>&nbsp; | &nbsp;
+            </div>
+            <div className="answerModal mr-2">
+              <AnswerModal productName={productName} question={question.question_body} questionId={questionId} />
+            </div>
+            <div className="reported">
+              {alreadyReported ? (
+                <button disabled>Reported</button>
+              ) : (
+                <button style={{ textDecorationLine: 'underline' }} onClick={() => handleReport()}>
+                  Report
+                </button>
+              )}
+            </div>
+          </small>
+        </div>
+
       </div>
       {answerData.length === 0 ? (
         <p>No answers to this question!</p>

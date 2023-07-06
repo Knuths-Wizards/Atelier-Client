@@ -97,7 +97,7 @@
         onClick={openAnswerModal}
         style={{ textAlign: 'center', lineHeight: '29px', cursor: 'pointer', textDecorationLine: 'underline'  }}
       > Add Answer
-      </button>
+      </button>&nbsp; |
         <dialog id="answermodal" name="modal" ref={answerModalRef} style={{textAlign: 'left'}}>
           <form onSubmit={handleSubmit} method="dialog" className="modal-box" style={{ width: 'auto', padding: '16px'}}>
             <div id="heading" style={{ padding: '16px 0', minHeight: '56px', marginRight: '24px', lineHeight: '24px', fontSize: '16px', fontWeight: '700', textSizeAdjust: '100%'}}>
