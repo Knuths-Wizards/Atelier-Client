@@ -1,10 +1,13 @@
+import '../../styles/RR.css'
+
 const Star = (props) => {
   const {fill, id, size} = props
+  const style = size ? `stars-${props.size}` : 'stars'
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="1 1 22 22"
-      className={`stars`}
+      className={style}
     >
       <defs>
         <linearGradient id={`${id}-gradient`}>
