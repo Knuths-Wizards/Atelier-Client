@@ -62,7 +62,7 @@ export default function RelatedCard({ title, price, category, review, img, itemI
 
   return (
     <div
-      className="card card-small w-96 bg-base-100 shadow-xl"
+      className="card card-primary card-small w-96 shadow-xl"
       style={{
         border: "2px solid",
         margin: "0 10px",
@@ -104,7 +104,7 @@ export default function RelatedCard({ title, price, category, review, img, itemI
             ))}
             </ScrollMenu>
         </div>
-        <button className="btn btn-square btn-sm" style={{ position: 'absolute', top: '0.5%', left: '82.5%' }} onClick={showModal}>
+        <button className="btn btn-square btn-sm btn-primary" style={{ position: 'absolute', top: '0.5%', left: '82.5%' }} onClick={showModal}>
 
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1" strokeLinecap="square" strokeLinejoin="round"><path d="M3 3h18v18H3zM21 9H3M21 15H3M12 3v18"/></svg>
         </button>

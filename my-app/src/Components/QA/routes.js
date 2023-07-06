@@ -3,7 +3,7 @@ const apiURL = process.env.REACT_APP_API_BASE_URL;
 
 // View questions
 export function getAllQuestions(productId) {
-  return axiosAtelier.get(`${apiURL}qa/questions?product_id=${productId}&count=1000`)
+  return axiosAtelier.get(`qa/questions?product_id=${productId}&count=1000`)
     .then(response => response.data.results)
     .catch(error => {
       console.error('Error fetching questions:', error);
@@ -12,7 +12,7 @@ export function getAllQuestions(productId) {
 
 // Get Answer List
 export function getAnswers(questionId) {
-  return axiosAtelier.get(`${apiURL}qa/questions/${questionId}/answers`)
+  return axiosAtelier.get(`qa/questions/${questionId}/answers`)
     .then(response => response.data.results)
     .catch(error => console.error('Error fetching answer list', error))
 }
@@ -20,7 +20,7 @@ export function getAnswers(questionId) {
 // Mark an answer as helpful
 export function markAnswerAsHelpful(answer_id) {
   return axiosAtelier
-    .put(`${apiURL}qa/answers/${answer_id}/helpful`)
+    .put(`qa/answers/${answer_id}/helpful`)
     .then(() => {
       console.log('Answer helpfulness count incremeneted')
     })
@@ -31,7 +31,7 @@ export function markAnswerAsHelpful(answer_id) {
 
 // Mark q as helpful
 export function markQuestionAsHelpful(question_id) {
-  return axiosAtelier.put(`${apiURL}qa/questions/${question_id}/helpful`)
+  return axiosAtelier.put(`qa/questions/${question_id}/helpful`)
     .then(() => {
       console.log('Question helpfulness count incremeneted')
     })
@@ -48,7 +48,7 @@ export function addQuestion(product_id, body, name, email) {
     email: email,
     product_id: product_id
   };
-  return axiosAtelier.post(`${apiURL}qa/questions`, data)
+  return axiosAtelier.post(`qa/questions`, data)
     .then(response => response.data)
     .catch(error => {
       console.error('Error submitting question:', error);
@@ -58,7 +58,7 @@ export function addQuestion(product_id, body, name, email) {
 
 // Get product name
 export function getProductName(productId) {
-  return axiosAtelier.get(`${apiURL}products/${productId}`)
+  return axiosAtelier.get(`products/${productId}`)
     .then(response => response.data)
     .catch(error => {
       console.error('Error submitting question:', error)
@@ -67,7 +67,7 @@ export function getProductName(productId) {
 
 // Add an answer
 export function addAnswer(question_id, data) {
-  return axiosAtelier.post(`${apiURL}qa/questions/${question_id}/answers`, data)
+  return axiosAtelier.post(`qa/questions/${question_id}/answers`, data)
     //response.data = 'Created'
     .then((response) => response.data)
     .catch(error => {
@@ -78,7 +78,7 @@ export function addAnswer(question_id, data) {
 
  // Report an answer
  export function reportAnswer(answerId) {
-  return axiosAtelier.put(`${apiURL}qa/answers/${answerId}/report`)
+  return axiosAtelier.put(`qa/answers/${answerId}/report`)
     .then(response => {
        return response;
     })
@@ -90,7 +90,7 @@ export function addAnswer(question_id, data) {
 
  // Report a question
  export function reportQuestion(questionId) {
-  return axiosAtelier.put(`${apiURL}qa/questions/${questionId}/report`)
+  return axiosAtelier.put(`qa/questions/${questionId}/report`)
     .then(response => {
       console.log('response===', response)
     })
