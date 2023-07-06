@@ -46,7 +46,7 @@ const RatingsReviews = (props) => {
   }
 
   return (
-    <div>
+    <div className='w-12/12 flex-grow'>
       <h2 className='text-xl font-semibold'>Customer Reviews</h2>
       <div className='flex flex-row'>
         <div className=' w-4/12'>
