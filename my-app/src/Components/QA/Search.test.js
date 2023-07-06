@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Search from '../Search';
+import Search from './Search';
 
 describe('Search', () => {
   const questions = [

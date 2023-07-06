@@ -23,7 +23,7 @@ const QuestionList = ({ productId, questionData, setQuestionData, filterData }) 
   useEffect(() => {
     if (filterData && filterData.length > 0) {
       const testingArr = [...filterData];
-      testingArr.sort((a,b) => Object.keys(b.answers).length - Object.keys(a.answers).length)
+      testingArr.sort((a,b) => a.helpfulness - b.helpfulness)
       setSortedQuestions(testingArr);
     }
   }, [filterData]);
