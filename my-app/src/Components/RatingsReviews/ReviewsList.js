@@ -23,7 +23,9 @@ const ReviewsList = (props) => {
           />
         })}
       </ol>
-      <button className='btn' onClick={handleClick} hidden={hideButton}>More Reviews</button>
+      <div className='flex'>
+        <button className='btn m-2 grow' onClick={handleClick} hidden={hideButton}>More Reviews</button>
+      </div>
     </div>
   )
 }

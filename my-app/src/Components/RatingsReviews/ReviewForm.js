@@ -136,8 +136,8 @@ const ReviewForm = (props) => {
   }
 
   return (
-    <div className='ReviewForm'>
-      <button className='btn' onClick={openModal} >Review this product!</button>
+    <div className='flex items-center m-4'>
+      <button className='btn grow' onClick={openModal} >Review this product!</button>
       <dialog id='reviewFormWindow' className='modal'>
         <form method='dialog' className='modal-box' onSubmit={handleSubmit}>
           <section>

@@ -18,7 +18,7 @@ const ReviewTile = (props) => {
   }
 
   return (
-    <div data-testid='review' className='rounded-xl border-2 grow'>
+    <div data-testid='review' className='rounded-xl border-2 grow m-3'>
       <div data-testid='stars'>{rating} Stars</div>
       <div>{name} {date}</div>
       <h3>{summary}</h3>
