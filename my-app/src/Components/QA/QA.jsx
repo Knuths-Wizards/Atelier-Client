@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Search from './Search.jsx';
-import QuestionList from './QuestionList.jsx';
+import Search from './Search/Search.jsx';
+import QuestionList from './QuestionList/QuestionList.jsx';
 
 const QA = ({ productId }) => {
 
@@ -9,15 +9,23 @@ const QA = ({ productId }) => {
 
   return (
     <>
-      <h3>QUESTIONS & ANSWERS</h3><br />
-      <Search setQuestionData={setQuestionData} questionData={questionData} filterData={filterData} setFilterData={setFilterData}/><br />
-      <QuestionList
-        productId={productId}
-        questionData={questionData}
-        setQuestionData={setQuestionData}
-        filterData={filterData}
-      />
-      <br /><h5>===== End of Q&A Section Here =====</h5><br />
+    <div class ="flex flex-col">
+      <div class="flex flex-col w-full pr-[10%] pl-[10%] text-left">
+      <h3><br /><br /><br /><b>QUESTIONS & ANSWERS</b></h3><br />
+      </div>
+      <div class="w-full">
+        <Search setQuestionData={setQuestionData} questionData={questionData} filterData={filterData} setFilterData={setFilterData}/><br />
+      </div>
+      <div class="flex flex-col w-full pr-[10%] pl-[10%]">
+        <QuestionList
+          productId={productId}
+          questionData={questionData}
+          setQuestionData={setQuestionData}
+          filterData={filterData}
+        />
+      </div>
+    </div>
+    <br /><br />
     </>
   );
 };

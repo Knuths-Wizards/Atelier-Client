@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Question from './Question.jsx';
 import QuestionModal from './QuestionModal.jsx';
-import { getAllQuestions, getProductName } from './routes.js';
+import { getAllQuestions, getProductName } from '../routes.js';
 
 const QuestionList = ({ productId, questionData, setQuestionData, filterData }) => {
 
@@ -47,14 +47,19 @@ const QuestionList = ({ productId, questionData, setQuestionData, filterData }) 
     setAllQuestionsLoaded(true);
   };
 
+  //overflowY: 'auto'
+
   return (
     <>
-    <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
+    <div class="flex flex-col w-full overflow-scroll" style={{ maxHeight: '400px', overflowY: 'auto' }}>
       {sortedQuestions.slice(0, visibleQuestions).map((question) => (
         <Question key={question.question_id} questionId={question.question_id} question={question} productName={productName}/>
       ))}
-
+    </div>
+      <div class="flex flex-row items-center justify-between items-center w-full">
+      <div class="flex flex-row items-center justify-between">
       {sortedQuestions.length > visibleQuestions && (
+        <div >
         <button
           className="btn"
           style={{
@@ -64,14 +69,15 @@ const QuestionList = ({ productId, questionData, setQuestionData, filterData }) 
             margin: '10px',
             cursor: 'pointer',
           }}
-          onClick={handleLoadMore}
-        >
+          onClick={handleLoadMore}>
           More Answered Questions
         </button>
+        </div>
       )}
-      </div>
       <br />
       <QuestionModal productId={productId} setQuestionData={setQuestionData} productName={productName}/>
+      </div>
+      </div>
     </>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Answer from './Answer.jsx';
-import { getAnswers, markQuestionAsHelpful } from './routes.js';
-import AnswerModal from './AnswerModal.jsx';
+import Answer from '../Answer/Answer.jsx';
+import { getAnswers, markQuestionAsHelpful } from '../routes.js';
+import AnswerModal from '../Answer/AnswerModal.jsx';
 
 const Question = ({ questionId, question, productName }) => {
 
@@ -51,7 +51,7 @@ const Question = ({ questionId, question, productName }) => {
 
   return (
     <div>
-      <div class="flex flex-row items-center justify-center">
+      <div class="flex flex-row items-center justify-between items-center w-full">
         <h4 class="mr-4 p-3">
           <b>Q: {question.question_body}</b>
         </h4>
@@ -77,16 +77,17 @@ const Question = ({ questionId, question, productName }) => {
 
       </div>
       {answerData.length === 0 ? (
-        <p>No answers to this question!</p>
+        <><div class="flex flex-row items-center justify-between items-center w-full mr-4 p-3"><p><b>A: </b>No answers to this question!</p></div><br /></>
       ) : (
         <>
           {answerData.length > visibleAnswers && !allAnswersLoaded ? (
             answerData.slice(0, visibleAnswers).map((answer) => (
-              <Answer key={answer.answer_id} answerId={answer.answer_id} answer={answer} helpfulness={answer.helpfulness} />
+              <div class="flex flex-row items-center justify-between items-center w-full mr-4 p-3"><Answer key={answer.answer_id} answerId={answer.answer_id} answer={answer} helpfulness={answer.helpfulness} setHelpfulness={setHelpfulness}/></div>
             ))
           ) : (
             answerData.map((answer) => (
-              <Answer key={answer.answer_id} answerId={answer.answer_id} answer={answer} helpfulness={answer.helpfulness} />
+              <div class="flex flex-row items-center justify-between items-center w-full mr-4 p-3">
+              <Answer key={answer.answer_id} answerId={answer.answer_id} answer={answer} helpfulness={answer.helpfulness} setHelpfulness={setHelpfulness}/></div>
             ))
           )}
         </>
