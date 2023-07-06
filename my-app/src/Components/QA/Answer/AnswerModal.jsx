@@ -98,15 +98,15 @@
         style={{ textAlign: 'center', lineHeight: '29px', cursor: 'pointer', textDecorationLine: 'underline'  }}
       > Add Answer
       </button>&nbsp; |
-        <dialog id="answermodal" name="modal" ref={answerModalRef} style={{textAlign: 'left'}}>
-          <form onSubmit={handleSubmit} method="dialog" className="modal-box" style={{ width: 'auto', padding: '16px'}}>
+        <dialog id="answermodal" name="modal" ref={answerModalRef} style={{width: '500px', textAlign: 'left'}}>
+          <form onSubmit={handleSubmit} method="dialog" className="modal-box" style={{ width: '100%', padding: '16px'}}>
             <div id="heading" style={{ padding: '16px 0', minHeight: '56px', marginRight: '24px', lineHeight: '24px', fontSize: '16px', fontWeight: '700', textSizeAdjust: '100%'}}>
               <h2 className="font-bold text-lg" style={{ marginBottom: '16px'}}>Submit Your Answer</h2>
               <h3>{productName}: {question}</h3>
             </div>
-            <div style={{ padding: '16px 0', width: '70%'}}>
+            <div style={{ padding: '16px 0', width: '70%', fontSize: '14px'}}>
               <div>
-                <label htmlFor="answerInput">Your answer<span>*</span></label>
+                <label htmlFor="answerInput">Your answer<span>* </span></label><br />
                 <input
                   id="answerInput"
                   name="answer"
@@ -124,7 +124,7 @@
               </div>
 
               <div style={{ paddingTop: '25px' }}>
-                <label htmlFor="nicknameInput">Your nickname<span>*</span></label>
+                <label htmlFor="nicknameInput">Your nickname<span>* </span></label><br />
                 <input
                   id="nicknameInput"
                   type="text"
@@ -145,7 +145,7 @@
               </div>
 
               <div style={{ paddingTop: '25px', paddingBottom: '15px' }}>
-                <label htmlFor="emailInput">Your email<span>*</span></label>
+                <label htmlFor="emailInput">Your email<span>* </span></label><br />
                 <input
                   id="emailInput"
                   type="text"
@@ -162,7 +162,7 @@
                   required
                 />
                 <br />
-                <small><em>For authentication reasons, you will not be emailed.</em></small>
+                <small><em>For authentication reasons, you will not be emailed.</em></small><br />
               </div>
 
               <div>
@@ -173,7 +173,7 @@
                   onChange={handlePhotoUpload}
                   disabled={uploadedPhotos.length >= 5}
                 />
-                <div className="thumbnails-container" style={{ display: 'flex', flexWrap: 'wrap', marginTop: '10px' }}>
+                <div className="thumbnails-container" style={{ display: 'flex', flexWrap: 'wrap', marginTop: '10px' }}><br />
                   {uploadedPhotos.map((photo, index) => (
                     <img key={index} src={photo.src} alt={photo.name} className="thumbnail" />
                   ))}

@@ -72,10 +72,10 @@ const QuestionModal = ({ productID, productName }) => {
         <dialog ref={questionModalRef} id="questionmodal" name="modal" style={{ width: '500px', textAlign: 'left' }}>
           <form onSubmit={handleSubmit} method="dialog" className="modal-box" style={{ width: '100%' }}>
             <div id="heading" style={{ padding: '16px 0', minHeight: '56px', marginRight: '24px', lineHeight: '24px', fontSize: '16px', fontWeight: '700', textSizeAdjust: '100%' }}>
-              <h1 className="font-bold text-lg">Ask Your Question</h1>
+              <h1 className="font-bold text-lg" style={{ marginBottom: '16px'}}>Ask Your Question</h1>
               <h2>About the {productName}</h2>
             </div>
-            <div style={{ padding: '16px 0' }}>
+            <div style={{ padding: '16px 0', width: '70%'}}>
           <div>
             <label htmlFor="questionInput">
               Your question<span>* </span>
