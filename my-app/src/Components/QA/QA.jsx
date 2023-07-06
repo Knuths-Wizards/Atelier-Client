@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Search from './Search/Search.jsx';
 import QuestionList from './QuestionList/QuestionList.jsx';
 
-const QA = ({ productId }) => {
+const QA = ({ productID }) => {
 
    const [questionData, setQuestionData] = useState([]);
    const [filterData, setFilterData] = useState([]);
@@ -18,7 +18,7 @@ const QA = ({ productId }) => {
       </div>
       <div class="flex flex-col w-full pr-[10%] pl-[10%]">
         <QuestionList
-          productId={productId}
+          productId={productID}
           questionData={questionData}
           setQuestionData={setQuestionData}
           filterData={filterData}

@@ -30,15 +30,18 @@ const Search = ({ setQuestionData, questionData, filterData, setFilterData }) =>
   };
 
   return (
-    <form>
-      <input
-        type="text"
-        placeholder="Have a question? Search for answers…"
-        value={searchTerm}
-        onChange={handleChange}
-        style={style}
-      />
-    </form>
+    <div className="flex flex-col w-full pr-[10%] pl-[10%] text-left ">
+      <form >
+        <input
+          type="text"
+          className="shadow-md mt-2 rounded border border-gray-300"
+          placeholder="Have a question? Search for answers…"
+          value={searchTerm}
+          onChange={handleChange}
+          style={style}
+        />
+      </form>
+    </div>
   );
 };
 

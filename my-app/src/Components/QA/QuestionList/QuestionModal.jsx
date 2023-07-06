@@ -1,9 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { addQuestion } from '../routes.js';
 
+
 const QuestionModal = ({ productId, productName }) => {
 
-  const questionModalRef = useRef(null);
   const [isWarningVisible, setIsWarningVisible] = useState(false);
   const [isQuestionValid, setIsQuestionValid] = useState(false);
   const [nickname, setNickname] = useState('');
@@ -11,6 +11,7 @@ const QuestionModal = ({ productId, productName }) => {
   const [question, setQuestion] = useState('');
   const [isNicknameValid, setIsNicknameValid] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(false);
+  const questionModalRef = useRef(null);
 
   const openQuestionModal = () => {
     const questionModal = questionModalRef.current;
@@ -37,10 +38,7 @@ const QuestionModal = ({ productId, productName }) => {
           setIsQuestionValid(false);
           setIsEmailValid(false);
           setIsNicknameValid(false);
-          const questionModal = questionModalRef.current;
-          if (questionModal) {
-            questionModal.close();
-          }
+          questionModalRef.current.close();
         })
         .catch((error) => {
           console.error('Error submitting question:', error);

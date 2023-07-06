@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import logo from './logo.svg';
 import './styles/App.css';
-// import QA from './Components/QA/QA.jsx';
+ import QA from './Components/QA/QA.jsx';
 import Overview from './Components/Overview/Overview.jsx'
 // import RelatedCompare from './Components/RelatedComparison/RelatedComparison'
 // import RatingsReviews from './Components/RatingsReviews/RatingsReviews'
@@ -15,13 +15,13 @@ function App() {
         <Overview productID = {productID} setProductID={setProductID}></Overview>
       </div>
       <div className="centered">
-        <RelatedCompare productid={productID} setProductID={setProductID} ></RelatedCompare>
+        {/* <RelatedCompare productid={productID} setProductID={setProductID} ></RelatedCompare> */}
       </div>
       <div className="centered">
-        <QA productID = {productID}></QA>
+        <QA productID = {37316}></QA>
       </div>
       <div className="centered">
-        <RatingsReviews productID = {productID}></RatingsReviews>
+        {/* <RatingsReviews productID = {productID}></RatingsReviews> */}
       </div>
     </div>
   );
