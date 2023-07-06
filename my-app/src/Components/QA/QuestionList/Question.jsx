@@ -32,7 +32,6 @@ const Question = ({ questionId, question, productName }) => {
     setallAnswersLoaded(true);
   };
 
-  //change to useEffect?
   const handleClick = () => {
     if (!voted) {
       markQuestionAsHelpful(question.question_id);
@@ -51,12 +50,12 @@ const Question = ({ questionId, question, productName }) => {
 
   return (
     <div>
-      <div class="flex flex-row items-center justify-between items-center w-full">
-        <h4 class="mr-4 p-3">
+      <div className="flex flex-row items-center justify-between items-center w-full">
+        <h4 className="mr-4 p-3">
           <b>Q: {question.question_body}</b>
         </h4>
-        <div class="flex items-center" id="question-buttons" style={{ whiteSpace: 'nowrap' }}>
-          <small class="flex items-baseline">
+        <div className="flex items-center" id="question-buttons" style={{ whiteSpace: 'nowrap' }}>
+          <small className="flex items-baseline">
             <div className="helpful">
               Helpful?&nbsp; <button onClick={handleClick} style={{ textDecorationLine: 'underline' }}>Yes ({helpfulness}) </button>&nbsp; | &nbsp;
             </div>
@@ -77,54 +76,25 @@ const Question = ({ questionId, question, productName }) => {
 
       </div>
       {answerData.length === 0 ? (
-        <><div class="flex flex-row items-center justify-between items-center w-full mr-4 p-3"><p><b>A: </b>No answers to this question!</p></div><br /></>
+        <><div className="flex flex-row items-center justify-between items-center w-full mr-4 p-3"><p><b>A: </b>No answers to this question!</p></div><br /></>
       ) : (
         <>
           {answerData.length > visibleAnswers && !allAnswersLoaded ? (
             answerData.slice(0, visibleAnswers).map((answer) => (
-              <div class="flex flex-row items-center justify-between items-center w-full mr-4 p-3"><Answer key={answer.answer_id} answerId={answer.answer_id} answer={answer} helpfulness={answer.helpfulness} setHelpfulness={setHelpfulness}/></div>
+              <div className="flex flex-row items-center justify-between items-center w-full mr-4 p-3"><Answer key={answer.answer_id} answerId={answer.answer_id} answer={answer} helpfulness={answer.helpfulness} setHelpfulness={setHelpfulness}/></div>
             ))
           ) : (
             answerData.map((answer) => (
-              <div class="flex flex-row items-center justify-between items-center w-full mr-4 p-3">
+              <div className="flex flex-row items-center justify-between items-center w-full mr-4 p-3">
               <Answer key={answer.answer_id} answerId={answer.answer_id} answer={answer} helpfulness={answer.helpfulness} setHelpfulness={setHelpfulness}/></div>
             ))
           )}
         </>
-      )}
-      {allAnswersLoaded && answerData.length !== 0 ? (
-        <button
-          className="btn"
-          style={{
-            textAlign: 'center',
-            lineHeight: '29px',
-            fontSize: '13px',
-            margin: '10px',
-            cursor: 'pointer',
-          }}
-          onClick={handleLoadMore}
-        >
-          Collapse answers
-        </button>
-      ) : (
-        !allAnswersLoaded && answerData.length !== 0 && (
-          <button
-            className="btn"
-            style={{
-              textAlign: 'center',
-              lineHeight: '29px',
-              fontSize: '13px',
-              margin: '10px',
-              cursor: 'pointer',
-            }}
-            onClick={handleLoadMore}
-          >
-            More Answers
-          </button>
-        )
       )}
     </div>
   )
 };
 
   export default Question;
+
+

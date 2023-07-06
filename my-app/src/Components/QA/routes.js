@@ -80,8 +80,7 @@ export function addAnswer(question_id, data) {
  export function reportAnswer(answerId) {
   return axiosAtelier.put(`qa/answers/${answerId}/report`)
     .then(response => {
-      console.log('response===', response)
-   //   return response.data;
+       return response;
     })
     .catch(error => {
       console.error('Error reporting question:', error);

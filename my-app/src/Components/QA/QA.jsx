@@ -18,7 +18,7 @@ const QA = ({ productID }) => {
       </div>
       <div class="flex flex-col w-full pr-[10%] pl-[10%]">
         <QuestionList
-          productID={productID}
+          productId={productID}
           questionData={questionData}
           setQuestionData={setQuestionData}
           filterData={filterData}
