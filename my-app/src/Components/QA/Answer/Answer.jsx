@@ -26,17 +26,18 @@ const Answer = ({ answer, answerId }) => {
     }
   };
 
-  useEffect(() => {
-    reportAnswer(answerId)
-      .then((response) =>
-      console.log('response', response))
-      //setAlreadyReported(response))
-       .catch(error => console.error('Error with reported property'))
-  }, [answerId]);
+  // useEffect(() => {
+  //   reportAnswer(answerId)
+  //     .then((response) =>
+  //     console.log('response', response))
+  //     //setAlreadyReported(response))
+  //      .catch(error => console.error('Error with reported property'))
+  // }, [answerId]);
 
 
   const handleSubmit = () => {
-      setAlreadyVoted(true);
+    reportAnswer(answerId)
+    .then(() => setAlreadyVoted(true))
   };
 
   return (
