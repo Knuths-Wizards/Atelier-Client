@@ -53,7 +53,7 @@ const RatingsReviews = (props) => {
           <RatingBreakdown meta={meta} />
           <ReviewForm meta={meta} productId={productId} />
         </div>
-        <div className='w-full'>
+        <div className='w-full h-full'>
           <h2 className='text-xl font-semibold text-center m-3'>Customer Reviews</h2>
           <ReviewsList reviews={reviews} refresh={refresh}/>
         </div>
