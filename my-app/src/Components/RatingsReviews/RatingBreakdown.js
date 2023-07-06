@@ -30,8 +30,8 @@ const RatingBreakdown = (props) => {
   const starRatings = []
   for (let i = 1; i < 6; i++) {
     starRatings.push(
-      (<div className='grid' key={`breakdown-${i}`} >
-        <div className={'w-6/12'}>
+      (<div className='flex items-center' key={`breakdown-${i}`} >
+        <div className={'relative flex'}>
           <StarRating id={`breakdown-${i}`} rating={i}/>
         </div>
         ({ratings[i]} reviews)

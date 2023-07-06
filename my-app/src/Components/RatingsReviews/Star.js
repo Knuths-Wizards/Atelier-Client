@@ -4,7 +4,7 @@ const Star = (props) => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="1 1 22 22"
-      className={`h-${size} w-${size}`}
+      className={`stars`}
     >
       <defs>
         <linearGradient id={`${id}-gradient`}>
