@@ -1,7 +1,7 @@
 import Star from './Star'
 
 const StarRating = (props) => {
-  const {rating, id} = props
+  const {rating, id, size} = props
   const stars = []
 
   for (let i = 0; i < 5; i++) {
@@ -12,7 +12,7 @@ const StarRating = (props) => {
     } else if (point > 0) {
       fill = Math.floor(point * 100)
     }
-    stars.push(<Star key={`${id}-${i}`} fill={fill} id={`${id}-${i}`} />)
+    stars.push(<Star key={`${id}-${i}`} fill={fill} id={`${id}-${i}`} size={size} />)
   }
 
   return (

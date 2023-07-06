@@ -49,7 +49,7 @@ const RatingBreakdown = (props) => {
       <div className='grid grid-cols-2 p-2 place-items-center'>
         <h3 className='p-2 text-xl italic text-center'>Breakdown</h3>
         <div className='flex place-items-center'>
-          <StarRating id='breakdown-avg' rating={average} />
+          <StarRating id='breakdown-avg' rating={average} size='lg' />
         </div>
       </div>
       <div className='flex w-full border-t-2'>
