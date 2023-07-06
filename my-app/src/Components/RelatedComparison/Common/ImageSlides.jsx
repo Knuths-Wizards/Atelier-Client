@@ -25,7 +25,7 @@ export default function ImageSlides({ smallImg, largeImg, itemId, setLoaded }) {
         <img
           width="300px"
           height="449px"
-          style={{ marginTop: '0px', width: '200px', height: '300px' }}
+          style={{ marginTop: '0px', width: '200px', height: '300px', objectFit: 'cover' }}
           src={smallImg}
           alt=""
           onClick={showModal}

@@ -68,38 +68,44 @@ export default function RelatedCard({ title, price, category, review, img, itemI
         margin: "0 10px",
         width: "200px",
         height: "514px",
-        overflow: "hidden"
+        overflow: "hidden",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        position: 'relative'
       }}
     >
-      <div onMouseEnter={disableScroll} onMouseLeave={enableScroll}>
-      <ScrollMenu
-     LeftArrow={<LeftArrow setCurrentStyle={setCurrentStyle}></LeftArrow>}
-      RightArrow={<RightArrow></RightArrow>}
-      scrollContainerClassName='imgScrollContainer'
-      itemClassName='imgScrollItem'
-      separatorClassName='imgScrollSeparator'
-      wrapperClassName='imgScrollWrapper'
-      apiRef={apiRef}
-      onInit={loadedToTrue}
-      onWheel={onWheel}
-      options={{
-        ratio: 0.9,
-        rootMargin: "5px",
-        threshold: [0.01, 0.05, 0.5, 0.75, 0.95, 1]
-      }}
-      >
-      {img.map(({ thumbnail_url, url }, index) => (
-        <ImageSlides
-          itemId={index} // NOTE: itemId is required for track items
-          smallImg={thumbnail_url}
-          largeImg={url}
-          key={index}
-        />
-      ))}
-    </ScrollMenu>
-    </div>
-        <div className="container">
+
+      <div className="container flex flex-col items-center" style={{position: 'relative'}}>
+        <div className ="image-container flex-grow" onMouseEnter={disableScroll} onMouseLeave={enableScroll}>
+            <ScrollMenu
+                LeftArrow={<LeftArrow setCurrentStyle={setCurrentStyle}></LeftArrow>}
+                RightArrow={<RightArrow></RightArrow>}
+                scrollContainerClassName='imgScrollContainer'
+                itemClassName='imgScrollItem'
+                separatorClassName='imgScrollSeparator'
+                wrapperClassName='imgScrollWrapper'
+                apiRef={apiRef}
+                onInit={loadedToTrue}
+                onWheel={onWheel}
+                options={{
+                  ratio: 0.9,
+                  rootMargin: "5px",
+                  threshold: [0.01, 0.05, 0.5, 0.75, 0.95, 1]
+                }}
+            >
+            {img.map(({ thumbnail_url, url }, index) => (
+              <ImageSlides
+                itemId={index} // NOTE: itemId is required for track items
+                smallImg={thumbnail_url}
+                largeImg={url}
+                key={index}
+              />
+            ))}
+            </ScrollMenu>
+        </div>
         <button className="btn btn-square btn-sm" style={{ position: 'absolute', top: '0.5%', left: '82.5%' }} onClick={showModal}>
+
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1" strokeLinecap="square" strokeLinejoin="round"><path d="M3 3h18v18H3zM21 9H3M21 15H3M12 3v18"/></svg>
         </button>
         <dialog ref={modalRef} className="modal">
@@ -111,16 +117,21 @@ export default function RelatedCard({ title, price, category, review, img, itemI
           </form>
         </dialog>
       </div>
-      <div className="card-body"  style={{position:'absolute', top: '53.2%'}}>
-        <h4 className="card-actions justify-center">{category}</h4>
-        <div width="135px" height='56px' style={{ marginTop: "0px", width: '135px', height: '56px' }}>
-          <h3 className='card-title justify-center'>{title}</h3>
-        </div>
-        <h4 className="card-actions justify-center">{img[currentStyle].name}</h4>
-        <SalePrice></SalePrice>
-        <div className="card-actions justify-center">
+      <div className="card-actions text-center" style={{position:'absolute', top: '90%'}}>
           <Stars review={review} />
         </div>
+      <div className="card-body flex flex-col items-center"  style={{position:'absolute', top: '53.2%', padding: '10px'}}>
+
+        <div className ="flex flex-col items-center mt-4 flex-grow">
+          <h4 className="card-actions justify-center">{category}</h4>
+          <div width="135px" height='56px' style={{ marginTop: "0px", width: '135px', height: '56px' }}>
+            <h3 className='card-title text-center justify-center'>{title}</h3>
+          </div>
+          <h4 className="card-actions text-center justify-center">{img[currentStyle].name}</h4>
+          <SalePrice></SalePrice>
+        </div>
+
+
       </div>
     </div>
   );
