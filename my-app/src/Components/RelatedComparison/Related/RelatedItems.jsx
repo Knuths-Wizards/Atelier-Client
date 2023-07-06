@@ -67,6 +67,7 @@ export default function RelatedItems(ogProduct) {
       }}
       >
       {items.map(({ id, name, default_price, category, review, img, features }) => (
+      <div style={{display:'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'}}>
         <Card
           itemId={id} // NOTE: itemId is required for track items
           img={img}
@@ -78,6 +79,7 @@ export default function RelatedItems(ogProduct) {
           features={features}
           ogProduct={ogProduct.product}
         />
+      </div>
       ))}
     </ScrollMenu>
   );

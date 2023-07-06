@@ -73,10 +73,16 @@ export default function Card({ title, price, category, review, img, itemId, ogPr
         margin: "0 10px",
         width: "200px",
         height: "514px",
-        overflow: "hidden"
+        overflow: "hidden",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        position: 'relative'
       }}
     >
-            <div onMouseEnter={disableScroll} onMouseLeave={enableScroll}>
+
+<div className="container flex flex-col items-center" style={{position: 'relative'}}>
+    <div className ="image-container flex-grow" onMouseEnter={disableScroll} onMouseLeave={enableScroll}>
       <ScrollMenu
      LeftArrow={<LeftArrow setCurrentStyle={setCurrentStyle}></LeftArrow>}
       RightArrow={<RightArrow></RightArrow>}
@@ -108,17 +114,23 @@ export default function Card({ title, price, category, review, img, itemId, ogPr
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1" strokeLinecap="square" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
       </div>
-      <div className="card-body"  style={{position:'absolute', top: '53.2%'}}>
-        <h4 className="card-actions justify-center">{category}</h4>
-        <div width="135px" height='56px' style={{ marginTop: "0px", width: '135px', height: '56px' }}>
-          <h3 className='card-title justify-center'>{title}</h3>
-        </div>
-        <h4 className="card-actions justify-center">{img[currentStyle].name}</h4>
-        <SalePrice></SalePrice>
-        <div className="card-actions justify-center">
-          <Stars review={review} />
-        </div>
       </div>
+      <div className="card-actions text-center" style={{position:'absolute', top: '90%'}}>
+          <Stars review={review} />
+          </div>
+          <div className="card-body flex flex-col items-center"  style={{position:'absolute', top: '53.2%', padding: '10px'}}>
+
+<div className ="flex flex-col items-center mt-4 flex-grow">
+  <h4 className="card-actions justify-center">{category}</h4>
+  <div width="135px" height='56px' style={{ marginTop: "0px", width: '135px', height: '56px' }}>
+    <h3 className='card-title text-center justify-center'>{title}</h3>
+  </div>
+  <h4 className="card-actions text-center justify-center">{img[currentStyle].name}</h4>
+  <SalePrice></SalePrice>
+</div>
+
+
+</div>
     </div>
   );
 }
