@@ -9,7 +9,7 @@ const QA = ({ productID }) => {
 
   return (
     <>
-    <div class ="flex flex-col">
+    <div class="flex flex-col">
       <div class="flex flex-col w-full pr-[10%] pl-[10%] text-left">
       <h3><br /><br /><br /><b>QUESTIONS & ANSWERS</b></h3><br />
       </div>
@@ -18,7 +18,7 @@ const QA = ({ productID }) => {
       </div>
       <div class="flex flex-col w-full pr-[10%] pl-[10%]">
         <QuestionList
-          productId={productID}
+          productID={productID}
           questionData={questionData}
           setQuestionData={setQuestionData}
           filterData={filterData}
