@@ -30,7 +30,7 @@ const QuestionModal = ({ productId, productName }) => {
     e.preventDefault();
     if (isQuestionValid && isNicknameValid && isEmailValid && validateEmail(email)) {
       console.log('New question submitted successfully');
-      addQuestion(productID, question, nickname, email)
+      addQuestion(productId, question, nickname, email)
         .then(() => {
           alert('Question submitted!');
           setQuestion('');
