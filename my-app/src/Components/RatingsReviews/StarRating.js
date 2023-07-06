@@ -16,7 +16,7 @@ const StarRating = (props) => {
   }
 
   return (
-    <div className='flex items-center'>
+    <div className='flex place-items-center w-full h-full'>
       {stars}
     </div>
   )

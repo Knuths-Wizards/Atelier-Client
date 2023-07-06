@@ -16,13 +16,13 @@ const [ogInOutfit, setOgInOutfit] = React.useState(false);
 
     const getProduct = () => {
       getProductDetails(productid).then((response) => {
-        setProduct(response.data)
+        setProduct(response)
       })
       }
 
     getOutfit();
     getProduct();
-  }, [product]);
+  }, [product, productid]);
 
 
 return (

@@ -46,14 +46,17 @@ const RatingsReviews = (props) => {
   }
 
   return (
-    <div>
-      <h2 className='text-xl font-semibold'>Customer Reviews</h2>
+    <div className='w-full border-t-2 p-2'>
+
       <div className='flex flex-row'>
-        <div className=' w-4/12'>
+        <div className='min-w-fit'>
           <RatingBreakdown meta={meta} />
           <ReviewForm meta={meta} productId={productId} />
         </div>
-        <ReviewsList reviews={reviews} refresh={refresh}/>
+        <div className='w-full'>
+          <h2 className='text-xl font-semibold text-center m-3'>Customer Reviews</h2>
+          <ReviewsList reviews={reviews} refresh={refresh}/>
+        </div>
       </div>
     </div>
   )

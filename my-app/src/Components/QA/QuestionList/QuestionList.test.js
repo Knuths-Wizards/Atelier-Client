@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import QuestionList from '../QuestionList';
+import QuestionList from './QuestionList.jsx';
 
 describe('QuestionList', () => {
   const questions = [

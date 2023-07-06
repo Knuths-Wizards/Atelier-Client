@@ -1,5 +1,5 @@
   import React, { useState, useEffect, useRef } from 'react';
-  import { addAnswer } from './routes.js';
+  import { addAnswer } from '../routes.js';
 
   const AnswerModal = ({ productName, question, questionId }) => {
 
@@ -97,14 +97,14 @@
         onClick={openAnswerModal}
         style={{ textAlign: 'center', lineHeight: '29px', cursor: 'pointer', textDecorationLine: 'underline'  }}
       > Add Answer
-      </button>
-        <dialog id="answermodal" name="modal" ref={answerModalRef} style={{ width: '500px', textAlign: 'left' }}>
-          <form onSubmit={handleSubmit} method="dialog" className="modal-box" style={{ width: '100%', padding: '16px' }}>
-            <div id="heading" style={{ padding: '16px 0', minHeight: '56px', marginRight: '24px', lineHeight: '24px', fontSize: '16px', fontWeight: '700', textSizeAdjust: '100%' }}>
-              <h2 className="font-bold text-lg" style={{ marginBottom: '16px' }}>Submit Your Answer</h2>
+      </button>&nbsp; |
+        <dialog id="answermodal" name="modal" ref={answerModalRef} style={{textAlign: 'left'}}>
+          <form onSubmit={handleSubmit} method="dialog" className="modal-box" style={{ width: 'auto', padding: '16px'}}>
+            <div id="heading" style={{ padding: '16px 0', minHeight: '56px', marginRight: '24px', lineHeight: '24px', fontSize: '16px', fontWeight: '700', textSizeAdjust: '100%'}}>
+              <h2 className="font-bold text-lg" style={{ marginBottom: '16px'}}>Submit Your Answer</h2>
               <h3>{productName}: {question}</h3>
             </div>
-            <div style={{ padding: '16px 0' }}>
+            <div style={{ padding: '16px 0', width: '70%'}}>
               <div>
                 <label htmlFor="answerInput">Your answer<span>*</span></label>
                 <input
