@@ -5,12 +5,12 @@ import { useState, useEffect } from 'react'
 import serverIO from './serverIO'
 
 const RatingsReviews = (props) => {
-  const { productId } = props
+  const { productID } = props
   const [reviews, setReviews] = useState([])
   const [meta, setMeta] = useState({ratings:{}, characteristics:{}})
 
   useEffect(()=>{
-    serverIO.getReviews(productId)
+    serverIO.getReviews(productID)
     .then((responseData)=>{
       setReviews(responseData)
     })
@@ -18,17 +18,17 @@ const RatingsReviews = (props) => {
       console.error(err.message)
     })
 
-    serverIO.getMetadata(productId)
+    serverIO.getMetadata(productID)
     .then((responseData)=>{
       setMeta(responseData)
     })
     .catch((err)=>{
       console.error(err.message)
     })
-  }, [productId])
+  }, [productID])
 
   const refresh = ()=>{
-    serverIO.getReviews(productId)
+    serverIO.getReviews(productID)
     .then((responseData)=>{
       setReviews(responseData)
     })
@@ -36,7 +36,7 @@ const RatingsReviews = (props) => {
       console.error(err.message)
     })
 
-    serverIO.getMetadata(productId)
+    serverIO.getMetadata(productID)
     .then((responseData)=>{
       setMeta(responseData)
     })
@@ -51,7 +51,7 @@ const RatingsReviews = (props) => {
       <div className='flex flex-row'>
         <div className='min-w-fit'>
           <RatingBreakdown meta={meta} />
-          <ReviewForm meta={meta} productId={productId} />
+          <ReviewForm meta={meta} productID={productID} />
         </div>
         <div className='w-full'>
           <h2 className='text-xl font-semibold text-center m-3'>Customer Reviews</h2>
