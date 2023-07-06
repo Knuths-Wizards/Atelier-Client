@@ -22,7 +22,7 @@ const ProductInfo = ({product, changeProduct, productID, style, price}) => {
   }, []);
 
   //check if sale price
-  const salePrice = style.sale_price;
+  const salePrice = style?.sale_price;
   return (
   <div className = "text-left mt-2%">
     {reviewsCount > 0 && <StarRating ratings = {ratings} reviewsCount={reviewsCount}></StarRating>}

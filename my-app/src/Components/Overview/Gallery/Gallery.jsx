@@ -102,9 +102,12 @@ const Gallery = ({photos}) => {
   return (
     <div className="gallery-container">
         <div className="thumbnail-wrapper">
+
             {scrolled && (
                 <button className="up-arrow" onClick={() => scrollThumbnails('up')}></button>
             )}
+
+
             <div className="thumbnails-container">
                 <div className="thumbnails">
                     {photos && photos.map((photo, index) => (
@@ -118,9 +121,11 @@ const Gallery = ({photos}) => {
                     ))}
                 </div>
             </div>
+
             {canScrollDown && (
                 <button className="down-arrow" onClick={() => scrollThumbnails('down')}></button>
             )}
+
         </div>
         <div className={`image-wrapper ${expanded ? 'gallery-expanded' : ''}`}>
             {photo &&
