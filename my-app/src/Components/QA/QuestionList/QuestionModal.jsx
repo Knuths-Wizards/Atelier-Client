@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { addQuestion } from './routes.js';
+import { addQuestion } from '../routes.js';
 
 const QuestionModal = ({ productId, productName }) => {
 
