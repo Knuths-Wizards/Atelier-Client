@@ -14,7 +14,7 @@ const ReviewTile = (props) => {
   if (hasVoted) votes += 1
 
   const handleVote = ()=>{
-    if (hasVoted) {
+    if (!hasVoted) {
       serverIO.castVote(id)
       .then(()=>{
         setHasVoted(true)
