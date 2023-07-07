@@ -1,4 +1,5 @@
 import serverIO from './serverIO'
+import { format } from 'date-fns'
 
 const ReviewTile = (props) => {
   const { review, refresh } = props
@@ -18,9 +19,9 @@ const ReviewTile = (props) => {
   }
 
   return (
-    <div data-testid='review' className='rounded-xl border-2 grow m-3'>
+    <div data-testid='review' className='card glass m-2'>
       <div data-testid='stars'>{rating} Stars</div>
-      <div>{name} {date}</div>
+      <div>{name} {format(new Date(date), 'MM/dd/yyyy')}</div>
       <h3>{summary}</h3>
       <p>{body}</p>
       <div>Was this review helpful?
