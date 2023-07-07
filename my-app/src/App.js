@@ -10,7 +10,7 @@ function App() {
   const [productID, setProductID] = useState('37311');
 
   return (
-    <div className="bg-primary">
+    <div>
       <div>
         <Overview productID = {productID} setProductID={setProductID}></Overview>
       </div>
