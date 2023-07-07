@@ -30,7 +30,7 @@ const Search = ({ setQuestionData, questionData, filterData, setFilterData }) =>
   };
 
   return (
-    <div className="flex flex-col w-full pr-[10%] pl-[10%] text-left ">
+    <div className="flex flex-col w-full pr-[10%] pl-[10%] text-left text-black">
       <form >
         <input
           type="text"

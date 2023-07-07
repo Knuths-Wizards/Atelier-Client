@@ -1,20 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { format } from 'date-fns';
 import { markAnswerAsHelpful, reportAnswer } from '../routes.js';
 
 const Answer = ({ answer, answerId }) => {
 
   const [alreadyVoted, setAlreadyVoted] = useState(false);
-  const [helpfulness, setAnswerHelpfulness] = useState(answer.helpfulness)
+  const [helpfulness, setAnswerHelpfulness] = useState(answer.helpfulness || 0)
   const [alreadyReported, setAlreadyReported] = useState(false);
-
-  // useEffect(() => {
-  //   markAnswerAsHelpful(answerId)
-  //     .then((response) =>
-  //     console.log('helpfulness response', response))
-  //     //setHelpfulness(response))
-  //      .catch(error => console.error('Error with helpfulness property'))
-  // }, [answerId]);
 
   const handleClick = () => {
     if (!alreadyVoted) {
@@ -25,11 +17,6 @@ const Answer = ({ answer, answerId }) => {
       alert('You can only vote once, sorry!');
     }
   };
-
-//see if a product was already reported?
-  // useEffect(() => {
-  //      .catch(error => console.error('Error with reported property'))
-  // }, [answerId]);
 
   const handleSubmit = () => {
     reportAnswer(answerId)
@@ -45,7 +32,7 @@ const Answer = ({ answer, answerId }) => {
       </div>
       <p>
         <small>
-          by {answer.answerer_name}, {format(new Date(answer.date), 'MM/dd/yyyy')} &nbsp;&nbsp; | &nbsp;&nbsp; Helpful?&nbsp;&nbsp;
+        by {answer.answerer_name}, {format(new Date(answer.date), 'MM/dd/yyyy')} &nbsp;&nbsp; | &nbsp;&nbsp; Helpful?&nbsp;&nbsp;
           <button onClick={handleClick} style={{ textDecorationLine: 'underline' }}>
             Yes ({helpfulness})
           </button>
