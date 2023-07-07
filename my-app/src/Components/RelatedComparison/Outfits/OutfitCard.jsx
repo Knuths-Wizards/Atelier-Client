@@ -47,7 +47,8 @@ export default function Card({ title, price, category, review, img, itemId, ogPr
       setOgInOutfit(false)
     }
     setOutfit((current) => {
-      let newOutfit = current.filter((fruit) => fruit !== itemId)
+      let newOutfit = current.filter((fruit) => fruit.toString() !== itemId.toString())
+      console.log(newOutfit)
       return [...newOutfit]
     }
     );
