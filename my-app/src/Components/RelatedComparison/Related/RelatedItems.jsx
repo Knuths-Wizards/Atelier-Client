@@ -15,7 +15,6 @@ export default function RelatedItems(ogProduct) {
 
   var stateToBeSet = [];
 
-  console.log(ogProduct)
 
   React.useEffect(() => {
     function getRelatedProducts() {
