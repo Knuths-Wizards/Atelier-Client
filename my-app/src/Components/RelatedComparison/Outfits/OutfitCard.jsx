@@ -7,7 +7,7 @@ import ImageSlides from '../Common/ImageSlides.jsx'
 import '../Common/imageSlides.css';
 import usePreventBodyScroll from '../Common/PreventBodyScroll.jsx';
 
-export default function Card({ title, price, category, review, img, itemId, ogProduct, setOutfit, setOgInOutfit}) {
+export default function Card({ title, price, category, review, img, itemId, ogProduct, setOutfit, setOgInOutfit, setNewProduct}) {
   const visibility = React.useContext(VisibilityContext);
 
   const [currentStyle, setCurrentStyle] = React.useState(0);
@@ -123,7 +123,7 @@ export default function Card({ title, price, category, review, img, itemId, ogPr
 <div className ="flex flex-col items-center mt-4 flex-grow">
   <h4 className="card-actions justify-center">{category}</h4>
   <div width="135px" height='56px' style={{ marginTop: "0px", width: '135px', height: '56px' }}>
-    <h3 className='card-title text-center justify-center'>{title}</h3>
+    <h3 className='card-title text-center justify-center' style={{cursor: 'pointer' }} onClick={() => setNewProduct(itemId)}>{title}</h3>
   </div>
   <h4 className="card-actions text-center justify-center">{img[currentStyle].name}</h4>
   <SalePrice></SalePrice>
