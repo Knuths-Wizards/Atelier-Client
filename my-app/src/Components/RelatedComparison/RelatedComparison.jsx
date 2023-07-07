@@ -35,8 +35,6 @@ const ORList = ({ productid, setProductID }) => {
   }, [productid]);
 
   useEffect(() => {
-    console.log("set Cookie")
-    console.log(outfit)
     setCookie('outfit', outfit.join('|'), { path: '/' });
   }, [outfit, setCookie]);
 
