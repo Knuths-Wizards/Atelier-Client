@@ -1,20 +1,30 @@
-import React, { useRef } from 'react';
-import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
-import 'react-horizontal-scrolling-menu/dist/styles.css';
-import { Stars } from '../Common/Stars.jsx';
-import { LeftArrow, RightArrow } from '../Common/ImageArrows.jsx';
-import ImageSlides from '../Common/ImageSlides.jsx'
-import '../Common/imageSlides.css';
-import usePreventBodyScroll from '../Common/PreventBodyScroll.jsx';
+import React, { useRef } from "react";
+import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
+import "react-horizontal-scrolling-menu/dist/styles.css";
+import { Stars } from "../Common/Stars.jsx";
+import { LeftArrow, RightArrow } from "../Common/ImageArrows.jsx";
+import ImageSlides from "../Common/ImageSlides.jsx";
+import "../Common/imageSlides.css";
+import usePreventBodyScroll from "../Common/PreventBodyScroll.jsx";
 
-export default function Card({ title, price, category, review, img, itemId, ogProduct, setOutfit, setOgInOutfit, setNewProduct}) {
+export default function Card({
+  title,
+  price,
+  category,
+  review,
+  img,
+  itemId,
+  ogProduct,
+  setOutfit,
+  setOgInOutfit,
+  setNewProduct,
+}) {
   const visibility = React.useContext(VisibilityContext);
 
   const [currentStyle, setCurrentStyle] = React.useState(0);
   const { disableScroll, enableScroll } = usePreventBodyScroll();
   const [loaded, setLoaded] = React.useState(false);
   const apiRef = React.useRef({});
-
 
   React.useEffect(() => {
     function scrollToDefault() {
@@ -32,7 +42,7 @@ export default function Card({ title, price, category, review, img, itemId, ogPr
         // OR if you not sure about id for first item
         // apiRef.current.getItemById(apiRef.current.items.toItems()[0]),
         "auto",
-        "start"
+        "start",
       );
     }
     scrollToDefault();
@@ -40,30 +50,36 @@ export default function Card({ title, price, category, review, img, itemId, ogPr
 
   const loadedToTrue = () => {
     setLoaded(true);
-  }
+  };
 
   const onClickSetOutfit = () => {
-    if(itemId == ogProduct.id) {
-      setOgInOutfit(false)
+    if (itemId == ogProduct.id) {
+      setOgInOutfit(false);
     }
     setOutfit((current) => {
-      let newOutfit = current.filter((fruit) => fruit.toString() !== itemId.toString())
-      return [...newOutfit]
-    }
-    );
-  }
+      let newOutfit = current.filter(
+        (fruit) => fruit.toString() !== itemId.toString(),
+      );
+      return [...newOutfit];
+    });
+  };
 
   const SalePrice = () => {
     if (img[currentStyle].sale_price) {
       return (
-        <h4 className="card-actions justify-center"><s style={{ color: 'red' }}>${img[currentStyle].original_price}</s> ${img[currentStyle].sale_price}</h4>
-      )
+        <h4 className="card-actions justify-center">
+          <s style={{ color: "red" }}>${img[currentStyle].original_price}</s> $
+          {img[currentStyle].sale_price}
+        </h4>
+      );
     } else {
       return (
-        <h4 className="card-actions justify-center">${img[currentStyle].original_price}</h4>
-      )
+        <h4 className="card-actions justify-center">
+          ${img[currentStyle].original_price}
+        </h4>
+      );
     }
-    }
+  };
 
   return (
     <div
@@ -74,63 +90,103 @@ export default function Card({ title, price, category, review, img, itemId, ogPr
         width: "200px",
         height: "514px",
         overflow: "hidden",
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        position: 'relative'
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        position: "relative",
       }}
     >
-
-<div className="container flex flex-col items-center" style={{position: 'relative'}}>
-    <div className ="image-container flex-grow" onMouseEnter={disableScroll} onMouseLeave={enableScroll}>
-      <ScrollMenu
-     LeftArrow={<LeftArrow setCurrentStyle={setCurrentStyle}></LeftArrow>}
-      RightArrow={<RightArrow></RightArrow>}
-      scrollContainerClassName='imgScrollContainer'
-      itemClassName='imgScrollItem'
-      separatorClassName='imgScrollSeparator'
-      wrapperClassName='imgScrollWrapper'
-      onWheel={onWheel}
-      onInit={loadedToTrue}
-      apiRef={apiRef}
-      options={{
-        ratio: 0.9,
-        rootMargin: "5px",
-        threshold: [0.01, 0.05, 0.5, 0.75, 0.95, 1]
-      }}
+      <div
+        className="container flex flex-col items-center"
+        style={{ position: "relative" }}
       >
-      {img.map(({ thumbnail_url, url }, index) => (
-        <ImageSlides
-          itemId={index} // NOTE: itemId is required for track items
-          smallImg={thumbnail_url}
-          largeImg={url}
-          key={index}
-        />
-      ))}
-    </ScrollMenu>
-    </div>
-      <div className="container">
-        <button className="btn btn-square btn-sm btn-secondary" style={{ position: 'absolute', top: '0.5%', left: '82.5%' }} onClick={onClickSetOutfit}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1" strokeLinecap="square" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-        </button>
+        <div
+          className="image-container flex-grow"
+          onMouseEnter={disableScroll}
+          onMouseLeave={enableScroll}
+        >
+          <ScrollMenu
+            LeftArrow={
+              <LeftArrow setCurrentStyle={setCurrentStyle}></LeftArrow>
+            }
+            RightArrow={<RightArrow></RightArrow>}
+            scrollContainerClassName="imgScrollContainer"
+            itemClassName="imgScrollItem"
+            separatorClassName="imgScrollSeparator"
+            wrapperClassName="imgScrollWrapper"
+            onWheel={onWheel}
+            onInit={loadedToTrue}
+            apiRef={apiRef}
+            options={{
+              ratio: 0.9,
+              rootMargin: "5px",
+              threshold: [0.01, 0.05, 0.5, 0.75, 0.95, 1],
+            }}
+          >
+            {img.map(({ thumbnail_url, url }, index) => (
+              <ImageSlides
+                itemId={index} // NOTE: itemId is required for track items
+                smallImg={thumbnail_url}
+                largeImg={url}
+                key={index}
+              />
+            ))}
+          </ScrollMenu>
+        </div>
+        <div className="container">
+          <button
+            className="btn btn-square btn-sm btn-secondary"
+            style={{ position: "absolute", top: "0.5%", left: "82.5%" }}
+            onClick={onClickSetOutfit}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#ffffff"
+              strokeWidth="1"
+              strokeLinecap="square"
+              strokeLinejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
       </div>
+      <div
+        className="card-actions text-center"
+        style={{ position: "absolute", top: "90%" }}
+      >
+        <Stars review={review} />
       </div>
-      <div className="card-actions text-center" style={{position:'absolute', top: '90%'}}>
-          <Stars review={review} />
+      <div
+        className="card-body flex flex-col items-center"
+        style={{ position: "absolute", top: "53.2%", padding: "10px" }}
+      >
+        <div className="flex flex-col items-center mt-4 flex-grow">
+          <h4 className="card-actions justify-center">{category}</h4>
+          <div
+            width="135px"
+            height="56px"
+            style={{ marginTop: "0px", width: "135px", height: "56px" }}
+          >
+            <h3
+              className="card-title text-center justify-center"
+              style={{ cursor: "pointer" }}
+              onClick={() => setNewProduct(itemId)}
+            >
+              {title}
+            </h3>
           </div>
-          <div className="card-body flex flex-col items-center"  style={{position:'absolute', top: '53.2%', padding: '10px'}}>
-
-<div className ="flex flex-col items-center mt-4 flex-grow">
-  <h4 className="card-actions justify-center">{category}</h4>
-  <div width="135px" height='56px' style={{ marginTop: "0px", width: '135px', height: '56px' }}>
-    <h3 className='card-title text-center justify-center' style={{cursor: 'pointer' }} onClick={() => setNewProduct(itemId)}>{title}</h3>
-  </div>
-  <h4 className="card-actions text-center justify-center">{img[currentStyle].name}</h4>
-  <SalePrice></SalePrice>
-</div>
-
-
-</div>
+          <h4 className="card-actions text-center justify-center">
+            {img[currentStyle].name}
+          </h4>
+          <SalePrice></SalePrice>
+        </div>
+      </div>
     </div>
   );
 }

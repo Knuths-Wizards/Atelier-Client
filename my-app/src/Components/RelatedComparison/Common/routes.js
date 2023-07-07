@@ -1,4 +1,4 @@
-import axiosAtelier from '../../../axiosAtelier.js';
+import axiosAtelier from "../../../axiosAtelier.js";
 
 const baseURL = process.env.REACT_APP_API_BASE_URL;
 
@@ -17,7 +17,7 @@ class Cache {
   set(url, data, expiresInMinutes = 10) {
     this.cache[url] = {
       data: data,
-      expires: Date.now() + expiresInMinutes * 60 * 1000 // Set expiration time
+      expires: Date.now() + expiresInMinutes * 60 * 1000, // Set expiration time
     };
   }
 }
@@ -32,9 +32,10 @@ export function getProductDetails(str) {
     return Promise.resolve(cachedData);
   }
 
-  return axiosAtelier.get(url)
+  return axiosAtelier
+    .get(url)
     .then(dataMap)
-    .then(response => {
+    .then((response) => {
       cache.set(url, response);
       return response;
     });
@@ -48,9 +49,10 @@ export function getImages(obj) {
     return Promise.resolve(cachedData);
   }
 
-  return axiosAtelier.get(url)
+  return axiosAtelier
+    .get(url)
     .then(dataMap)
-    .then(response => {
+    .then((response) => {
       cache.set(url, response);
       return response;
     });
@@ -64,9 +66,10 @@ export function getReviews(obj) {
     return Promise.resolve(cachedData);
   }
 
-  return axiosAtelier.get(url)
+  return axiosAtelier
+    .get(url)
     .then(dataMap)
-    .then(response => {
+    .then((response) => {
       cache.set(url, response);
       return response;
     });
@@ -84,9 +87,10 @@ export function getRelated(str) {
     return Promise.resolve(cachedData);
   }
 
-  return axiosAtelier.get(url)
+  return axiosAtelier
+    .get(url)
     .then(dataMap)
-    .then(response => {
+    .then((response) => {
       cache.set(url, response);
       return response;
     });

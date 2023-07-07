@@ -1,9 +1,9 @@
-import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
-import Card from './Card.jsx';
+import React from "react";
+import { render, fireEvent, screen } from "@testing-library/react";
+import Card from "./Card.jsx";
 
-describe('Card component', () => {
-  test('renders correctly', () => {
+describe("Card component", () => {
+  test("renders correctly", () => {
     const onClickMock = jest.fn();
     render(
       <Card
@@ -15,16 +15,14 @@ describe('Card component', () => {
         review={3.5}
         img="test.jpg"
         itemId="123"
-        ogProduct={{ name: 'OG Product', features: [] }}
+        ogProduct={{ name: "OG Product", features: [] }}
         features={[]}
-      />
+      />,
     );
 
     // Verify that the component renders the title, price, and category correctly
-    expect(screen.getAllByText('Test Title')).toBeInTheDocument();
-    expect(screen.getAllByText('$19.99')).toBeInTheDocument();
-    expect(screen.getAllByText('Test Category')).toBeInTheDocument();
-
+    expect(screen.getAllByText("Test Title")).toBeInTheDocument();
+    expect(screen.getAllByText("$19.99")).toBeInTheDocument();
+    expect(screen.getAllByText("Test Category")).toBeInTheDocument();
   });
-
 });

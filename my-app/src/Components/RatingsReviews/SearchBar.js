@@ -1,10 +1,6 @@
 // TODO: Implement
 const SearchBar = (props) => {
-  return (
-    <div className='SearchBar'>
+  return <div className="SearchBar"></div>;
+};
 
-    </div>
-  )
-}
-
-export default SearchBar
+export default SearchBar;

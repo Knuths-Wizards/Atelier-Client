@@ -1,21 +1,20 @@
-
 //https://ishadeed.com/article/star-rating-svg/
 //https://developer.mozilla.org/en-US/docs/Web/SVG/Element/linearGradient https://flowbite.com/docs/components/rating/
 //https://blog.logrocket.com/build-a-half-star-rating-component-in-react-from-scratch/
-const StarRating = ({ratings, reviewsCount}) => {
+const StarRating = ({ ratings, reviewsCount }) => {
   const ratingObj = ratings.ratings;
   const calcAvgRating = (ratingObj) => {
     let sum = 0;
     let count = 0;
     for (let rating in ratingObj) {
-      let ratingCount = parseInt(ratingObj[rating])
+      let ratingCount = parseInt(ratingObj[rating]);
       sum += parseInt(rating) * ratingCount;
-      count += ratingCount
+      count += ratingCount;
     }
-    return (sum/count);
-  }
+    return sum / count;
+  };
   const ratingAvg = calcAvgRating(ratingObj);
-  const fillPercentage = (ratingAvg/5) * 100;
+  const fillPercentage = (ratingAvg / 5) * 100;
 
   return (
     <div className="flex items-center">
@@ -53,8 +52,12 @@ const StarRating = ({ratings, reviewsCount}) => {
         ))}
       </div>
       <div className="text-[1vw] ml-2 self-center">
-        <a href="#reviews-section" style={{fontSize: 'calc(10px + .2vw)'}} className="text-gray-500 hover:text-gray-700 self-center underline">
-        Read all {reviewsCount} reviews
+        <a
+          href="#reviews-section"
+          style={{ fontSize: "calc(10px + .2vw)" }}
+          className="text-gray-500 hover:text-gray-700 self-center underline"
+        >
+          Read all {reviewsCount} reviews
         </a>
       </div>
     </div>

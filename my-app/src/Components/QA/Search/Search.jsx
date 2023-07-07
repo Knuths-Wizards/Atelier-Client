@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-const Search = ({ setQuestionData, questionData, filterData, setFilterData }) => {
-
-  const [searchTerm, setSearchTerm] = useState('');
+const Search = ({
+  setQuestionData,
+  questionData,
+  filterData,
+  setFilterData,
+}) => {
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
@@ -11,27 +15,27 @@ const Search = ({ setQuestionData, questionData, filterData, setFilterData }) =>
   const filterSearch = () => {
     if (searchTerm.length >= 3) {
       const filteredQuestions = questionData.filter((question) =>
-        question.question_body.toLowerCase().includes(searchTerm.toLowerCase())
+        question.question_body.toLowerCase().includes(searchTerm.toLowerCase()),
       );
       setFilterData(filteredQuestions);
     } else {
       setFilterData(questionData);
     }
-  }
+  };
 
   useEffect(() => {
-    filterSearch()
-  }, [searchTerm, questionData])
+    filterSearch();
+  }, [searchTerm, questionData]);
 
   const style = {
-    width: '80%',
-    padding: '8px',
-    boxSizing: 'border-box',
+    width: "80%",
+    padding: "8px",
+    boxSizing: "border-box",
   };
 
   return (
     <div className="flex flex-col w-full pr-[10%] pl-[10%] text-left text-black">
-      <form >
+      <form>
         <input
           type="text"
           className="shadow-md mt-2 rounded border border-gray-300"

@@ -1,2 +1,2 @@
-import RatingsReviews from 'RatingsReviews'
-export default RatingsReviews
+import RatingsReviews from "RatingsReviews";
+export default RatingsReviews;
