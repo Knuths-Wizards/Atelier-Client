@@ -68,7 +68,9 @@ const Overview = ({productID, setProductID}) => {
 
   return (
   <div className = "Overview-container">
+    <div className="z-10">
     <Search productList={productList} setProductID = {setProductID}></Search>
+    </div>
     <div className = "gallery-container">
     <Gallery photos = {imageURLs}></Gallery>
     </div>
