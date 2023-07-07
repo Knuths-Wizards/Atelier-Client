@@ -29,8 +29,15 @@ const QuestionModal = ({ productID, productName }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isQuestionValid && isNicknameValid && isEmailValid && validateEmail(email)) {
-      console.log('New question submitted successfully');
-      addQuestion(productID, question, nickname, email)
+
+      const data = {
+        body: question,
+        name: nickname,
+        email: email,
+        product_id: Number(productID)
+      }
+
+      addQuestion(data)
         .then(() => {
           alert('Question submitted!');
           setQuestion('');
@@ -39,7 +46,9 @@ const QuestionModal = ({ productID, productName }) => {
           setIsQuestionValid(false);
           setIsEmailValid(false);
           setIsNicknameValid(false);
-          questionModalRef.current.close();
+          if (questionModalRef.current) {
+          questionModalRef.current.close()
+          }
         })
         .catch((error) => {
           console.error('Error submitting question:', error);

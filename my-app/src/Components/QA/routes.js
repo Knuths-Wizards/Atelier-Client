@@ -1,5 +1,4 @@
 import axiosAtelier from '../../axiosAtelier.js';
-const apiURL = process.env.REACT_APP_API_BASE_URL;
 
 // View questions
 export function getAllQuestions(productId) {
@@ -41,27 +40,14 @@ export function markQuestionAsHelpful(question_id) {
 };
 
 // Add a q
-export function addQuestion(product_id, body, name, email) {
-  const data = {
-    body: body,
-    name: name,
-    email: email,
-    product_id: product_id
-  };
+export function addQuestion(data) {
+  console.log('data', data)
   return axiosAtelier.post(`qa/questions`, data)
-    .then(response => response.data)
+    // .then(response => response.data)
+    .then(console.log('Submitted successfully'))
     .catch(error => {
       console.error('Error submitting question:', error);
       throw error;
-    });
-}
-
-// Get product name
-export function getProductName(productId) {
-  return axiosAtelier.get(`products/${productId}`)
-    .then(response => response.data)
-    .catch(error => {
-      console.error('Error submitting question:', error)
     });
 }
 
@@ -75,6 +61,15 @@ export function addAnswer(question_id, data) {
     throw error;
   })
 };
+
+// Get product name
+export function getProductName(productId) {
+  return axiosAtelier.get(`products/${productId}`)
+    .then(response => response.data)
+    .catch(error => {
+      console.error('Error submitting question:', error)
+    });
+}
 
  // Report an answer
  export function reportAnswer(answerId) {

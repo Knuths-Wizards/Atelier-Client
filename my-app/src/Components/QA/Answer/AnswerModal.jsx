@@ -1,7 +1,7 @@
   import React, { useState, useEffect, useRef } from 'react';
   import { addAnswer } from '../routes.js';
 
-  const AnswerModal = ({ productName, question, questionId }) => {
+  const AnswerModal = ({ productName, question, questionId, updateAnswerData }) => {
 
     const [answer, setAnswer] = useState('');
     const [nickname, setNickname] = useState('');
@@ -10,7 +10,6 @@
     const [isAnswerValid, setIsAnswerValid] = useState(false);
     const [isNicknameValid, setIsNicknameValid] = useState(false);
     const [isEmailValid, setIsEmailValid] = useState(false);
-    //add state to validate photos
     const [isWarningVisible, setIsWarningVisible] = useState(false);
     const answerModalRef = useRef(null);
 
@@ -18,6 +17,16 @@
       const answerModal = answerModalRef.current;
       if (answerModal) {
         answerModal.showModal();
+      }
+    };
+
+    const handleClose = (e) => {
+      const answerModal = answerModalRef.current;
+      if (answerModal) {
+        answerModal.close();
+        setAnswer('');
+        setNickname('');
+        setEmail('');
       }
     };
 
@@ -29,11 +38,9 @@
     const handlePhotoUpload = (e) => {
       const files = e.target.files;
       const updatedPhotos = [...uploadedPhotos];
-
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         const reader = new FileReader();
-
         reader.onload = (event) => {
           const photo = {
             src: event.target.result,
@@ -42,7 +49,6 @@
           updatedPhotos.push(photo);
           setUploadedPhotos(updatedPhotos);
         };
-
         reader.readAsDataURL(file);
       }
     };
@@ -63,6 +69,8 @@
         addAnswer(questionId, data)
           .then(() => {
             alert('Answer submitted!');
+            const newData ={...data, date: new Date().toISOString() };
+            updateAnswerData(newData)
             answerModalRef.current.close();
             setAnswer('');
             setNickname('');
@@ -78,16 +86,6 @@
           });
       } else {
         setIsWarningVisible(true);
-      }
-    };
-
-    const handleClose = (e) => {
-      const answerModal = answerModalRef.current;
-      if (answerModal) {
-        answerModal.close();
-        setAnswer('');
-        setNickname('');
-        setEmail('');
       }
     };
 
@@ -189,7 +187,7 @@
                 </button>
               </div>
 
-              {isWarningVisible && (
+              {isWarningVisible &&  (
                 <p style={{ color: 'red', fontSize: '12px' }}>
                   You must enter the following correctly: {isAnswerValid ? '' : 'Answer, '}
                   {isNicknameValid ? '' : 'Nickname, '}
