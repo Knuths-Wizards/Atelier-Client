@@ -20,7 +20,7 @@ const ReviewTile = (props) => {
   }
 
   return (
-    <div data-testid='review' className='card glass m-2 z-1 overflow-clip'>
+    <div data-testid='review' className='card glass m-2 z-1 overflow-clip w-5/6'>
       <p className='flex items-center p-2 bg-base-200 z-0'>
         <span data-testid='stars'><StarRating id={`${id}-rating`} rating={rating} size={'md'}/></span>
         <span className={'text-xl align-bottom'}>&nbsp;"{summary}"&nbsp;</span>

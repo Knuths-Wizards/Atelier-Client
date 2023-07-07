@@ -13,8 +13,8 @@ const ReviewsList = (props) => {
   }
 
   return (
-    <div className='grow'>
-      <ol >
+    <div className='flex flex-col items-center'>
+      <ol className='flex flex-col items-center'>
         {reviews.slice(0, displayCount).map((review, i)=>{
           return <ReviewTile
             review={review}
@@ -23,8 +23,8 @@ const ReviewsList = (props) => {
           />
         })}
       </ol>
-      <div className='flex'>
-        <button className='btn m-2 grow' onClick={handleClick} hidden={hideButton}>More Reviews</button>
+      <div className='flex w-5/6'>
+        <button className='btn grow' onClick={handleClick} hidden={hideButton}>More Reviews</button>
       </div>
     </div>
   )
