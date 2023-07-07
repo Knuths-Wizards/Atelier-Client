@@ -17,7 +17,9 @@ const ORList = ({ productid, setProductID }) => {
       if (outfitCookie) {
         try {
         const outfitItems = outfitCookie.split('|');
-        setOutfit(outfitItems);
+        setOutfit(outfitItems.array.forEach(element => {
+          parseInt(element, 10)
+        }));
         } catch (error){
           //silent
         }
