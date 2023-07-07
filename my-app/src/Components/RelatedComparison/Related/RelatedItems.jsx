@@ -5,7 +5,7 @@ import axiosAtelier from '../../../axiosAtelier.js';
 import Card from './RelatedCard.jsx';
 import '../Common/hideScrollbar.css';
 import { LeftArrow, RightArrow } from '../Common/Arrow.jsx';
-import { getProductDetails, dataMap, getImages, getReviews, getRelated } from '../Common/routes.js';
+import { getProductDetails, dataMap, getImages, getReviews, getRelated} from '../Common/routes.js';
 import createImageObjects from '../Common/CreateImageObjects.js'
 
 export default function RelatedItems(ogProduct) {
@@ -15,6 +15,7 @@ export default function RelatedItems(ogProduct) {
 
   var stateToBeSet = [];
 
+  console.log(ogProduct)
 
   React.useEffect(() => {
     function getRelatedProducts() {
@@ -78,6 +79,7 @@ export default function RelatedItems(ogProduct) {
           key={id}
           features={features}
           ogProduct={ogProduct.product}
+          setNewProduct={ogProduct.setNewProduct}
         />
       </div>
       ))}

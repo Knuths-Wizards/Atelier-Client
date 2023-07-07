@@ -7,7 +7,7 @@ import ImageSlides from '../Common/ImageSlides.jsx'
 import '../Common/imageSlides.css';
 import usePreventBodyScroll from '../Common/PreventBodyScroll.jsx';
 
-export default function RelatedCard({ title, price, category, review, img, itemId, ogProduct, features }) {
+export default function RelatedCard({ title, price, category, review, img, itemId, ogProduct, features, setNewProduct}) {
   const visibility = React.useContext(VisibilityContext);
   const modalRef = useRef(null);
   const [currentStyle, setCurrentStyle] = React.useState(0);
@@ -125,7 +125,7 @@ export default function RelatedCard({ title, price, category, review, img, itemI
         <div className ="flex flex-col items-center mt-4 flex-grow">
           <h4 className="card-actions justify-center">{category}</h4>
           <div width="135px" height='56px' style={{ marginTop: "0px", width: '135px', height: '56px' }}>
-            <h3 className='card-title text-center justify-center'>{title}</h3>
+            <h3 className='card-title text-center justify-center' style={{cursor: 'pointer' }} onClick={() => setNewProduct(itemId)}>{title}</h3>
           </div>
           <h4 className="card-actions text-center justify-center">{img[currentStyle].name}</h4>
           <SalePrice></SalePrice>
