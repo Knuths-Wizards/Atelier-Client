@@ -20,6 +20,7 @@ export default function RelatedItems(ogProduct) {
     function getRelatedProducts() {
       if (ogProduct.product.id) {
         getRelated(ogProduct.product.id).then((response) => {
+          console.log('RESPONSE', response)
           return Promise.all(response.map(getProductDetails));
         }).then((response) => {
           stateToBeSet = response;
