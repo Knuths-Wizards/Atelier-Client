@@ -25,7 +25,7 @@ function App() {
         <option value="light240">Light</option>
       </select>
     </div>
-  </div>
+
       <div>
         <Overview productID = {productID} setProductID={setProductID}></Overview>
       </div>
@@ -38,7 +38,7 @@ function App() {
       <div id="reviews-section">
         <RatingsReviews productID = {productID}></RatingsReviews>
       </div>
-    </div>
+  </div>
   );
 }
 

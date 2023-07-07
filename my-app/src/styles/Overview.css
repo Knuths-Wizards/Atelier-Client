@@ -136,6 +136,7 @@
   background-size: contain;
   background-position: center;
   cursor: zoom-in;
+  z-index: 100;
   transition: background-size 0.3s ease-in-out, background-position 0.3s ease-in-out;
 }
 
@@ -169,7 +170,6 @@
   width: 30%;
   text-align: center;
   padding-bottom: 1vh;
-  z-index: 0;
 }
 
 .search-input {
