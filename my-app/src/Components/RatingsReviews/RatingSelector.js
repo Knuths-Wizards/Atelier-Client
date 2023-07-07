@@ -1,9 +1,5 @@
-const RatingSelector = (props)=>{
-  return (
-    <div>
-      Star Rating Selector Here
-    </div>
-  )
-}
+const RatingSelector = (props) => {
+  return <div>Star Rating Selector Here</div>;
+};
 
-export default RatingSelector
+export default RatingSelector;

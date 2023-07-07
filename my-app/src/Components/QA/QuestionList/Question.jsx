@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import Answer from '../Answer/Answer.jsx';
-import { getAnswers, markQuestionAsHelpful } from '../routes.js';
-import AnswerModal from '../Answer/AnswerModal.jsx';
+import React, { useState, useEffect } from "react";
+import Answer from "../Answer/Answer.jsx";
+import { getAnswers, markQuestionAsHelpful } from "../routes.js";
+import AnswerModal from "../Answer/AnswerModal.jsx";
 
 const Question = ({ questionId, question, productName }) => {
   const [helpfulness, setHelpfulness] = useState(question.question_helpfulness);
@@ -15,13 +15,15 @@ const Question = ({ questionId, question, productName }) => {
   useEffect(() => {
     getAnswers(questionId)
       .then((response) => {
-        response.sort((a,b) => a.helpfulness - b.helpfulness)
-        if (response.length === 0 ) {
-          setNoAnswers(true)
+        response.sort((a, b) => a.helpfulness - b.helpfulness);
+        if (response.length === 0) {
+          setNoAnswers(true);
         }
         setAnswerData(response);
       })
-      .catch((error) => console.error('Error fetching answers in Question component', error));
+      .catch((error) =>
+        console.error("Error fetching answers in Question component", error),
+      );
   }, [questionId]);
 
   const handleClick = () => {
@@ -30,13 +32,13 @@ const Question = ({ questionId, question, productName }) => {
       setHelpfulness(helpfulness + 1);
       setVoted(true);
     } else {
-      alert('You can only vote once, sorry!');
+      alert("You can only vote once, sorry!");
     }
   };
 
   const handleReport = () => {
     setAlreadyReported(true);
-    alert('Question reported');
+    alert("Question reported");
   };
 
   useEffect(() => {
@@ -45,7 +47,7 @@ const Question = ({ questionId, question, productName }) => {
     } else {
       setAllAnswersLoaded(false);
     }
-  }, [visibleAnswers, answerData])
+  }, [visibleAnswers, answerData]);
 
   const handleLoadMore = () => {
     setVisibleAnswers(visibleAnswers + 5);
@@ -54,7 +56,7 @@ const Question = ({ questionId, question, productName }) => {
   const handleCollapse = () => {
     setVisibleAnswers(2);
     setAllAnswersLoaded(false);
-  }
+  };
 
   return (
     <div>
@@ -62,24 +64,40 @@ const Question = ({ questionId, question, productName }) => {
         <h4 className="mr-4 p-3">
           <b>Q: {question.question_body}</b>
         </h4>
-        <div className="flex items-center" id="question-buttons" style={{ whiteSpace: 'nowrap' }}>
+        <div
+          className="flex items-center"
+          id="question-buttons"
+          style={{ whiteSpace: "nowrap" }}
+        >
           <small className="flex items-baseline">
             <div className="helpful">
-              Helpful?&nbsp; <button onClick={handleClick} style={{ textDecorationLine: 'underline' }}>Yes ({helpfulness}) </button>&nbsp; | &nbsp;
+              Helpful?&nbsp;{" "}
+              <button
+                onClick={handleClick}
+                style={{ textDecorationLine: "underline" }}
+              >
+                Yes ({helpfulness}){" "}
+              </button>
+              &nbsp; | &nbsp;
             </div>
             <div className="answerModal mr-2">
               <AnswerModal
                 productName={productName}
                 question={question.question_body}
                 questionId={questionId}
-                updateAnswerData={(newAnswer) => setAnswerData((prevData) => [...prevData, newAnswer])}
+                updateAnswerData={(newAnswer) =>
+                  setAnswerData((prevData) => [...prevData, newAnswer])
+                }
               />
             </div>
             <div className="reported">
               {alreadyReported ? (
                 <button disabled>Reported</button>
               ) : (
-                <button style={{ textDecorationLine: 'underline' }} onClick={handleReport}>
+                <button
+                  style={{ textDecorationLine: "underline" }}
+                  onClick={handleReport}
+                >
                   Report
                 </button>
               )}
@@ -91,14 +109,23 @@ const Question = ({ questionId, question, productName }) => {
       {answerData.length === 0 && (
         <>
           <div className="flex flex-row items-center  justify-between items-center w-full mr-4 p-3">
-            <p><b>A: </b>No answers to this question!</p>
-          </div><br />
+            <p>
+              <b>A: </b>No answers to this question!
+            </p>
+          </div>
+          <br />
         </>
       )}
 
       {answerData.slice(0, visibleAnswers).map((answer) => (
         <div className="flex flex-row items-center justify-between items-center w-full mr-4 p-3">
-          <Answer key={answer.answer_id} answerId={answer.answer_id} answer={answer} helpfulness={answer.helpfulness} setHelpfulness={setHelpfulness} />
+          <Answer
+            key={answer.answer_id}
+            answerId={answer.answer_id}
+            answer={answer}
+            helpfulness={answer.helpfulness}
+            setHelpfulness={setHelpfulness}
+          />
         </div>
       ))}
 
@@ -107,31 +134,35 @@ const Question = ({ questionId, question, productName }) => {
           <button
             className="btn-small text-black"
             style={{
-              textAlign: 'center',
-              lineHeight: '15px',
-              fontSize: '13px',
-              margin: '10px',
-              cursor: 'pointer',
+              textAlign: "center",
+              lineHeight: "15px",
+              fontSize: "13px",
+              margin: "10px",
+              cursor: "pointer",
             }}
             onClick={handleLoadMore}
-          >More answers
+          >
+            More answers
           </button>
         </div>
       )}
-         {allAnswersLoaded && answerData.length > 2 && (
-        <button className="btn-small text-black"
+      {allAnswersLoaded && answerData.length > 2 && (
+        <button
+          className="btn-small text-black"
           onClick={handleCollapse}
           style={{
-          textAlign: 'center',
-          lineHeight: '29px',
-          margin: '10px',
-          cursor: 'pointer',
-          fontSize: '13px'
-        }}>Collapse Answers</button>
+            textAlign: "center",
+            lineHeight: "29px",
+            margin: "10px",
+            cursor: "pointer",
+            fontSize: "13px",
+          }}
+        >
+          Collapse Answers
+        </button>
       )}
     </div>
   );
 };
 
 export default Question;
-

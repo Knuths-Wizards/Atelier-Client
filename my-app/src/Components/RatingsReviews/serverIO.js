@@ -1,81 +1,77 @@
-import axios from '../../axiosAtelier'
-import path from 'path-browserify'
-
+import axios from "../../axiosAtelier";
+import path from "path-browserify";
 
 const serverIO = {
   getReviews: (productId) => {
     return axios({
-      url: path.join('reviews'),
-      method: 'GET',
+      url: path.join("reviews"),
+      method: "GET",
       params: {
         product_id: productId,
-        sort: 'newest'
-      }
+        sort: "newest",
+      },
     })
-    .then((response)=>{
-      return response.data.results
-    })
-    .catch((err)=>{
-      console.log('CTRL: Error getting reviews')
-      console.error(err.message)
-      throw err
-    })
+      .then((response) => {
+        return response.data.results;
+      })
+      .catch((err) => {
+        console.log("CTRL: Error getting reviews");
+        console.error(err.message);
+        throw err;
+      });
   },
 
   getMetadata: (productId) => {
     return axios({
-      url: path.join('reviews', 'meta'),
-      method: 'GET',
+      url: path.join("reviews", "meta"),
+      method: "GET",
       params: {
-        product_id: productId
-      }
+        product_id: productId,
+      },
     })
-    .then((response)=>{
-      return response.data
-    })
-    .catch((err)=>{
-      console.log('CTRL: Error getting metadata')
-      console.error(err.message)
-      throw err
-    })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((err) => {
+        console.log("CTRL: Error getting metadata");
+        console.error(err.message);
+        throw err;
+      });
   },
 
   castVote: (reviewId) => {
-    console.log('PUT', path.join('reviews', reviewId.toString(), 'helpful'))
+    console.log("PUT", path.join("reviews", reviewId.toString(), "helpful"));
     return axios({
-      url: path.join('reviews', reviewId.toString(), 'helpful'),
-      method: 'PUT'
-    })
-    .catch((err)=>{
-      console.log('CTRL: Error casting vote')
-      throw err
-    })
+      url: path.join("reviews", reviewId.toString(), "helpful"),
+      method: "PUT",
+    }).catch((err) => {
+      console.log("CTRL: Error casting vote");
+      throw err;
+    });
   },
 
   reportReview: (reviewId) => {
-
-    return Promise.resolve(null)
+    return Promise.resolve(null);
   },
 
   submitReview: (formData) => {
-
     return axios({
-      url: path.join('reviews'),
-      method: 'POST',
-      data: formData
+      url: path.join("reviews"),
+      method: "POST",
+      data: formData,
     })
-    .then((res)=>{
-      if (res.status === 201) {
-        console.log('Review Posted')
-      } else {
-        console.log('Server responded with', res.status)
-      }
-    })
-    .catch((err)=>{
-      console.log(err.message)
-      throw err
-    })
-  }
-}
+      .then((res) => {
+        if (res.status === 201) {
+          console.log("Review Posted");
+        } else {
+          console.log("Server responded with", res.status);
+        }
+      })
+      .catch((err) => {
+        console.log(err.message);
+        throw err;
+      });
+  },
+};
 
-export default serverIO
+export default serverIO;

@@ -1,22 +1,22 @@
-import axiosAtelier from '../../axiosAtelier.js'
+import axiosAtelier from "../../axiosAtelier.js";
 const apiURL = process.env.REACT_APP_API_BASE_URL;
 //PRODUCT INFOS
 export const fetchAllProducts = async () => {
   try {
     const response = await axiosAtelier.get(`products`);
-    return response.data
+    return response.data;
   } catch (err) {
-    console.log ('FETCH ALL PRODUCT ERR-----', err)
-    throw (err);
+    console.log("FETCH ALL PRODUCT ERR-----", err);
+    throw err;
   }
-}
+};
 
 export const fetchProductData = async (productID) => {
   try {
     const response = await axiosAtelier.get(`products/${productID}`);
     return response.data;
   } catch (error) {
-    console.error('Error fetching product data:', error);
+    console.error("Error fetching product data:", error);
     throw error;
   }
 };
@@ -26,29 +26,31 @@ export const fetchProductStyles = async (productId) => {
     const response = await axiosAtelier.get(`products/${productId}/styles`);
     return response.data;
   } catch (error) {
-    console.error('Error fetching product data:', error);
+    console.error("Error fetching product data:", error);
     throw error;
   }
-}
+};
 //REVIEW INFO
 export const fetchProductReviewMetaData = async (productId) => {
   try {
-    const response = await axiosAtelier.get(`reviews/meta?product_id=${productId}`);
+    const response = await axiosAtelier.get(
+      `reviews/meta?product_id=${productId}`,
+    );
     return response.data;
   } catch (error) {
-    console.error('Error fetching product data:', error);
+    console.error("Error fetching product data:", error);
     throw error;
   }
-}
+};
 export const fetchProductReviews = async (productId) => {
   try {
     const response = await axiosAtelier.get(`reviews/?product_id=${productId}`);
     return response.data;
   } catch (error) {
-    console.error('Error fetching product data:', error);
+    console.error("Error fetching product data:", error);
     throw error;
   }
-}
+};
 
 //CART INTERACTION
 
@@ -60,25 +62,24 @@ export const addProductToCart = async (sku_id, quantity) => {
   try {
     const responses = [];
     //number of posts
-    for (let i = 0; i < quantity; i++ ) {
-      const response = await axiosAtelier.post(`cart`, {sku_id: sku_id});
+    for (let i = 0; i < quantity; i++) {
+      const response = await axiosAtelier.post(`cart`, { sku_id: sku_id });
       responses.push(response.data);
-      console.log('response to AddProduct', response)
+      console.log("response to AddProduct", response);
     }
-    console.log('added product THIS MANY TIMES',responses)
+    console.log("added product THIS MANY TIMES", responses);
     return responses;
   } catch (error) {
-    console.error('Error adding to cart:', error);
+    console.error("Error adding to cart:", error);
     throw error;
   }
-}
+};
 export const getCart = async () => {
-
   try {
-    const response = await axiosAtelier.get(`cart`)
-    return response
+    const response = await axiosAtelier.get(`cart`);
+    return response;
   } catch (error) {
     console.error(`Error getting cart: `, error);
     throw error;
   }
-}
+};

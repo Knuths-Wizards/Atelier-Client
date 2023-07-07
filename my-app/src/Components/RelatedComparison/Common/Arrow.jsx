@@ -1,9 +1,7 @@
-import React from 'react';
-import { VisibilityContext } from 'react-horizontal-scrolling-menu';
+import React from "react";
+import { VisibilityContext } from "react-horizontal-scrolling-menu";
 
-function Arrow({
-  children, disabled, onClick
-}) {
+function Arrow({ children, disabled, onClick }) {
   return (
     <button
       disabled={disabled}
@@ -15,7 +13,7 @@ function Arrow({
         justifyContent: "center",
         right: "1%",
         opacity: disabled ? "0" : "1",
-        userSelect: "none"
+        userSelect: "none",
       }}
     >
       {children}
@@ -28,11 +26,11 @@ export function LeftArrow() {
     isFirstItemVisible,
     scrollToItem,
     visibleElements,
-    initComplete
+    initComplete,
   } = React.useContext(VisibilityContext);
 
   const [disabled, setDisabled] = React.useState(
-    !initComplete || (initComplete && isFirstItemVisible)
+    !initComplete || (initComplete && isFirstItemVisible),
   );
   React.useEffect(() => {
     // NOTE: detect if whole component visible
@@ -51,15 +49,11 @@ export function LeftArrow() {
 }
 
 export function RightArrow() {
-  const {
-    getNextElement,
-    isLastItemVisible,
-    scrollToItem,
-    visibleElements
-  } = React.useContext(VisibilityContext);
+  const { getNextElement, isLastItemVisible, scrollToItem, visibleElements } =
+    React.useContext(VisibilityContext);
 
   const [disabled, setDisabled] = React.useState(
-    !visibleElements.length && isLastItemVisible
+    !visibleElements.length && isLastItemVisible,
   );
   React.useEffect(() => {
     if (visibleElements.length) {

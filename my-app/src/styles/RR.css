@@ -1,24 +1,24 @@
 .stars-sm {
-  height: calc(12px + .5vw);
-  width: calc(12px + .5vw)
+  height: calc(12px + 0.5vw);
+  width: calc(12px + 0.5vw);
 }
 
 .stars-md {
   height: calc(12px + 1vw);
-  width: calc(12px + 1vw)
+  width: calc(12px + 1vw);
 }
 
 .stars-lg {
   height: calc(12px + 1.5vw);
-  width: calc(12px + 1.5vw)
+  width: calc(12px + 1.5vw);
 }
 
 .stars-xl {
   height: calc(12px + 2vw);
-  width: calc(12px + 2vw)
+  width: calc(12px + 2vw);
 }
 
 .stars-auto {
   height: 20%;
-  width: 20%
+  width: 20%;
 }

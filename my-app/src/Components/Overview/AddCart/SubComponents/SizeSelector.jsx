@@ -1,7 +1,7 @@
-import {useState} from 'react'
+import { useState } from "react";
 //https://www.robinwieruch.de/react-dropdown/
-const SizeSelector = ({size, changeSize, skus, changeSku}) => {
-  const [skuIndex, setSkuIndex] = useState('');
+const SizeSelector = ({ size, changeSize, skus, changeSku }) => {
+  const [skuIndex, setSkuIndex] = useState("");
 
   //set the sku by taking the index as the value from the options
   const handleSizeChange = (event) => {
@@ -11,11 +11,15 @@ const SizeSelector = ({size, changeSize, skus, changeSku}) => {
     changeSize(selectedSku.size);
     changeSku(selectedSku);
   };
-//map through the skus to make the options for each size
-//default needs to say Select Size
+  //map through the skus to make the options for each size
+  //default needs to say Select Size
   return (
-  <div className="border border-gray-300 ">
-    <select className="w-full p-2"value = {skuIndex} onChange={handleSizeChange}>
+    <div className="border border-gray-300 ">
+      <select
+        className="w-full p-2"
+        value={skuIndex}
+        onChange={handleSizeChange}
+      >
         <option value="" disabled>
           Select Size
         </option>
@@ -25,8 +29,8 @@ const SizeSelector = ({size, changeSize, skus, changeSku}) => {
           </option>
         ))}
       </select>
-  </div>
-  )
+    </div>
+  );
 };
 
 export default SizeSelector;

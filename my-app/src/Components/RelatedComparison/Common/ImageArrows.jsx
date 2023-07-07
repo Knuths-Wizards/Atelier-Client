@@ -1,9 +1,7 @@
-import React from 'react';
-import { VisibilityContext } from 'react-horizontal-scrolling-menu';
+import React from "react";
+import { VisibilityContext } from "react-horizontal-scrolling-menu";
 
-function Arrow({
-  children, disabled, onClick
-}) {
+function Arrow({ children, disabled, onClick }) {
   return (
     <button
       disabled={disabled}
@@ -15,50 +13,43 @@ function Arrow({
         justifyContent: "center",
         right: "1%",
         opacity: disabled ? "0" : "1",
-        userSelect: "none"
+        userSelect: "none",
       }}
     >
       {children}
     </button>
   );
 }
-export function LeftArrow({setCurrentStyle}) {
+export function LeftArrow({ setCurrentStyle }) {
   const {
     getPrevElement,
     isFirstItemVisible,
     scrollToItem,
     visibleElements,
-    initComplete
+    initComplete,
   } = React.useContext(VisibilityContext);
 
   const [disabled, setDisabled] = React.useState(
-    !initComplete || (initComplete && isFirstItemVisible)
+    !initComplete || (initComplete && isFirstItemVisible),
   );
   React.useEffect(() => {
     if (visibleElements.length) {
       setDisabled(isFirstItemVisible);
-      setCurrentStyle(+visibleElements[0])
+      setCurrentStyle(+visibleElements[0]);
     }
   }, [isFirstItemVisible, visibleElements]);
 
   // NOTE: for scroll 1 item
   const clickHandler = () => scrollToItem(getPrevElement(), "smooth", "start");
-  return (
-    <Arrow disabled={disabled} onClick={clickHandler}>
-    </Arrow>
-  );
+  return <Arrow disabled={disabled} onClick={clickHandler}></Arrow>;
 }
 
 export function RightArrow() {
-  const {
-    getNextElement,
-    isLastItemVisible,
-    scrollToItem,
-    visibleElements
-  } = React.useContext(VisibilityContext);
+  const { getNextElement, isLastItemVisible, scrollToItem, visibleElements } =
+    React.useContext(VisibilityContext);
 
   const [disabled, setDisabled] = React.useState(
-    !visibleElements.length && isLastItemVisible
+    !visibleElements.length && isLastItemVisible,
   );
   React.useEffect(() => {
     if (visibleElements.length) {
@@ -68,8 +59,5 @@ export function RightArrow() {
 
   // NOTE: for scroll 1 item
   const clickHandler = () => scrollToItem(getNextElement(), "smooth", "end");
-  return (
-    <Arrow disabled={disabled} onClick={clickHandler}>
-    </Arrow>
-  );
+  return <Arrow disabled={disabled} onClick={clickHandler}></Arrow>;
 }

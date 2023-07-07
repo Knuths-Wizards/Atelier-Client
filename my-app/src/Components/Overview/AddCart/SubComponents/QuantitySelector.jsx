@@ -1,7 +1,4 @@
-
-
-const QuantitySelector = ({size, quantity, changeQuantity, skus, sku}) => {
-
+const QuantitySelector = ({ size, quantity, changeQuantity, skus, sku }) => {
   const handleQuantityChange = (event) => {
     changeQuantity(event.target.value);
   };
@@ -10,22 +7,27 @@ const QuantitySelector = ({size, quantity, changeQuantity, skus, sku}) => {
   const maxQuantity = sku ? Math.min(sku.quantity, 15) : 0;
   //make an array of options
   const quantityOptions = [];
-  for (let i = 1; i<=maxQuantity; i++) {
-    quantityOptions.push(i)
+  for (let i = 1; i <= maxQuantity; i++) {
+    quantityOptions.push(i);
   }
   //the quantity button is ever so slightly taller than size selector, must bring in line!
   return (
-  <div className="border border-gray-300 p-2">
-    <select value={size ? quantity : "-"} onChange={handleQuantityChange} disabled={!size}>
+    <div className="border border-gray-300 p-2">
+      <select
+        value={size ? quantity : "-"}
+        onChange={handleQuantityChange}
+        disabled={!size}
+      >
         {!size && <option value="-">-</option>}
-        {size && quantityOptions.map((option, index) => (
-          <option key={index} value={option}>
-            {option}
-          </option>
-        ))}
+        {size &&
+          quantityOptions.map((option, index) => (
+            <option key={index} value={option}>
+              {option}
+            </option>
+          ))}
       </select>
-  </div>
-  )
+    </div>
+  );
 };
 
 export default QuantitySelector;

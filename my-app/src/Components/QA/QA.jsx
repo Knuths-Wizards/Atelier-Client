@@ -1,31 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import Search from './Search/Search.jsx';
-import QuestionList from './QuestionList/QuestionList.jsx';
+import React, { useState, useEffect } from "react";
+import Search from "./Search/Search.jsx";
+import QuestionList from "./QuestionList/QuestionList.jsx";
 
 const QA = ({ productID }) => {
-
-   const [questionData, setQuestionData] = useState([]);
-   const [filterData, setFilterData] = useState([]);
+  const [questionData, setQuestionData] = useState([]);
+  const [filterData, setFilterData] = useState([]);
 
   return (
     <>
-    <div className="flex flex-col">
-      <div className="flex flex-col w-full pr-[10%] pl-[10%] text-left">
-      <h3><br /><br /><br /><b>QUESTIONS & ANSWERS</b></h3><br />
+      <div className="flex flex-col">
+        <div className="flex flex-col w-full pr-[10%] pl-[10%] text-left">
+          <h3>
+            <br />
+            <br />
+            <br />
+            <b>QUESTIONS & ANSWERS</b>
+          </h3>
+          <br />
+        </div>
+        <div className="w-full">
+          <Search
+            setQuestionData={setQuestionData}
+            questionData={questionData}
+            filterData={filterData}
+            setFilterData={setFilterData}
+          />
+          <br />
+        </div>
+        <div className="flex flex-col w-full pr-[10%] pl-[10%]">
+          <QuestionList
+            productID={productID}
+            questionData={questionData}
+            setQuestionData={setQuestionData}
+            filterData={filterData}
+          />
+        </div>
       </div>
-      <div className="w-full">
-        <Search setQuestionData={setQuestionData} questionData={questionData} filterData={filterData} setFilterData={setFilterData}/><br />
-      </div>
-      <div className="flex flex-col w-full pr-[10%] pl-[10%]">
-        <QuestionList
-          productID={productID}
-          questionData={questionData}
-          setQuestionData={setQuestionData}
-          filterData={filterData}
-        />
-      </div>
-    </div>
-    <br /><br />
+      <br />
+      <br />
     </>
   );
 };

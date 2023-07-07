@@ -8,7 +8,7 @@ export default function createImageObjects(data) {
         sale_price: style.sale_price,
         default: style["default?"],
         thumbnail_url: photo.thumbnail_url,
-        url: photo.url
+        url: photo.url,
       };
       imageObjects.push(imageObject);
     });
@@ -16,4 +16,3 @@ export default function createImageObjects(data) {
 
   return imageObjects;
 }
-
