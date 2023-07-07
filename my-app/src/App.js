@@ -28,13 +28,13 @@ function App() {
       <div>
         <Overview productID = {productID} setProductID={setProductID}></Overview>
       </div>
-      <div >
+      <div>
         <RelatedCompare productid={productID} setProductID={setProductID} ></RelatedCompare>
       </div>
       <div className="centered">
         <QA productID = {productID}></QA>
       </div>
-      <div>
+      <div id="reviews-section">
         <RatingsReviews productID = {productID}></RatingsReviews>
       </div>
     </div>
