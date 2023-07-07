@@ -14,7 +14,7 @@ const ReviewsList = (props) => {
 
   return (
     <div className='flex flex-col items-center'>
-      <ol className='flex flex-col items-center'>
+      <ol className='flex flex-col items-center w-full'>
         {reviews.slice(0, displayCount).map((review, i)=>{
           return <ReviewTile
             review={review}

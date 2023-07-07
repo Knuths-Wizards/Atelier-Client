@@ -1,22 +1,28 @@
 import serverIO from './serverIO'
 import { format } from 'date-fns'
+import { useState } from 'react'
 import StarRating from './StarRating'
 
 const ReviewTile = (props) => {
-  const { review, refresh } = props
+  const { review } = props
+  const [hasVoted, setHasVoted] = useState(false)
 
   const name = review.reviewer_name
   const id = review.review_id
   const { rating, date, summary, body, helpfulness } = review
+  let votes = helpfulness
+  if (hasVoted) votes += 1
 
   const handleVote = ()=>{
-    serverIO.castVote(id)
-    .then(()=>{
-      refresh()
-    })
-    .catch((err)=>{
-      console.error(err.message)
-    })
+    if (hasVoted) {
+      serverIO.castVote(id)
+      .then(()=>{
+        setHasVoted(true)
+      })
+      .catch((err)=>{
+        console.error(err.message)
+      })
+    }
   }
 
   return (
@@ -29,7 +35,7 @@ const ReviewTile = (props) => {
       <p className='p-2'>{body}</p>
       <div className='p-2'>Was this review helpful?&nbsp;
         <button className={'hover:text-accent'} onClick={handleVote}>
-          {`Yes (${helpfulness})`}
+          {`Yes (${votes})`}
         </button>
       </div>
     </div>
