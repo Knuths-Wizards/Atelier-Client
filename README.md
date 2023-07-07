@@ -84,3 +84,23 @@ Changed style
 oops
 I think I fixed it this time?
 empty commit messages
+
+
+### BUILD SETTINGS FOR AWS
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - cd my-app
+        - npm ci
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    baseDirectory: my-app/build
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - my-app/node_modules/**/*
