@@ -10,17 +10,17 @@ function App() {
   const [productID, setProductID] = useState('37311');
 
   return (
-    <div className="bg-base-100">
+    <div className="bg-primary">
       <div>
         <Overview productID = {productID} setProductID={setProductID}></Overview>
       </div>
-      <div >
+      <div>
         <RelatedCompare productid={productID} setProductID={setProductID} ></RelatedCompare>
       </div>
       <div className="centered">
         <QA productID = {productID}></QA>
       </div>
-      <div>
+      <div id="reviews-section">
         <RatingsReviews productID = {productID}></RatingsReviews>
       </div>
     </div>
