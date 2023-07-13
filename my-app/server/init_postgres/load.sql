@@ -28,25 +28,25 @@
 -- DELIMITER ','
 -- CSV HEADER;
 
--- COPY photos
--- FROM '/Users/kevin/Desktop/sei/sdc/kevin/data/photos.csv'
--- DELIMITER ','
--- CSV HEADER;
+COPY photos
+FROM '/Users/laurenswersky/Desktop/hackReactor/SDC/Atelier-Client-Lauren/my-app/server/init_postgres/Set2/photos.csv'
+DELIMITER ','
+CSV HEADER;
 
--- COPY product
--- FROM '/Users/kevin/Desktop/sei/sdc/kevin/data/product.csv'
--- DELIMITER ','
--- CSV HEADER;
+COPY product
+FROM '/Users/laurenswersky/Desktop/hackReactor/SDC/Atelier-Client-Lauren/my-app/server/init_postgres/Set2/product.csv'
+DELIMITER ','
+CSV HEADER;
 
--- COPY related
--- FROM '/Users/kevin/Desktop/sei/sdc/kevin/data/related.csv'
--- DELIMITER ','
--- CSV HEADER;
+COPY related
+FROM '/Users/laurenswersky/Desktop/hackReactor/SDC/Atelier-Client-Lauren/my-app/server/init_postgres/Set2/related.csv'
+DELIMITER ','
+CSV HEADER;
 
--- COPY reviews
--- FROM '/Users/kevin/Desktop/sei/sdc/kevin/data/reviews.csv'
--- DELIMITER ','
--- CSV HEADER;
+COPY reviews
+FROM '/Users/laurenswersky/MB/SDC/Atelier-Client-Lauren/my-app/server/init_postgres/reviews.csv'
+DELIMITER ','
+CSV HEADER;
 
 -- COPY reviews_photos
 -- FROM '/Users/kevin/Desktop/sei/sdc/kevin/data/reviews_photos.csv'
@@ -63,8 +63,8 @@
 -- DELIMITER ','
 -- CSV HEADER;
 
--- COPY styles
--- FROM '/Users/kevin/Desktop/sei/sdc/kevin/data/styles.csv'
--- DELIMITER ','
--- null as ''
--- CSV HEADER;
+COPY styles
+FROM '/Users/laurenswersky/Desktop/hackReactor/SDC/Atelier-Client-Lauren/my-app/server/init_postgres/Set2/styles.csv'
+DELIMITER ','
+null as ''
+CSV HEADER;
