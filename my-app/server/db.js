@@ -43,3 +43,5 @@ query('1')
 })
 .then((data) => console.log(data))
 .catch((err) => console.log(err));
+
+module.exports = sql;
