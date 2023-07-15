@@ -27,16 +27,16 @@ function App() {
     </div>
 
       <div>
-        <Overview productID = {productID} setProductID={setProductID}></Overview>
+        {/* <Overview productID = {productID} setProductID={setProductID}></Overview> */}
       </div>
       <div>
-        <RelatedCompare productid={productID} setProductID={setProductID} ></RelatedCompare>
+        {/* <RelatedCompare productid={productID} setProductID={setProductID} ></RelatedCompare> */}
       </div>
       <div>
-        <QA productID = {productID}></QA>
+        {/* <QA productID = {productID}></QA> */}
       </div>
       <div id="reviews-section">
-        <RatingsReviews productID = {productID}></RatingsReviews>
+        <RatingsReviews productID = {'1'}></RatingsReviews>
       </div>
   </div>
   );
