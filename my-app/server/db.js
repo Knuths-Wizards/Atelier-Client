@@ -1,9 +1,13 @@
+const path = require('path')
+require('dotenv').config({path: path.resolve(__dirname, '../.env')});
 const postgres = require('postgres');
 
 const dbConfig = {
   host: '127.0.0.1',
   port: 5432,
-  database: 'tst',
+  database: 'postgres',
+  user: 'postgres',
+  password: process.env.PASSWORD
 };
 
 const sql = postgres(dbConfig);
@@ -39,3 +43,5 @@ query('1')
 })
 .then((data) => console.log(data))
 .catch((err) => console.log(err));
+
+module.exports = sql;
