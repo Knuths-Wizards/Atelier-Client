@@ -20,8 +20,9 @@ CREATE TABLE "answers" (
   "answerer_name" VARCHAR NULL DEFAULT NULL,
   "answerer_email" VARCHAR NULL DEFAULT NULL,
   "reported" BOOLEAN NOT NULL DEFAULT FALSE,
-  "helpfulness" INTEGER NULL DEFAULT NULL
+  "helpfulness" INTEGER NULL DEFAULT 0
 );
+
 
 -- ---
 -- Table 'answers_photos'
@@ -184,7 +185,7 @@ CREATE TABLE "questions" (
   "asker_name" VARCHAR NULL DEFAULT NULL,
   "asker_email" VARCHAR NULL DEFAULT NULL,
   "reported" BOOLEAN NOT NULL DEFAULT FALSE,
-  "question_helpfulness" INTEGER NULL DEFAULT NULL
+  "question_helpfulness" INTEGER NOT NULL DEFAULT 0
 );
 
 -- ---

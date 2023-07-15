@@ -3,10 +3,14 @@ FROM '/Users/zach/sei/sdc/Atelier-Client/csv_files/answers.csv'
 DELIMITER ','
 CSV HEADER;
 
+select setval('answers_id_seq', (select max(id) from answers) + 1);
+
 COPY answers_photos
 FROM '/Users/zach/sei/sdc/Atelier-Client/csv_files/answers_photos.csv'
 DELIMITER ','
 CSV HEADER;
+
+select setval('answers_photos_id_seq', (select max(id) from answers_photos) + 1);
 
 -- COPY cart
 -- FROM '/Users/zach/sei/sdc/Atelier-Client/csv_files/cart.csv'
@@ -57,6 +61,8 @@ CSV HEADER;
 -- FROM '/Users/zach/sei/sdc/Atelier-Client/csv_files/questions.csv'
 -- DELIMITER ','
 -- CSV HEADER;
+
+select setval('questions_id_seq', (select max(id) from questions) + 1);
 
 -- COPY skus
 -- FROM '/Users/zach/sei/sdc/Atelier-Client/csv_files/skus.csv'
