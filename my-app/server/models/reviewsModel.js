@@ -1,4 +1,4 @@
-const db = require('../db');
+const db = require('../db-pg');
 
 const orderBy = (sort) => {
   if (sort === 'newest') { return 'reviews.date asc, helpfulness desc'; }
@@ -77,9 +77,53 @@ const updateReported = (review_id) => {
   let sql = 'update reviews set reported = true where id = $1';
   return db.query({text: sql, values: [review_id]});
 };
+
+const createReview = ({product_id, rating, summary, body, recommend, name, email}) => {
+  let reviewsSql = 'insert into reviews (product_id, rating, summary, body, recommend, reviewer_name, reviewer_email) values ($1, $2, $3, $4, $5, $6, $7) returning id';
+  let reviewsParams = [product_id, rating, summary, body, recommend, name, email];
+  return db.query({text: reviewsSql, values: reviewsParams})
+};
+
+const createReviewPhotos = (review_id, photos) => {
+  let psValues = photos.map((url, i) => `($1, $${i + 2})`).join(', ');
+  let photosSql = `insert into reviews_photos (review_id, url) values ${psValues} returning id`
+  return db.query({text: photosSql, values: [review_id, ...photos]})
+};
+
+const createCharacteristicReview = (review_id, characteristics) => {
+  let values = '';
+
+  for (let key in characteristics) {
+    values += `(${review_id}, ${key}, ${characteristics[key]}), `;
+  }
+
+  let crSql = `insert into characteristic_reviews (review_id, characteristic_id, value) values ${values.slice(0, -2)} returning id`;
+
+  return db.query({text: crSql});
+};
+
+const postReview = ({product_id, rating, summary, body, recommend, name, email, photos, characteristics}) => {
+
+  return createReview({product_id, rating, summary, body, recommend, name, email})
+  .then(async (result) => {
+    let review_id = result.rows[0].id;
+    let res1 = await createReviewPhotos(review_id, photos);
+    let res2 = await createCharacteristicReview(review_id, characteristics);
+    return [res1, res2];
+  })
+  .catch((err) => {
+    console.log('create review error', err);
+  });
+
+
+
+
+};
+
 module.exports = {
   getReviews,
   getMeta,
   updateHelpful,
-  updateReported
+  updateReported,
+  postReview
 };

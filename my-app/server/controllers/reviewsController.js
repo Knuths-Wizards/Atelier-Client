@@ -97,10 +97,9 @@ const postReview = (req, res) => {
     characteristics: req.body?.characteristics || {},
   };
 
-  res.send(201, params);
-
-
-
+  dbModel.postReview(params)
+    .then((data)=> res.send(201, 'Created'))
+    .catch((err) => console.log('error', err));
 };
 
 module.exports = {
