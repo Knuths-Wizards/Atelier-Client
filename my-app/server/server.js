@@ -1,5 +1,9 @@
+//database connection
+const sql = require('./db.js');
 //Controllers
-const controller = require('./controllers/reviewsController.js');
+const controller = require('./controllers/products');
+const reviewsController = require('./controllers/reviewsController.js');
+
 
 //environment variables
 require('dotenv').config();
@@ -22,16 +26,22 @@ app.use(bodyParser.json());
 
 // Routes
 app.get('/', (req, res) => {
-  app.render('index.html');
+  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
 
+// Product Routes
+app.get("/products", controller.getProducts);
+app.get("/products/:product_id", controller.getProductInfo);
+app.get("/products/:product_id/styles", controller.getProductStyles);
+app.get("/products/:product_id/related", controller.getRelatedProducts);
 
-app.get('/reviews', controller.getReviews);
-app.get('/reviews/meta', controller.getMeta);
-app.put('/reviews/:review_id/helpful', controller.updateHelpful);
-app.put('/reviews/:review_id/report', controller.updateReported);
+// Reviews Routes
+app.get('/reviews', reviewsController.getReviews);
+app.get('/reviews/meta', reviewsController.getMeta);
+app.put('/reviews/:review_id/helpful', reviewsController.updateHelpful);
+app.put('/reviews/:review_id/report', reviewsController.updateReported);
 
-app.get('/reviews/:product_id', controller.getReviews);
-app.post('/reviews', controller.postReview);
+app.get('/reviews/:product_id', reviewsController.getReviews);
+app.post('/reviews', reviewsController.postReview);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
