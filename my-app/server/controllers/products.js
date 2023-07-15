@@ -13,7 +13,7 @@ const convertToNumber = (value, limit, base) => {
 const getProducts = (req, res) => {
   dbModel.getProducts()
   .then((response) => {
-    res.send(response)
+    res.status(200).send(response)
   })
   .catch((err) => console.log('error', err))
 };
@@ -28,7 +28,7 @@ const getProductInfo = (req, res) => {
 
   dbModel.getProductInfo(product_id)
   .then((data) => {
-     res.send(data)
+     res.status(200).send(data)
       }
     )
   .catch((err) => console.log('error', err))
@@ -40,7 +40,7 @@ const getProductStyles = (req, res) => {
 
   dbModel.getProductStyles(product_id)
   .then((data) => {
-     res.send(data[0].results)})
+     res.status(200).send(data[0].results)})
   .catch((err) => console.log('styles error', err))
 }
 
@@ -53,7 +53,7 @@ const getRelatedProducts = (req, res) => {
     data.forEach((dataObj) => {
       result.push(dataObj.related_product_id)
     });
-    res.send(result)
+    res.status(200).send(result)
   })
   .catch((err) => console.log('error', err))
 }
