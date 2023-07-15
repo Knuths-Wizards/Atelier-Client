@@ -21,6 +21,22 @@ function createServer() {
 
   app.get("/products/:product_id/related", controller.products.getRelatedProducts);
 
+  app.get("/qa/questions", controller.qna.getQuestions);
+
+  app.get("/qa/questions/:question_id/answers", controller.qna.getAnswers);
+
+  app.post("/qa/questions", controller.qna.postQuestion);
+
+  app.post("/qa/questions/:question_id/answers", controller.qna.postAnswer);
+
+  app.put("/qa/questions/:question_id/helpful", controller.qna.markQuestionHelpful);
+
+  app.put("/qa/questions/:question_id/report", controller.qna.reportQuestion);
+
+  app.put("/qa/answers/:answer_id/helpful", controller.qna.markAnswerHelpful);
+
+  app.put("/qa/answers/:answer_id/report", controller.qna.reportAnswer);
+
   return app;
 }
 

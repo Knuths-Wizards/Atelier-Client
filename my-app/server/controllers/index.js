@@ -1,15 +1,9 @@
-<<<<<<< HEAD
-const reviewsCtrl = require('../controllers/reviewsCtrl');
-
-module.exports = {
-  reviews: reviewsCtrl,
-}
-=======
 const productsCtrl = require('../controllers/products');
-const reviewsCtrl = require('../controllers/reviewsCtrl');
+const reviewsCtrl = require('../controllers/reviewsController');
+const qnaCtrl = require('../controllers/qna');
 
 module.exports = {
   products: productsCtrl,
   reviews: reviewsCtrl,
+  qna: qnaCtrl
 }
->>>>>>> 9c8083ba44275cb7e666799ebbf95f7c665ef70b
