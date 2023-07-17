@@ -43,8 +43,8 @@ module.exports = {
       select 
       id as answer_id,
       body,
-      TO_TIMESTAMP(date::double precision / 1000),
-      answerer_name
+      TO_TIMESTAMP(date::double precision / 1000) as date,
+      answerer_name,
       helpfulness,
       (
         SELECT COALESCE(json_agg(json_build_object(
