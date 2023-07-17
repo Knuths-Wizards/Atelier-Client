@@ -1,5 +1,5 @@
 const request = require('supertest');
-const createServer = require('./utils/server');
+const createServer = require('../utils/server');
 const app = createServer();
 
 describe('GET /products', () => {
