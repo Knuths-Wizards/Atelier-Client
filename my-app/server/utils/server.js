@@ -22,6 +22,7 @@ function createServer() {
   // Reviews Routes
   app.get('/reviews', controller.reviews.getReviews);
   app.get('/reviews/meta', controller.reviews.getMeta);
+
   app.put('/reviews/:review_id/helpful', controller.reviews.updateHelpful);
   app.put('/reviews/:review_id/report', controller.reviews.updateReported);
 

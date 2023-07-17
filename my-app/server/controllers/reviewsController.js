@@ -59,8 +59,6 @@ const getMeta = (req, res) => {
         }
       });
 
-      console.log('getmeta', data[0].rows);
-      console.log('getmetaresponse', response);
       res.send(response);
     })
     .catch((err) => console.log('error', err));
@@ -97,9 +95,13 @@ const postReview = (req, res) => {
     characteristics: req.body?.characteristics || {},
   };
 
+  if (params.product_id <= 0 || params.rating <= 0 || params.rating > 5) {
+    return res.sendStatus(400, 'Bad Request');
+  }
+
   dbModel.postReview(params)
     .then((data)=> res.send(201, 'Created'))
-    .catch((err) => console.log('error', err));
+    .catch((err) => res.send(400, 'Bad Request'));
 };
 
 module.exports = {

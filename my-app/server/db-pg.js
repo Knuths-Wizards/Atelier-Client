@@ -1,3 +1,4 @@
+
 // const { Pool } = require('pg')
 // require('dotenv').config()
 
@@ -8,7 +9,6 @@
 //   idleTimeoutMillis: 30000,
 //   connectionTimeoutMillis: 2000,
 //   username: 'postgres',
-//   password: 'Eddie0886!'
+//   password: 
 // })
-
 // module.exports = pool;
