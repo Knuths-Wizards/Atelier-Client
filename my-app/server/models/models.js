@@ -11,7 +11,7 @@ module.exports = {
     FROM product
     ORDER BY id
     LIMIT ${count}
-    OFFSET ${offset}
+    OFFSET ${offset};
     `;
   },
 
