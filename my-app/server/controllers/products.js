@@ -9,15 +9,13 @@ const convertToNumber = (value, limit, base) => {
   return num;
 };
 
-
 const getProducts = (req, res) => {
   dbModel.getProducts()
   .then((response) => {
-    res.status(200).send(response)
+    res.status(200).send(response).end();
   })
-  .catch((err) => console.log('error', err))
+  .catch((err) => console.log('error in controller', err))
 };
-
 
 const getProductInfo = (req, res) => {
   let product_id = convertToNumber(req.params.product_id, 10000000, 1);
@@ -31,7 +29,7 @@ const getProductInfo = (req, res) => {
      res.status(200).send(data)
       }
     )
-  .catch((err) => console.log('error', err))
+  .catch((err) => console.log('error in controller', err))
 }
 
 
