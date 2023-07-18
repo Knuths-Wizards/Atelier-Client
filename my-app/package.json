@@ -32,7 +32,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\"",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server-test": "npx jest --rootDir ./server/__tests__",
+    "server-start": "nodemon server/server.js"
   },
   "eslintConfig": {
     "extends": [

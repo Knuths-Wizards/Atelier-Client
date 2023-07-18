@@ -6,11 +6,11 @@ function createServer() {
 
   const app = express();
 
-  let dir = path.join(__dirname, '..', 'public');
+  let dir = path.join(__dirname, '..', '..', 'build');
   app.use(express.static(dir));
 
   app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, '..', '..', 'build', 'index.html'));
   });
 
   // Products
