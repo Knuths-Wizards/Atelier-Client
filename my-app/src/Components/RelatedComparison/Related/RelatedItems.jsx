@@ -23,6 +23,7 @@ export default function RelatedItems(ogProduct) {
 
   React.useEffect(() => {
     function getRelatedProducts() {
+      console.log('OG PRODUCT DAWG', ogProduct);
       if (ogProduct.product.id) {
         getRelated(ogProduct.product.id)
           .then((response) => {
@@ -40,6 +41,7 @@ export default function RelatedItems(ogProduct) {
             let itemsWithImgs = [];
             for (let idx = 0; idx < dataStyles.length; idx++) {
               itemsWithImgs.push(stateToBeSet[idx]);
+              console.log('What Is Dat', dataStyles[idx]);
               itemsWithImgs[idx].img = createImageObjects(dataStyles[idx]);
             }
             return itemsWithImgs;

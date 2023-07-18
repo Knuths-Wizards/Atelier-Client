@@ -58,17 +58,17 @@ export default function RelatedCard({
   };
 
   const SalePrice = () => {
-    if (img[currentStyle].sale_price) {
+    if (img[currentStyle]?.sale_price) {
       return (
         <h4 className="card-actions justify-center">
-          <s style={{ color: "red" }}>${img[currentStyle].original_price}</s> $
-          {img[currentStyle].sale_price}
+          <s style={{ color: "red" }}>${img[currentStyle]?.original_price  || ''}</s> $
+          {img[currentStyle]?.sale_price || ''}
         </h4>
       );
     } else {
       return (
         <h4 className="card-actions justify-center">
-          ${img[currentStyle].original_price}
+          ${img[currentStyle]?.original_price  || ''}
         </h4>
       );
     }
@@ -185,7 +185,7 @@ export default function RelatedCard({
             </h3>
           </div>
           <h4 className="card-actions text-center justify-center">
-            {img[currentStyle].name}
+            {img[currentStyle]?.name || ''}
           </h4>
           <SalePrice></SalePrice>
         </div>

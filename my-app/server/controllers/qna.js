@@ -31,7 +31,7 @@ module.exports = {
     const questionId = req.params.question_id;
     const page = req.query.page || 1;
     const count = req.query.count || 5;
-    
+
     qna_models.getAnswers(questionId, page, count)
     .then((response) => {
       let answersObj = {

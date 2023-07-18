@@ -48,18 +48,20 @@ const getMeta = (req, res) => {
 
   dbModel.getMeta(product_id)
     .then((data) => {
-      response.recommended = data[0].rows[0].recommended;
-      response.ratings = data[0].rows[0].ratings;
+      if (data[0].rows.length > 0) {
+        response.recommended = data[0].rows[0].recommend;
+        response.ratings = data[0].rows[0].ratings;
 
-      data[1].rows
-      .forEach((row) => {
-        response.characteristics[row.name] = {
-          id: row.id,
-          value: row.value
-        }
-      });
-
+        data[1].rows
+        .forEach((row) => {
+          response.characteristics[row.name] = {
+            id: row.id,
+            value: row.value
+          }
+        });
+      }
       res.send(response);
+
     })
     .catch((err) => console.log('error', err));
 }
