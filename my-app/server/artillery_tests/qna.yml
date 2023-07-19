@@ -1,0 +1,19 @@
+config:
+  target: "http://localhost:3000"
+  http:
+    # Responses have to be sent within 10 seconds, or an `ETIMEDOUT` error gets raised.
+    timeout: 10
+  phases:
+    - name: Testing Questions and Answers
+      duration: 20
+      arrivalRate: 5
+      rampTo: 5
+scenarios:
+  - name: Get questions 
+    flow:
+      - get:
+          url: "/qa/questions/?product_id=2"
+  - name: Get answers
+    flow:
+      - get:
+          url: "/qa/questions/1/answers"

@@ -223,26 +223,48 @@ CREATE TABLE "styles" (
 -- Foreign Keys
 -- ---
 
--- ALTER TABLE "related_products" ADD FOREIGN KEY (product_id) REFERENCES "products" ("id");
--- ALTER TABLE "features" ADD FOREIGN KEY (product_id) REFERENCES "products" ("id");
--- ALTER TABLE "styles" ADD FOREIGN KEY (product_id) REFERENCES "products" ("id");
--- ALTER TABLE "reviews" ADD FOREIGN KEY (product_id) REFERENCES "products" ("id");
--- ALTER TABLE "characteristics" ADD FOREIGN KEY (product_id) REFERENCES "products" ("id");
--- ALTER TABLE "questions" ADD FOREIGN KEY (product_id) REFERENCES "products" ("id");
 -- ALTER TABLE "answers" ADD FOREIGN KEY (question_id) REFERENCES "questions" ("id");
+
+-- ALTER TABLE "answers_photos" ADD FOREIGN KEY (answer_id) REFERENCES "answers" ("id");
+
+-- ALTER TABLE "characteristics" ADD FOREIGN KEY (product_id) REFERENCES "product" ("id");
+
+-- ALTER TABLE "characteristic_reviews" ADD FOREIGN KEY (characteristic_id) REFERENCES "characteristics" ("id");
+
+-- ALTER TABLE "features" ADD FOREIGN KEY (product_id) REFERENCES "product" ("id");
+
+-- ALTER TABLE "photos" ADD FOREIGN KEY (style_id) REFERENCES "styles" ("id");
+
+-- ALTER TABLE "related" ADD FOREIGN KEY (current_product_id) REFERENCES "product" ("id");
+
+-- ALTER TABLE "reviews" ADD FOREIGN KEY (product_id) REFERENCES "product" ("id");
+
+-- ALTER TABLE "reviews_photos" ADD FOREIGN KEY (review_id) REFERENCES "reviews" ("id");
+
+-- ALTER TABLE "questions" ADD FOREIGN KEY (product_id) REFERENCES "product" ("id");
+
+-- ALTER TABLE "skus" ADD FOREIGN KEY (style_id) REFERENCES "styles" ("id");
+
+-- ALTER TABLE "styles" ADD FOREIGN KEY (product_id) REFERENCES "product" ("id");
 
 -- ---
 -- Table Properties
 -- ---
 
--- ALTER TABLE "products" ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE "related_products" ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE "features" ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE "styles" ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE "reviews" ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE "characteristics" ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE "questions" ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE "answers" ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE "answers_photos" ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE "characteristics" ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE "characteristic_reviews" ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE "features" ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE "photos" ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE "product" ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE "related" ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE "reviews" ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE "reviews_photos" ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE "questions" ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE "skus" ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE "styles" ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
 
 -- ---
 -- Test Data

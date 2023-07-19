@@ -77,7 +77,7 @@ GROUP BY styles.product_id;
 
     getRelatedProducts: function (product_id) {
     return sql`
-    SELECT related_product_id FROM related WHERE product_id = ${product_id}
+    SELECT related_product_id FROM related WHERE current_product_id = ${product_id}
     `
   },
 }

@@ -59,6 +59,7 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.22.5",
     "@babel/preset-react": "^7.22.5",
+    "artillery": "^2.0.0-35",
     "babel-jest": "^29.5.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-config-react-app": "^7.0.1",

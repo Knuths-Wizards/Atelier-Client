@@ -1,0 +1,27 @@
+config:
+  target: "http://localhost:3000"
+  http:
+    # Responses have to be sent within 10 seconds, or an `ETIMEDOUT` error gets raised.
+    timeout: 10
+  phases:
+    - name: Testing Products
+      duration: 20
+      arrivalRate: 5
+      rampTo: 5
+scenarios:
+  - name: Get products
+    flow:
+      - get:
+          url: "/products/"
+  - name: Get product
+    flow:
+      - get:
+          url: "/products/1"
+  - name: Get styles
+    flow:
+      - get:
+          url: "/products/1/styles"
+  - name: Get related
+    flow:
+      - get:
+          url: "/products/1/related"
