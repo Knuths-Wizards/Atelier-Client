@@ -1,12 +1,15 @@
-require('dotenv').config();
+
 const postgres = require('postgres');
+const path = require('path')
+require('dotenv').config({path: path.resolve(__dirname, '../.env')});
 
 const dbConfig = {
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  database: process.env.DB_NAME,
+  host: 'localhost',
+  port: '5432',
+  database: 'postgres',
+  user: 'postgres',
+  password: process.env.PASSWORD
 };
-
 
 const sql = postgres(dbConfig);
 

@@ -95,7 +95,6 @@ const getMeta = (req, res) => {
 
   dbModel.getMeta(product_id)
     .then((data) => {
-      console.log('getMeta', data);
       response.recommended = data[0].recommended;
       response.ratings = data[0].ratings;
 
@@ -107,6 +106,7 @@ const getMeta = (req, res) => {
       });
 
       res.send(response);
+
     })
     .catch((err) => console.log('error', err));
 }

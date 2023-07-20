@@ -86,7 +86,7 @@ CREATE TABLE "characteristic_reviews" (
 CREATE INDEX "idx_characteristic_reviews_characteristic_id" ON "characteristic_reviews" ("characteristic_id");
 
 -- ---
--- Table 'features'
+-- Table 'features' [NOTE: Indexes on first two columns]
 --
 -- ---
 
@@ -102,7 +102,7 @@ CREATE TABLE "features" (
 CREATE INDEX "idx_features_product_id" ON "features" ("product_id");
 
 -- ---
--- Table 'photos'
+-- Table 'photos' [NOTE: added indexes to first two columns]
 --
 -- ---
 
@@ -111,6 +111,7 @@ DROP TABLE IF EXISTS "photos";
 CREATE TABLE "photos" (
   "id" SERIAL PRIMARY KEY,
   "style_id" INTEGER NULL DEFAULT NULL,
+  "style_id" INTEGER NULL DEFAULT NULL,
   "url" VARCHAR NULL DEFAULT NULL,
   "thumbnail_url" VARCHAR NULL DEFAULT NULL
 );
@@ -118,7 +119,7 @@ CREATE TABLE "photos" (
 CREATE INDEX "idx_photos_style_id" ON "photos" ("style_id");
 
 -- ---
--- Table 'product'
+-- Table 'product' (NOTE: indexes added to first column)
 --
 -- ---
 
@@ -134,7 +135,7 @@ CREATE TABLE "product" (
 );
 
 -- ---
--- Table 'related'
+-- Table 'related' [NOTE: created indexes on first two columns]
 --
 -- ---
 
@@ -209,7 +210,7 @@ CREATE TABLE "questions" (
 CREATE INDEX idx_questions_product_id ON questions (product_id);
 
 -- ---
--- Table 'skus'
+-- Table 'skus' [NOTE: added indexes on first two columns]
 --
 -- ---
 
@@ -225,7 +226,7 @@ CREATE TABLE "skus" (
 CREATE INDEX "idx_skus_style_id" ON "skus" ("style_id");
 
 -- ---
--- Table 'styles'
+-- Table 'styles' [NOTE: added indexes on first two columns]
 --
 -- ---
 

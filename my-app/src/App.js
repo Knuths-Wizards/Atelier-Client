@@ -10,7 +10,7 @@ import RatingsReviews from './Components/RatingsReviews/RatingsReviews'
 
 
 function App() {
-  const [productID, setProductID] = useState('78565');
+  const [productID, setProductID] = useState('1');
 
   useEffect(() => {
     themeChange(false)
@@ -30,7 +30,7 @@ function App() {
         <Overview productID = {productID} setProductID={setProductID}></Overview>
       </div>
       <div>
-        <RelatedCompare productid={productID} setProductID={setProductID} ></RelatedCompare>
+       <RelatedCompare productid={productID} setProductID={setProductID} ></RelatedCompare>
       </div>
       <div>
         <QA productID = {productID}></QA>

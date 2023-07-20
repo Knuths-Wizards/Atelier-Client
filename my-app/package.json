@@ -32,7 +32,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\"",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server-test": "npx jest --rootDir ./server/__tests__",
+    "server-start": "nodemon server/server.js"
   },
   "eslintConfig": {
     "extends": [
@@ -57,6 +59,7 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.22.5",
     "@babel/preset-react": "^7.22.5",
+    "artillery": "^2.0.0-35",
     "babel-jest": "^29.5.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-config-react-app": "^7.0.1",
