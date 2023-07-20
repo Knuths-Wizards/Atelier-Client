@@ -6,7 +6,7 @@ function createServer() {
 
   const app = express();
 
-  let dir = path.join(__dirname, '..', 'public');
+  let dir = path.join(__dirname, '..', '..', 'build');
   app.use(express.static(dir));
 
   app.get('/', (req, res) => {
@@ -26,7 +26,7 @@ function createServer() {
   app.put('/reviews/:review_id/helpful', controller.reviews.updateHelpful);
   app.put('/reviews/:review_id/report', controller.reviews.updateReported);
 
-  app.get('/reviews/:product_id', controller.reviews.getReviews);
+  app.get('/reviews/:product_id', controller.reviews.getReviewsById);
   app.post('/reviews', controller.reviews.postReview);
 
   // Questions Routes

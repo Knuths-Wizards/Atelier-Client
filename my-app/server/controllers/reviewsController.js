@@ -1,5 +1,7 @@
 const dbModel = require('../models/reviewsModel.js');
 
+// Helper Functions
+
 const convertToNumber = (value, limit, base) => {
   if (value === undefined) { return base; }
   let num = Number(value);
@@ -9,23 +11,68 @@ const convertToNumber = (value, limit, base) => {
   return num;
 };
 
+const sortReviews = (reviews, sort) => {
+  let results = [];
+
+  if (!Array.isArray(reviews)) return results;
+
+  switch (sort) {
+    case 'newest':
+      results = reviews.sort((a, b) => b.date - a.date);
+      break;
+    case 'helpful':
+      results = reviews.sort((a, b) => b.helpfulness - a.helpfulness);
+      break;
+    case 'relevant':
+      results = reviews.sort((a, b) => b.helpfulness - a.helpfulness || b.date - a.date);
+      break;
+    default:
+      results = reviews;
+  }
+
+  return results;
+};
+
+
+// Controller Functions
+
 const getReviews = (req, res) => {
   let params = {
-    product_id: convertToNumber(req.params.product_id, 10000000, 0),
+    product_id: convertToNumber(req.query?.product_id || req.params?.product_id, 10000000, 0),
     page: convertToNumber(req.query.page, 500, 1),
     count: convertToNumber(req.query.count, 100, 5),
     sort: req.query.sort || 'newest',
   };
 
-  dbModel.getReviews(params)
+    dbModel.getReviews(params)
     .then((data) => {
       let response = {
         product: params.product_id === 0 ? '' : String(params.product_id),
         page: params.page,
         count: data.rowCount,
-        results: data.rows,
+        results: sortReviews(data, params.sort),
       };
-      // console.log('getReviews', data);
+      res.send(response)
+    })
+    .catch((err) => console.log('error', err));
+};
+
+const getReviewsById = (req, res) => {
+  let params = {
+    product_id: convertToNumber(req.query?.product_id || req.params?.product_id, 10000000, 0),
+    page: convertToNumber(req.query.page, 500, 1),
+    count: convertToNumber(req.query.count, 100, 5),
+    sort: req.query.sort || 'newest',
+  };
+
+  dbModel.getReviewsById(params)
+    .then((data) => {
+      let response = {
+        product: params.product_id === 0 ? '' : String(params.product_id),
+        page: params.page,
+        count: data.rowCount,
+        results: sortReviews(data, params.sort),
+      };
       res.send(response)
     })
     .catch((err) => console.log('error', err));
@@ -48,11 +95,11 @@ const getMeta = (req, res) => {
 
   dbModel.getMeta(product_id)
     .then((data) => {
-      response.recommended = data[0].rows[0].recommended;
-      response.ratings = data[0].rows[0].ratings;
+      console.log('getMeta', data);
+      response.recommended = data[0].recommended;
+      response.ratings = data[0].ratings;
 
-      data[1].rows
-      .forEach((row) => {
+      data[1].forEach((row) => {
         response.characteristics[row.name] = {
           id: row.id,
           value: row.value
@@ -106,6 +153,7 @@ const postReview = (req, res) => {
 
 module.exports = {
   getReviews,
+  getReviewsById,
   getMeta,
   updateHelpful,
   updateReported,
