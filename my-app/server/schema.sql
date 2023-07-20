@@ -79,7 +79,7 @@ CREATE TABLE "characteristic_reviews" (
 );
 
 -- ---
--- Table 'features'
+-- Table 'features' [NOTE: Indexes on first two columns]
 --
 -- ---
 
@@ -93,7 +93,7 @@ CREATE TABLE "features" (
 );
 
 -- ---
--- Table 'photos'
+-- Table 'photos' [NOTE: added indexes to first two columns]
 --
 -- ---
 
@@ -107,7 +107,7 @@ CREATE TABLE "photos" (
 );
 
 -- ---
--- Table 'product'
+-- Table 'product' (NOTE: indexes added to first column)
 --
 -- ---
 
@@ -123,7 +123,7 @@ CREATE TABLE "product" (
 );
 
 -- ---
--- Table 'related'
+-- Table 'related' [NOTE: created indexes on first two columns]
 --
 -- ---
 
@@ -189,7 +189,7 @@ CREATE TABLE "questions" (
 );
 
 -- ---
--- Table 'skus'
+-- Table 'skus' [NOTE: added indexes on first two columns]
 --
 -- ---
 
@@ -203,7 +203,7 @@ CREATE TABLE "skus" (
 );
 
 -- ---
--- Table 'styles'
+-- Table 'styles' [NOTE: added indexes on first two columns]
 --
 -- ---
 
