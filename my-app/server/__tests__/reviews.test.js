@@ -1,6 +1,15 @@
 const request = require('supertest');
-const createServer = require('../utils/server');
-const app = createServer();
+const app = require('../server.js');
+const db = require('../db.js');
+beforeAll((done) => {
+  done();
+})
+
+afterAll((done) => {
+  app.close();
+  db.end();
+  done();
+})
 
 describe('GET Routes', () => {
   test('/reviews should return a 200 and body', async () => {

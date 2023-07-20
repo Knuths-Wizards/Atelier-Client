@@ -23,7 +23,7 @@ CREATE TABLE "answers" (
   "helpfulness" INTEGER NULL DEFAULT 0
 );
 
-CREATE INDEX idx_answers_questions_id ON answers (question_id);
+CREATE INDEX idx_answers_questions_id ON "answers" ("question_id");
 
 -- ---
 -- Table 'answers_photos'
@@ -38,7 +38,7 @@ CREATE TABLE "answers_photos" (
   "url" VARCHAR NULL DEFAULT NULL
 );
 
-CREATE INDEX idx_answers_photos_answers_id ON answers_photos (answer_id);
+CREATE INDEX idx_answers_photos_answers_id ON "answers_photos" ("answer_id");
 
 -- ---
 -- Table 'cart'
@@ -171,7 +171,7 @@ CREATE TABLE "reviews" (
   "helpfulness" INTEGER NULL DEFAULT NULL
 );
 
-CREATE INDEX idx_reviews_product_id ON reviews ("product_id");
+CREATE INDEX idx_reviews_product_id ON "reviews" ("product_id");
 
 -- ---
 -- Table 'reviews_photos'
@@ -207,7 +207,7 @@ CREATE TABLE "questions" (
 );
 
 
-CREATE INDEX idx_questions_product_id ON questions (product_id);
+CREATE INDEX idx_questions_product_id ON "questions" ("product_id");
 
 -- ---
 -- Table 'skus' [NOTE: added indexes on first two columns]

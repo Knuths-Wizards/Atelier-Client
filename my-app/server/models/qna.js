@@ -3,9 +3,9 @@ const pool = require('../db-pg.js');
 
 module.exports = {
   getQuestions: (productId, page, count) => {
-    console.log('getting questions for id: ', productId);
+    // console.log('getting questions for id: ', productId);
     return sql`
-      select 
+      select
       id as question_id,
       question_body,
       TO_TIMESTAMP(question_date::double precision / 1000) AS date,
@@ -30,17 +30,17 @@ module.exports = {
         )), json_build_array())
         FROM answers
         WHERE answers.question_id = questions.id
-      ) AS answers 
-      from questions where 
+      ) AS answers
+      from questions where
       product_id = ${productId}
       limit ${count}
       offset ${page - 1}`
   },
 
   getAnswers: (questionId, page, count) => {
-    console.log('getting answers for question:', questionId);
+    // console.log('getting answers for question:', questionId);
     return sql`
-      select 
+      select
       id as answer_id,
       body,
       TO_TIMESTAMP(date::double precision / 1000) as date,
@@ -56,18 +56,18 @@ module.exports = {
       ) as photos
       from answers where
       question_id = ${questionId}
-      limit ${count} 
+      limit ${count}
       offset ${page - 1}`
   },
 
-  postQuestion: (body, name, email, product_id) => {    
+  postQuestion: (body, name, email, product_id) => {
     return sql`insert into questions (
-      product_id, question_body, question_date, asker_name, asker_email) 
+      product_id, question_body, question_date, asker_name, asker_email)
       values (${product_id}, ${body}, ${Date.now()}, ${name}, ${email})`
   },
 
   postAnswer: (question_id, body, name, email, photos) => {
-    
+
     let s = 'insert into answers (question_id, body, date, answerer_name, answerer_email) values ($1, $2, $3, $4, $5) RETURNING id';
 
     return pool.query({text: s, values: [question_id, body, Date.now(), name, email ]})

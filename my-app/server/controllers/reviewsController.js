@@ -143,6 +143,7 @@ const postReview = (req, res) => {
   };
 
   if (params.product_id <= 0 || params.rating <= 0 || params.rating > 5) {
+    console.log(req.body);
     return res.sendStatus(400, 'Bad Request');
   }
 

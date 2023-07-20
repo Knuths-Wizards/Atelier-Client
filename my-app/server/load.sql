@@ -40,24 +40,24 @@ select setval('characteristic_reviews_id_seq', (select max(id) from characterist
 
 select setval('features_id_seq', (select max(id) from features) + 1);
 
--- COPY photos
--- FROM '/tmp/data/photos.csv'
--- DELIMITER ','
--- CSV HEADER;
+COPY photos
+FROM '/tmp/data/photos.csv'
+DELIMITER ','
+CSV HEADER;
 
 select setval('photos_id_seq', (select max(id) from photos) + 1);
 
--- COPY product
--- FROM '/tmp/data/product.csv'
--- DELIMITER ','
--- CSV HEADER;
+COPY product
+FROM '/tmp/data/product.csv'
+DELIMITER ','
+CSV HEADER;
 
 select setval('product_id_seq', (select max(id) from product) + 1);
 
--- COPY related
--- FROM '/tmp/data/related.csv'
--- DELIMITER ','
--- CSV HEADER;
+COPY related
+FROM '/tmp/data/related.csv'
+DELIMITER ','
+CSV HEADER;
 
 select setval('related_id_seq', (select max(id) from product) + 1);
 
@@ -82,17 +82,17 @@ CSV HEADER;
 
 select setval('questions_id_seq', (select max(id) from questions) + 1);
 
--- COPY skus
--- FROM '/tmp/data/skus.csv'
--- DELIMITER ','
--- CSV HEADER;
+COPY skus
+FROM '/tmp/data/skus.csv'
+DELIMITER ','
+CSV HEADER;
 
 select setval('skus_id_seq', (select max(id) from skus) + 1);
 
--- COPY styles
--- FROM '/tmp/data/styles.csv'
--- DELIMITER ','
--- null as ''
--- CSV HEADER;
+COPY styles
+FROM '/tmp/data/styles.csv'
+DELIMITER ','
+null as ''
+CSV HEADER;
 
 select setval('styles_id_seq', (select max(id) from styles) + 1);
