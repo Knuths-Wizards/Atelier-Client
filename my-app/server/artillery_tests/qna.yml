@@ -6,14 +6,14 @@ config:
   phases:
     - name: Testing Questions and Answers
       duration: 20
-      arrivalRate: 5
-      rampTo: 5
+      arrivalRate: 20
+      rampTo: 20
 scenarios:
   - name: Get questions 
     flow:
       - get:
-          url: "/qa/questions/?product_id=2"
+          url: "/qa/questions/?product_id={{ $randomNumber(1, 1000000) }}"
   - name: Get answers
     flow:
       - get:
-          url: "/qa/questions/1/answers"
+          url: "/qa/questions/{{ $randomNumber(1, 3000000) }}/answers"
