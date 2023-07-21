@@ -23,8 +23,6 @@ CREATE TABLE "answers" (
   "helpfulness" INTEGER NULL DEFAULT 0
 );
 
-CREATE INDEX idx_answers_questions_id ON "answers" ("question_id");
-
 -- ---
 -- Table 'answers_photos'
 --
@@ -37,8 +35,6 @@ CREATE TABLE "answers_photos" (
   "answer_id" INTEGER NULL DEFAULT NULL,
   "url" VARCHAR NULL DEFAULT NULL
 );
-
-CREATE INDEX idx_answers_photos_answers_id ON "answers_photos" ("answer_id");
 
 -- ---
 -- Table 'cart'
@@ -67,8 +63,6 @@ CREATE TABLE "characteristics" (
   "name" VARCHAR NULL DEFAULT NULL
 );
 
-CREATE INDEX "idx_characteristics_product_id" ON "characteristics" ( "product_id");
-
 -- ---
 -- Table 'characteristic_reviews'
 --
@@ -82,8 +76,6 @@ CREATE TABLE "characteristic_reviews" (
   "review_id" INTEGER NULL DEFAULT NULL,
   "value" INTEGER NULL DEFAULT NULL
 );
-
-CREATE INDEX "idx_characteristic_reviews_characteristic_id" ON "characteristic_reviews" ("characteristic_id");
 
 -- ---
 -- Table 'features' [NOTE: Indexes on first two columns]
@@ -99,8 +91,6 @@ CREATE TABLE "features" (
   "value" VARCHAR NULL DEFAULT NULL
 );
 
-CREATE INDEX "idx_features_product_id" ON "features" ("product_id");
-
 -- ---
 -- Table 'photos' [NOTE: added indexes to first two columns]
 --
@@ -115,8 +105,6 @@ CREATE TABLE "photos" (
   "url" VARCHAR NULL DEFAULT NULL,
   "thumbnail_url" VARCHAR NULL DEFAULT NULL
 );
-
-CREATE INDEX "idx_photos_style_id" ON "photos" ("style_id");
 
 -- ---
 -- Table 'product' (NOTE: indexes added to first column)
@@ -147,8 +135,6 @@ CREATE TABLE "related" (
   "related_product_id" INTEGER NULL DEFAULT NULL
 );
 
-CREATE INDEX "idx_related_current_product_id" ON "related" ("current_product_id");
-
 -- ---
 -- Table 'reviews'
 --
@@ -171,8 +157,6 @@ CREATE TABLE "reviews" (
   "helpfulness" INTEGER NULL DEFAULT NULL
 );
 
-CREATE INDEX idx_reviews_product_id ON "reviews" ("product_id");
-
 -- ---
 -- Table 'reviews_photos'
 --
@@ -185,8 +169,6 @@ CREATE TABLE "reviews_photos" (
   "review_id" INTEGER NULL DEFAULT NULL,
   "url" VARCHAR NULL DEFAULT NULL
 );
-
-CREATE INDEX "idx_reviews_photos_review_id" ON "reviews_photos" ("review_id");
 
 -- ---
 -- Table 'questions'
@@ -206,9 +188,6 @@ CREATE TABLE "questions" (
   "question_helpfulness" INTEGER NOT NULL DEFAULT 0
 );
 
-
-CREATE INDEX idx_questions_product_id ON "questions" ("product_id");
-
 -- ---
 -- Table 'skus' [NOTE: added indexes on first two columns]
 --
@@ -222,8 +201,6 @@ CREATE TABLE "skus" (
   "size" VARCHAR NULL DEFAULT NULL,
   "quantity" INTEGER NULL DEFAULT NULL
 );
-
-CREATE INDEX "idx_skus_style_id" ON "skus" ("style_id");
 
 -- ---
 -- Table 'styles' [NOTE: added indexes on first two columns]
@@ -240,5 +217,3 @@ CREATE TABLE "styles" (
   "original_price" INTEGER NULL DEFAULT NULL,
   "default_style" INTEGER NULL DEFAULT NULL
 );
-
-CREATE INDEX "idx_styles_product_id" ON "styles" ("product_id");
