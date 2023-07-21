@@ -95,8 +95,8 @@ const getMeta = (req, res) => {
 
   dbModel.getMeta(product_id)
     .then((data) => {
-      response.recommended = data[0].recommended;
-      response.ratings = data[0].ratings;
+      response.recommended = data[0][0].recommended;
+      response.ratings = data[0][0].ratings;
 
       data[1].forEach((row) => {
         response.characteristics[row.name] = {
@@ -105,6 +105,8 @@ const getMeta = (req, res) => {
         }
       });
 
+      console.log('getMeta Data0', data[0][0].recommended)
+      console.log('getMeta Response', response)
       res.send(response);
 
     })
