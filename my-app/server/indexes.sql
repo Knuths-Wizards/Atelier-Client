@@ -1,0 +1,12 @@
+CREATE INDEX idx_answers_questions_id ON "answers" ("question_id");
+CREATE INDEX idx_answers_photos_answers_id ON "answers_photos" ("answer_id");
+CREATE INDEX "idx_characteristics_product_id" ON "characteristics" ( "product_id");
+CREATE INDEX "idx_characteristic_reviews_characteristic_id" ON "characteristic_reviews" ("characteristic_id");
+CREATE INDEX "idx_features_product_id" ON "features" ("product_id");
+CREATE INDEX "idx_photos_style_id" ON "photos" ("style_id");
+CREATE INDEX "idx_related_current_product_id" ON "related" ("current_product_id");
+CREATE INDEX idx_reviews_product_id ON "reviews" ("product_id");
+CREATE INDEX "idx_reviews_photos_review_id" ON "reviews_photos" ("review_id");
+CREATE INDEX idx_questions_product_id ON "questions" ("product_id");
+CREATE INDEX "idx_skus_style_id" ON "skus" ("style_id");
+CREATE INDEX "idx_styles_product_id" ON "styles" ("product_id");
