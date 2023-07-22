@@ -1,0 +1,31 @@
+services:
+  # PostgreSQL service
+  postgres:
+    image: postgres:latest
+    container_name: some-postgres1
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: sdc
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Express app service
+  app:
+    image: sdc:latest
+    container_name: sdc2
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      PGHOST: postgres
+      PGUSER: postgres
+      PGPASSWORD: mysecretpassword
+      PGDATABASE: sdc
+      PGPORT: 5432 # Default PostgreSQL port
+    ports:
+      - "3000:3000" # Assuming your Express app listens on port 3000
+
+volumes:
+  postgres_data:
