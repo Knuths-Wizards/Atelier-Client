@@ -12,7 +12,7 @@
 • Worked as a team and scale the application's architecture to support loads up to tens of thousands of requests per second
 
 ## Team Members
-Lauren Swersky
-Kevin Glidden
+Lauren Swersky</br>
+Kevin Glidden</br>
 Zach Morrison
 
