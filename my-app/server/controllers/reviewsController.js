@@ -38,7 +38,7 @@ const sortReviews = (reviews, sort) => {
 
 const getReviews = (req, res) => {
   let params = {
-    product_id: convertToNumber(req.query?.product_id || req.params?.product_id, 10000000, 0),
+    product_id: convertToNumber(req.query.product_id || req.params.product_id, 10000000, 0),
     page: convertToNumber(req.query.page, 500, 1),
     count: convertToNumber(req.query.count, 100, 5),
     sort: req.query.sort || 'newest',
@@ -59,7 +59,7 @@ const getReviews = (req, res) => {
 
 const getReviewsById = (req, res) => {
   let params = {
-    product_id: convertToNumber(req.query?.product_id || req.params?.product_id, 10000000, 0),
+    product_id: convertToNumber(req.query.product_id || req.params.product_id, 10000000, 0),
     page: convertToNumber(req.query.page, 500, 1),
     count: convertToNumber(req.query.count, 100, 5),
     sort: req.query.sort || 'newest',
@@ -133,15 +133,15 @@ const updateReported = (req, res) => {
 
 const postReview = (req, res) => {
   let params = {
-    product_id: convertToNumber(req.body?.product_id || 0, 10000000, 0),
-    rating: convertToNumber(req.body?.rating, 5, 0),
-    summary: req.body?.summary || '',
-    body: req.body?.body || '',
-    recommend: req.body?.recommend || false,
-    name: req.body?.name,
-    email: req.body?.email,
-    photos: req.body?.photos || [],
-    characteristics: req.body?.characteristics || {},
+    product_id: convertToNumber(req.body.product_id || 0, 10000000, 0),
+    rating: convertToNumber(req.body.rating, 5, 0),
+    summary: req.body.summary || '',
+    body: req.body.body || '',
+    recommend: req.body.recommend || false,
+    name: req.body.name,
+    email: req.body.email,
+    photos: req.body.photos || [],
+    characteristics: req.body.characteristics || {},
   };
 
   if (params.product_id <= 0 || params.rating <= 0 || params.rating > 5) {
