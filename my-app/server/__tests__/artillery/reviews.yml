@@ -1,32 +1,32 @@
 config:
-  target: "http://localhost:3000"
+  target: "http://ec2-3-144-88-19.us-east-2.compute.amazonaws.com"
   phases:
-    - duration: 60
-      arrivalRate: 1
-      rampTo: 5
+    - duration: 10
+      arrivalRate: 1000
+      rampTo: 50000
       name: Warm up phase
-    - duration: 60
-      arrivalRate: 5
-      rampTo: 10
-      name: Ramp up load
-    - duration: 30
-      arrivalRate: 10
-      rampTo: 30
-      name: Spike phase
+    # - duration: 20
+    #   arrivalRate: 5000
+    #   rampTo: 7500
+    #   name: Ramp up load
+    # - duration: 10
+    #   arrivalRate: 7500
+    #   rampTo: 10000
+    #   name: Spike phase
 
 scenarios:
   - name: /reviews
     flow:
       - get:
           url: "/reviews"
-  - name: /reviews/:id
-    flow:
-      - get:
-          url: "/reviews/{{ $randomNumber(1, 1000000) }}"
-  - name: /reviews/meta
-    flow:
-      - get:
-          url: "/reviews/meta"
+  # - name: /reviews/:id
+  #   flow:
+  #     - get:
+  #         url: "/reviews/{{ $randomNumber(1, 1000000) }}"
+  # - name: /reviews/meta
+  #   flow:
+  #     - get:
+  #         url: "/reviews/meta"
 
 
 
